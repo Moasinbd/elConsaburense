@@ -79,3 +79,10 @@
 /* Contacto y reservas telefónicas - nov 2026 */
 .topbar-actions{display:flex;align-items:center;gap:20px;white-space:nowrap}.topbar-phone{font-weight:800!important}.booking-warning a,.location-phone a{color:#8e4a28;font-weight:800;text-decoration:underline;text-underline-offset:3px}.location-phone{font-size:1.06rem!important;font-weight:700;color:#423027;margin:20px 0}.booking-call{display:inline-flex;margin:12px 0 0;max-width:100%;text-align:center;justify-content:center}.booking-result .booking-call{color:#fff}
 @media(max-width:600px){.topbar-actions{gap:10px}.topbar-inner>span{display:none}.topbar-inner{justify-content:space-between}.topbar-phone{font-size:.76rem}.booking-call{width:100%}}
+
+/* Teléfono visible y accesible en contacto y pie de página */
+.contact-actions{display:flex;align-items:center;flex-wrap:wrap;gap:13px;margin-top:23px}
+.contact-actions .btn{white-space:nowrap}
+.footer-phone{display:inline-flex;align-items:center;gap:10px;margin-top:19px;color:#f4d7a6;font:700 1.1rem var(--sans);letter-spacing:.02em;text-decoration:none}
+.footer-phone:hover,.footer-phone:focus-visible{color:#fff;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:550px){.contact-actions{flex-direction:column;align-items:stretch}.contact-actions .btn{text-align:center;justify-content:center}}
