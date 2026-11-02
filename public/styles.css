@@ -43,3 +43,35 @@
 .reviews-note{font-size:.74rem;color:#867160;margin-top:22px;margin-bottom:0}
 @media(max-width:900px){.reviews-grid{grid-template-columns:1fr 1fr}.review-card:last-child{grid-column:1/-1}.reviews-top{align-items:start;flex-direction:column;gap:5px}}
 @media(max-width:600px){.reviews-grid{grid-template-columns:1fr}.review-card:last-child{grid-column:auto}.review-card{min-height:unset;padding:26px}.reviews-top{margin-bottom:24px}}
+
+/* Guía enológica de Consuegra y Castilla-La Mancha */
+.wine-section{background:#271c20;color:#f6ede1;padding-bottom:98px;position:relative;overflow:hidden}
+.wine-section:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 95% 0%,rgba(153,78,73,.2),transparent 45%);pointer-events:none}
+.wine-section .wrap{position:relative;z-index:1}
+.wine-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:8%;align-items:end;margin-bottom:22px}
+.wine-intro .eyebrow{color:#d8ac74}
+.wine-intro h2{color:#fff7ed;margin:15px 0 0;max-width:670px}
+.wine-intro h2 em{color:#e0b583;font-weight:400}
+.wine-intro>p{color:#e2ccc1;max-width:440px;line-height:1.8;margin:0 0 5px}
+.wine-grape-accent{color:#cba97e;font-size:.7rem;letter-spacing:.22em;display:flex;gap:16px;align-items:center;margin:24px 0 30px}
+.wine-grape-accent:before,.wine-grape-accent:after{content:"";height:1px;background:linear-gradient(90deg,#9b7461,transparent);flex:1}
+.wine-grape-accent:before{max-width:60px}
+.wine-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.wine-card{background:#fff9f0;border-radius:7px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 28px #0804052c;transition:transform .3s,box-shadow .3s}
+.wine-card:hover{transform:translateY(-4px);box-shadow:0 22px 34px #08040540}
+.wine-image{height:237px;position:relative;background:#745348;overflow:hidden}
+.wine-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.83);transition:transform .7s}
+.wine-card:hover .wine-image img{transform:scale(1.06)}
+.wine-ribbon{position:absolute;bottom:15px;left:15px;background:#341c24e8;border:1px solid #cba97e55;color:#fce3bc;padding:9px 12px;font-size:.69rem;font-weight:700;letter-spacing:.08em}
+.wine-card-body{padding:25px 23px 24px;color:#372a25;display:flex;flex-direction:column;flex:1}
+.wine-origin{font-size:.69rem;font-weight:800;letter-spacing:.13em;color:#99563f;margin-bottom:11px}
+.wine-card h3{font:700 clamp(1.23rem,1.9vw,1.55rem)/1.25 var(--serif);margin:0 0 12px;color:#352720}
+.wine-card p{font-size:.81rem;line-height:1.7;color:#67554a;margin:0 0 25px;flex:1}
+.wine-card-bottom{border-top:1px solid #eadccc;padding-top:15px;display:flex;flex-direction:column;align-items:start;gap:9px}
+.wine-card-bottom>span{font-size:.71rem;color:#846e60}
+.wine-card-bottom a{color:#924b39;font-size:.76rem;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.wine-disclaimer{color:#d1b8b1;margin:24px 0 0;font-size:.73rem;line-height:1.8;max-width:1000px}
+.wine-disclaimer strong{font-weight:700;color:#f6e7ce}
+.wine-disclaimer a{color:#f0c99c;text-decoration:underline}
+@media(max-width:1000px){.wine-intro{grid-template-columns:1fr;gap:18px}.wine-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:630px){.wine-section{padding-top:70px;padding-bottom:75px}.wine-grid{grid-template-columns:1fr}.wine-image{height:250px}.wine-intro h2{font-size:2.3rem}.wine-grape-accent{letter-spacing:.1em}}

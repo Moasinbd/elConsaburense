@@ -21,16 +21,20 @@ jobs:
           python -m pip install --disable-pip-version-check Pillow
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
-      - name: Crear vídeo promocional de 15 segundos
-        run: python scripts/build_video.py
       - name: Preparar y optimizar las fotos de platos
         run: python scripts/build_gallery.py
+      - name: Preparar fotografías de vinos
+        run: python scripts/build_wines.py
+      - name: Crear vídeo limpio de 15 segundos
+        run: python scripts/build_video.py
       - name: Validar sitio y vídeo
         run: |
           test -s public/index.html
           test -s public/styles.css
           test -s public/media/logo-consaburense.webp
           test -s public/media/consaburense-15s.mp4
+          grep -q 'id="vinos"' public/index.html
+          grep -q 'id="opiniones"' public/index.html
           ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 public/media/consaburense-15s.mp4
       - name: Publicar usando GitHub Pages como Portfolio
         uses: peaceiris/actions-gh-pages@v4
