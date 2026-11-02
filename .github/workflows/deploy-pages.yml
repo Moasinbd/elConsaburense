@@ -23,6 +23,8 @@ jobs:
           sudo apt-get install -y -qq ffmpeg
       - name: Crear vídeo promocional de 15 segundos
         run: python scripts/build_video.py
+      - name: Preparar y optimizar las fotos de platos
+        run: python scripts/build_gallery.py
       - name: Validar sitio y vídeo
         run: |
           test -s public/index.html
