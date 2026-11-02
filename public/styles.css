@@ -212,3 +212,10 @@
 @media(max-width:790px){.town-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.town-gallery .town-card{height:315px}.town-gallery .town-card.town-card-large{height:350px}.town-gallery .town-card figcaption{padding:22px}.town-gallery .town-card figcaption strong{font-size:1.45rem}}
 @media(max-width:550px){.town-gallery{grid-template-columns:1fr;gap:14px}.town-gallery .town-card{height:300px}.town-gallery .town-card.town-card-large{grid-column:auto;height:340px}.town-gallery .town-card figcaption{padding:18px 20px}.town-gallery .town-card figcaption strong{font-size:1.5rem}.town-gallery .town-card figcaption p{font-size:.75rem}.town-lightbox{max-width:98vw}.town-lightbox-shell{width:96vw}.town-lightbox-footer{padding:15px 17px;flex-direction:column;align-items:start;gap:8px}.town-lightbox #town-lightbox-image{max-height:calc(94dvh - 136px)}.town-zoom{font-size:.64rem;right:11px;top:11px}}
 @media(prefers-reduced-motion:reduce){.town-photo-open img{transition:none}}
+
+
+/* Control accesible del carrusel gastronómico automático */
+.food-autoplay-toggle{height:38px;width:38px;display:grid;place-items:center;flex-shrink:0;border:1px solid #c9b293;border-radius:50%;background:#fff9f0;color:#744729;font-size:1.03rem;font-weight:800;transition:background .2s,color .2s}
+.food-autoplay-toggle:hover{background:#34231c;color:white}
+.food-autoplay-toggle[aria-pressed="true"]{background:#e8d8c2;color:#573725}
+@media(max-width:600px){.food-autoplay-toggle{height:35px;width:35px;font-size:.9rem}}

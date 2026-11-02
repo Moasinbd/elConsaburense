@@ -12,8 +12,8 @@
   <link rel="canonical" href="https://elconsaburense.moasin.dev/">
   <link rel="icon" href="media/logo-consaburense.webp" type="image/webp">
   <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261102-feria">
-  <script src="app.js?v=20261102-patrimonio" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261102-auto-carta">
+  <script src="app.js?v=20261102-auto-carta" defer></script>
   <title>El Consaburense | Restaurante en Consuegra</title>
 </head>
 <body>
@@ -32,8 +32,9 @@
   <div class="food-showcase-heading">
     <div><span class="eyebrow">INSPIRACIÓN EN CADA PLATO</span><h3>Una carta para <em>disfrutar</em></h3></div>
     <div class="food-controls">
+      <button class="food-autoplay-toggle" id="food-autoplay-toggle" type="button" aria-label="Pausar avance automático de los platos" title="Pausar avance automático de los platos" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button>
       <button class="food-arrow" id="food-prev" type="button" aria-label="Ver el plato anterior" disabled>←</button>
-      <span id="food-count" class="food-count" aria-live="polite">01 / 06</span>
+      <span id="food-count" class="food-count" aria-live="off">01 / 06</span>
       <button class="food-arrow" id="food-next" type="button" aria-label="Ver el plato siguiente">→</button>
     </div>
   </div>

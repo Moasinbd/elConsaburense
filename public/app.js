@@ -60,6 +60,19 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(foodTrack){
     const foodCards=[...foodTrack.querySelectorAll('.food-card')];
     const foodPrev=$('food-prev'),foodNext=$('food-next'),foodCount=$('food-count');
+    const autoToggle=$('food-autoplay-toggle');
+    const foodShowcase=foodTrack.closest('.food-showcase');
+    const motionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const FOOD_AUTO_INTERVAL=4800;
+    const FOOD_INTERACTION_COOLDOWN=12000;
+    let autoPaused=motionPreference.matches;
+    let foodInView=!('IntersectionObserver' in window);
+    let foodHovered=false;
+    let lastManualInteraction=0;
+    let lastAutoAdvance=Date.now();
+    let isAutoScrolling=false;
+    let autoScrollReset=null;
+
     const step=()=>foodCards.length>1?foodCards[1].offsetLeft-foodCards[0].offsetLeft:foodTrack.clientWidth;
     const updateFoodControls=()=>{
       const max=Math.max(0,foodTrack.scrollWidth-foodTrack.clientWidth);
@@ -68,17 +81,92 @@ document.addEventListener('DOMContentLoaded',()=>{
       if(foodNext)foodNext.disabled=foodTrack.scrollLeft>max-4;
       if(foodCount)foodCount.textContent=String(index+1).padStart(2,'0')+' / '+String(foodCards.length).padStart(2,'0');
     };
+    const noteFoodInteraction=()=>{
+      lastManualInteraction=Date.now();
+      lastAutoAdvance=Date.now();
+      isAutoScrolling=false;
+    };
     const moveFood=(dir)=>{
       const next=Math.max(0,Math.min(foodTrack.scrollWidth-foodTrack.clientWidth,foodTrack.scrollLeft+dir*step()));
-      foodTrack.scrollTo({left:next,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+      foodTrack.scrollTo({left:next,behavior:motionPreference.matches?'auto':'smooth'});
     };
-    foodPrev?.addEventListener('click',()=>moveFood(-1));
-    foodNext?.addEventListener('click',()=>moveFood(1));
-    foodTrack.addEventListener('scroll',updateFoodControls,{passive:true});
-    foodTrack.addEventListener('keydown',event=>{
-      if(event.key==='ArrowRight'){event.preventDefault();moveFood(1);}
-      if(event.key==='ArrowLeft'){event.preventDefault();moveFood(-1);}
+    const updateAutoToggle=()=>{
+      if(!autoToggle)return;
+      const label=autoPaused?'Reanudar avance automático de los platos':'Pausar avance automático de los platos';
+      autoToggle.setAttribute('aria-label',label);
+      autoToggle.title=label;
+      const icon=autoToggle.querySelector('span');
+      if(icon)icon.textContent=autoPaused?'▶':'Ⅱ';
+      autoToggle.setAttribute('aria-pressed',String(autoPaused));
+    };
+    foodPrev?.addEventListener('click',()=>{
+      noteFoodInteraction();
+      moveFood(-1);
     });
+    foodNext?.addEventListener('click',()=>{
+      noteFoodInteraction();
+      moveFood(1);
+    });
+    autoToggle?.addEventListener('click',()=>{
+      autoPaused=!autoPaused;
+      if(autoPaused)noteFoodInteraction();
+      else{
+        lastManualInteraction=0;
+        lastAutoAdvance=Date.now();
+      }
+      updateAutoToggle();
+    });
+    foodTrack.addEventListener('scroll',()=>{
+      updateFoodControls();
+      // Los desplazamientos manuales reinician la espera; los automáticos no.
+      if(!isAutoScrolling)noteFoodInteraction();
+    },{passive:true});
+    foodTrack.addEventListener('pointerdown',noteFoodInteraction,{passive:true});
+    foodTrack.addEventListener('wheel',noteFoodInteraction,{passive:true});
+    foodTrack.addEventListener('keydown',event=>{
+      if(event.key==='ArrowRight'){event.preventDefault();noteFoodInteraction();moveFood(1);}
+      if(event.key==='ArrowLeft'){event.preventDefault();noteFoodInteraction();moveFood(-1);}
+    });
+    foodShowcase?.addEventListener('pointerenter',event=>{
+      if(event.pointerType==='mouse')foodHovered=true;
+    });
+    foodShowcase?.addEventListener('pointerleave',event=>{
+      if(event.pointerType==='mouse'){
+        foodHovered=false;
+        lastAutoAdvance=Date.now();
+      }
+    });
+    foodShowcase?.addEventListener('focusin',noteFoodInteraction);
+    document.addEventListener('visibilitychange',()=>{
+      if(!document.hidden)lastAutoAdvance=Date.now();
+    });
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{
+        const wasVisible=foodInView;
+        foodInView=entries.some(entry=>entry.isIntersecting);
+        if(foodInView&&!wasVisible)lastAutoAdvance=Date.now();
+      },{threshold:0.25});
+      observer.observe(foodTrack);
+    }
+    // Avanza una tarjeta cada 4,8 s, solo si se ve y no hay interacción reciente.
+    if(foodCards.length>1){
+      window.setInterval(()=>{
+        const now=Date.now();
+        const max=Math.max(0,foodTrack.scrollWidth-foodTrack.clientWidth);
+        if(autoPaused||document.hidden||!foodInView||foodHovered||max<8)return;
+        if(now-lastAutoAdvance<FOOD_AUTO_INTERVAL)return;
+        if(lastManualInteraction&&now-lastManualInteraction<FOOD_INTERACTION_COOLDOWN)return;
+        const next=foodTrack.scrollLeft>=max-8?0:Math.min(max,foodTrack.scrollLeft+step());
+        lastAutoAdvance=now;
+        isAutoScrolling=true;
+        foodTrack.scrollTo({left:next,behavior:motionPreference.matches?'auto':'smooth'});
+        window.clearTimeout(autoScrollReset);
+        autoScrollReset=window.setTimeout(()=>{
+          isAutoScrolling=false;
+          updateFoodControls();
+        },1250);
+      },500);
+    }
     window.addEventListener('resize',updateFoodControls,{passive:true});
     foodCards.forEach(card=>{
       const img=card.querySelector('img');
@@ -89,6 +177,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       });
     });
     updateFoodControls();
+    updateAutoToggle();
   }
 
   document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>showMenu(tab.dataset.category)));
