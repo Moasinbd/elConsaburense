@@ -10,7 +10,6 @@ URLS=[
  ('Croquetas tradicionales','https://upload.wikimedia.org/wikipedia/commons/2/2c/Croquetas_de_jam%C3%B3n_-_lacestabar.jpg'),
  ('El Consaburense | Tradición y sabor','')]
 font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'; font2='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
-logo=Image.open(OUT/'logo-consaburense.webp').convert('RGBA'); logo.thumbnail((178,178))
 slides=[]
 for i,(name,url) in enumerate(URLS):
     try:
@@ -27,10 +26,7 @@ for i,(name,url) in enumerate(URLS):
     d=ImageDraw.Draw(im,'RGBA');d.rectangle((0,340,960,540),fill=(15,10,7,168))
     d.text((54,402),name,font=ImageFont.truetype(font,33),fill='white')
     d.text((56,455),'CONSUEGRA · TOLEDO · CASTILLA-LA MANCHA',font=ImageFont.truetype(font2,17),fill=(246,216,176))
-    if i==4:
-        big=Image.open(OUT/'logo-consaburense.webp').convert('RGBA'); big.thumbnail((235,235))
-        im.paste(big,(363,60),big)
-    else: im.paste(logo,(747,26),logo)
+    # El logotipo se mantiene exclusivamente en la cabecera de la web.
     path=OUT/f'frame-{i}.jpg';im.save(path,quality=85);slides.append(path)
 # Cinco segmentos consecutivos de tres segundos producen un vídeo de 15s.
 inputs=[]
