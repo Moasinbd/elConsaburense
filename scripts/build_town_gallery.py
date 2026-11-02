@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 import io
+import json
 import pathlib
+import re
 import time
+import urllib.parse
 import urllib.request
 from PIL import Image, ImageOps
 
@@ -33,11 +36,59 @@ PHOTOS = [
     ]),
 ]
 
+# URLs de los fotógrafos originales (o alternativa Creative Commons si la foto
+# del castillo de Wikimedia no puede descargarse).
+FLICKR_PHOTOS = {
+    "molinos": "https://www.flickr.com/photos/michalo/7079301421/",
+    "castillo": "https://www.flickr.com/photos/kentwang/49946328342/",
+    "plaza-espana": "https://www.flickr.com/photos/martius/13910010000/",
+}
+
+def flickr_image_candidates(slug: str) -> list[str]:
+    """Resuelve URL de imagen mediante oEmbed público, sin claves privadas."""
+    page = FLICKR_PHOTOS.get(slug)
+    if not page:
+        return []
+    options = {
+        "url": page,
+        "format": "json",
+        "maxwidth": "1280",
+        "maxheight": "960",
+    }
+    api = "https://www.flickr.com/services/oembed/?" + urllib.parse.urlencode(options)
+    try:
+        request = urllib.request.Request(api, headers={
+            "User-Agent": "Mozilla/5.0 (compatible; ElConsaburense/1.0)",
+            "Accept": "application/json,*/*;q=0.8",
+        })
+        with urllib.request.urlopen(request, timeout=12) as response:
+            details = json.load(response)
+        urls = [
+            details.get("url"),
+            details.get("thumbnail_url"),
+        ]
+        urls = [link for link in urls if isinstance(link, str)
+                and link.startswith(("https://live.staticflickr.com/",
+                                     "https://farm",
+                                     "http://farm"))]
+        # Reutiliza la imagen de 1024 px si el oEmbed devuelve una miniatura.
+        for link in urls[:]:
+            large = re.sub(r"_[sqtmnzwo]\.jpg$", "_b.jpg", link)
+            if large != link:
+                urls.insert(0, large.replace("http://", "https://"))
+        unique = list(dict.fromkeys(u.replace("http://", "https://") for u in urls))
+        print(f"FLICKR OEmbed: {slug} ({len(unique)} tamaños)", flush=True)
+        return unique
+    except Exception as error:
+        print(f"FLICKR OEmbed falla {slug}: {str(error)[:140]}", flush=True)
+        return []
+
 html = HTML.read_text(encoding="utf-8")
 for slug, urls in PHOTOS:
+    source_options = flickr_image_candidates(slug) + urls
     target = OUT / f"{slug}.webp"
     success = False
-    for source in urls:
+    for source in source_options:
         for attempt in range(2):
             try:
                 request = urllib.request.Request(source, headers={
