@@ -39,7 +39,7 @@ PHOTOS = [
 # URLs de los fotógrafos originales (o alternativa Creative Commons si la foto
 # del castillo de Wikimedia no puede descargarse).
 FLICKR_PHOTOS = {
-    "molinos": "https://www.flickr.com/photos/alvaromoreno/52322755265/",
+    "molinos": "https://www.flickr.com/photos/k14/16937869640/",
     "castillo": "https://www.flickr.com/photos/kentwang/49946328342/",
     "plaza-espana": "https://www.flickr.com/photos/martius/13910010000/",
 }
