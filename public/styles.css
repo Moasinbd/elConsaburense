@@ -219,3 +219,22 @@
 .food-autoplay-toggle:hover{background:#34231c;color:white}
 .food-autoplay-toggle[aria-pressed="true"]{background:#e8d8c2;color:#573725}
 @media(max-width:600px){.food-autoplay-toggle{height:35px;width:35px;font-size:.9rem}}
+
+/* WhatsApp Business: enlace oficial y reservas de dos pasos */
+.btn-whatsapp{background:#166b45;color:#fff;border-color:#166b45}
+.btn-whatsapp:hover{background:#105436;border-color:#105436;box-shadow:0 12px 22px #134c3026;color:#fff}
+.topbar-whatsapp{color:#b5efce!important;font-weight:800!important}
+.booking-direct{margin:2px 0 12px}
+.booking-shortcut{font-size:.81rem;margin:0 0 10px!important}
+.booking-privacy{font-size:.76rem;line-height:1.6;color:#66584d;margin:13px 0 0}
+.booking-privacy a{text-decoration:underline;text-underline-offset:3px}
+.booking-result-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.booking-result-actions .btn{flex:1 1 205px;min-width:0}
+.booking-result-note{margin:14px 0 4px!important}
+.booking-result .booking-call{display:inline-block;color:#8c482f;font-weight:750;text-decoration:underline;text-underline-offset:3px;margin-top:6px}
+.footer-whatsapp{display:inline-block;color:#a7e5bd;margin-top:8px;text-decoration:underline;text-underline-offset:3px;font-size:.84rem;font-weight:700}
+.footer-whatsapp:hover{color:#fff}
+.whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:40;display:inline-flex;align-items:center;gap:9px;background:#166b45;color:#fff;box-shadow:0 7px 26px #173d2c52;border:1px solid #d7f4dd88;border-radius:99px;padding:13px 19px;font-size:.84rem;font-weight:800;line-height:1.3;transition:transform .2s,background-color .2s}
+.whatsapp-float:hover{transform:translateY(-3px);background:#105436;color:#fff}
+.whatsapp-float span[aria-hidden]{font-size:1.1rem}
+@media(max-width:600px){.topbar-map{display:none}.whatsapp-float{right:12px;bottom:12px;padding:10px 14px;font-size:.78rem}.booking-result-actions{flex-direction:column}.booking-result-actions .btn{width:100%;flex:initial}.booking-direct{width:100%}}
