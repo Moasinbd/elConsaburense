@@ -169,6 +169,41 @@ document.addEventListener('DOMContentLoaded',()=>{
   };
   dayButtons.forEach(button=>button.addEventListener('click',()=>chooseFairDay(button.dataset.fairDay)));
 
+
+  // Ampliación accesible de las imágenes del pueblo sin salir de El Consaburense.
+  const townDialog=$('town-lightbox');
+  const townDialogImage=$('town-lightbox-image');
+  const townDialogTitle=$('town-lightbox-title');
+  const townDialogMore=$('town-lightbox-more');
+  const townClose=$('town-lightbox-close');
+  let townLastTrigger=null;
+  document.querySelectorAll('.town-gallery .town-card').forEach(card=>{
+    const trigger=card.querySelector('.town-photo-open');
+    const photo=trigger?.querySelector('img');
+    const heading=card.querySelector('figcaption strong')?.textContent?.trim();
+    const more=card.querySelector('a.town-more');
+    trigger?.addEventListener('click',()=>{
+      if(!townDialog||!photo||!townDialogImage||!townDialogTitle||!townDialogMore||!more)return;
+      townLastTrigger=trigger;
+      townDialogImage.src=photo.currentSrc||photo.src;
+      townDialogImage.alt=photo.alt;
+      townDialogTitle.textContent=heading||'Consuegra';
+      townDialogMore.href=more.href;
+      townDialogMore.setAttribute('aria-label','Saber más sobre '+(heading||'Consuegra')+' en la página oficial de Turismo');
+      if(typeof townDialog.showModal==='function')townDialog.showModal();
+      else window.open(photo.currentSrc||photo.src,'_blank','noopener,noreferrer');
+    });
+  });
+  const closeTownDialog=()=>{if(townDialog?.open)townDialog.close()};
+  townClose?.addEventListener('click',closeTownDialog);
+  townDialog?.addEventListener('click',event=>{
+    if(event.target===townDialog)closeTownDialog();
+  });
+  townDialog?.addEventListener('close',()=>{
+    townDialogImage?.removeAttribute('src');
+    townLastTrigger?.focus();
+  });
+
   $('booking-form')?.addEventListener('submit',event=>{
     event.preventDefault(); const f=event.currentTarget;
     if(!f.reportValidity())return;

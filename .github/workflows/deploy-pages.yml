@@ -25,6 +25,8 @@ jobs:
         run: python scripts/build_gallery.py
       - name: Preparar fotografías de vinos
         run: python scripts/build_wines.py
+      - name: Preparar fotografías de monumentos de Consuegra
+        run: python scripts/build_town_gallery.py
       - name: Crear vídeo limpio de 15 segundos
         run: python scripts/build_video.py
       - name: Validar sitio y vídeo
@@ -38,6 +40,10 @@ jobs:
           grep -q 'id="agenda"' public/index.html
           grep -q 'agenda-ciudadana-pagina' public/index.html
           node --check public/app.js
+          grep -q 'id="town-lightbox"' public/index.html
+          grep -q 'Iglesia de San Juan Bautista' public/index.html
+          grep -q 'plaza-de-espana' public/index.html
+          ! grep -q 'Calles de Consuegra' public/index.html
           ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 public/media/consaburense-15s.mp4
       - name: Publicar usando GitHub Pages como Portfolio
         uses: peaceiris/actions-gh-pages@v4
