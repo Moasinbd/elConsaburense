@@ -35,6 +35,9 @@ jobs:
           test -s public/media/consaburense-15s.mp4
           grep -q 'id="vinos"' public/index.html
           grep -q 'id="opiniones"' public/index.html
+          grep -q 'id="agenda"' public/index.html
+          grep -q 'agenda-ciudadana-pagina' public/index.html
+          node --check public/app.js
           ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 public/media/consaburense-15s.mp4
       - name: Publicar usando GitHub Pages como Portfolio
         uses: peaceiris/actions-gh-pages@v4

@@ -12,8 +12,8 @@
   <link rel="canonical" href="https://elconsaburense.moasin.dev/">
   <link rel="icon" href="media/logo-consaburense.webp" type="image/webp">
   <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261102-telefono">
-  <script src="app.js?v=20261102-vinos" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261102-agenda">
+  <script src="app.js?v=20261102-agenda" defer></script>
   <title>El Consaburense | Restaurante en Consuegra</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
   <div class="topbar"><div class="wrap topbar-inner"><span>✦ Av. Alcázar de San Juan, 58 · 45700 Consuegra, Toledo</span><div class="topbar-actions"><a class="topbar-phone" href="tel:+34925480700" aria-label="Llamar a El Consaburense al 925 48 07 00">☎ 925 48 07 00</a><a href="https://maps.app.goo.gl/RFtfWHs8n9EE9Bss9" target="_blank" rel="noopener noreferrer">Cómo llegar <span aria-hidden="true">↗</span></a></div></div></div>
   <header class="header" id="inicio"><div class="wrap nav-wrap">
     <a href="#inicio" class="brand" aria-label="El Consaburense, ir al inicio"><span class="brand-mark" aria-hidden="true"><img class="brand-logo" src="media/logo-consaburense.webp" alt=""><svg viewBox="0 0 64 64" fill="none"><path d="M17 49h30M21 46h22L39 27H25L21 46Z" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/><path d="m24 27 8-10 8 10H24Z" fill="currentColor"/><circle cx="32" cy="29" r="3" fill="#f8efe1"/><path d="M32 29 16 14M32 29l16 15M32 29l12-18M32 29 20 47" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M14 48v-8h4v-5h5M45 34h6v6h3v8" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></svg></span><span class="brand-type"><strong>EL CONSABURENSE</strong><small>TRADICIÓN Y SABOR</small></span></a>
-    <nav id="main-nav" class="nav" aria-label="Menú principal"><a href="#nosotros">Nosotros</a><a href="#carta">La carta</a><a href="#vinos">Vinos</a><a href="#opiniones">Opiniones</a><a href="#eventos">Eventos</a><a href="#consuegra">Consuegra</a><a href="#contacto">Contacto</a><a href="#reservas" class="btn btn-primary nav-cta">Solicitar mesa</a></nav>
+    <nav id="main-nav" class="nav" aria-label="Menú principal"><a href="#nosotros">Nosotros</a><a href="#carta">La carta</a><a href="#vinos">Vinos</a><a href="#opiniones">Opiniones</a><a href="#eventos">Eventos</a><a href="#agenda">Agenda</a><a href="#consuegra">Consuegra</a><a href="#contacto">Contacto</a><a href="#reservas" class="btn btn-primary nav-cta">Solicitar mesa</a></nav>
     <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   </div></header>
   <main id="contenido">
@@ -111,9 +111,87 @@
   </div>
 </section>
     <section class="section town-section" id="consuegra"><div class="wrap"><div class="section-heading centered"><span class="eyebrow">UN PUEBLO PARA DESCUBRIR</span><h2>Consuegra, mucho más que <em>un destino</em></h2><p>Entre molinos, historia y rincones con encanto. Descubre algunos de los lugares que hacen única nuestra tierra.</p></div><div class="town-grid"><figure class="town-card town-card-large"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Windmills_and_castle_of_Consuegra_(7079301421).jpg/1280px-Windmills_and_castle_of_Consuegra_(7079301421).jpg" alt="Vista del castillo de la Muela y los molinos de Consuegra" loading="lazy"><figcaption><span>01 · CERRO CALDERICO</span><strong>Molinos de viento</strong><p>Las siluetas más reconocibles de Consuegra.</p></figcaption></figure><figure class="town-card"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Castillo_de_Consuegra.jpg" alt="Castillo de Consuegra" loading="lazy"><figcaption><span>02 · PATRIMONIO</span><strong>Castillo de la Muela</strong><p>Un símbolo histórico de la localidad.</p></figcaption></figure><figure class="town-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Consuegra,_street_to_the_windmills.jpg/960px-Consuegra,_street_to_the_windmills.jpg" alt="Calle tradicional de Consuegra camino de los molinos" loading="lazy"><figcaption><span>03 · PASEAR</span><strong>Calles de Consuegra</strong><p>La personalidad de una villa manchega.</p></figcaption></figure><figure class="town-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Consuegra_(13910010000).jpg/960px-Consuegra_(13910010000).jpg" alt="Plaza de España y ayuntamiento de Consuegra" loading="lazy"><figcaption><span>04 · CENTRO HISTÓRICO</span><strong>Plaza de España</strong><p>Uno de los puntos de encuentro de la localidad.</p></figcaption></figure></div><p class="photo-notice">Fotografías de Consuegra procedentes de Wikimedia Commons. <a href="creditos.html">Ver autores y licencias</a>.</p></div></section>
+    <section class="section agenda-section" id="agenda" aria-labelledby="agenda-title">
+  <div class="wrap">
+    <div class="agenda-heading">
+      <div class="agenda-heading-copy">
+        <span class="eyebrow">VIVE CONSUEGRA</span>
+        <h2 id="agenda-title">De feria en feria.<br><em>Y de mesa en mesa.</em></h2>
+        <p>Que el plan no termine al salir de la plaza. Si vienes a Consuegra por una feria, una función o simplemente a pasar el día, echa un vistazo a lo que hay y nos llamas para comer.</p>
+      </div>
+      <a class="btn agenda-municipal-btn" href="https://aytoconsuegra.es/agenda-ciudadana-pagina/" target="_blank" rel="noopener noreferrer">Agenda del Ayuntamiento <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="agenda-showcase">
+      <div class="agenda-showcase-photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Windmills_and_castle_of_Consuegra_%287079301421%29.jpg" alt="Molinos y castillo de Consuegra, en el Cerro Calderico" loading="lazy" decoding="async" width="960" height="720">
+        <span class="agenda-photo-label">CONSUEGRA · TOLEDO</span>
+      </div>
+      <div class="agenda-showcase-message">
+        <span class="agenda-showcase-kicker">UN PLAN REDONDO, SIN COMPLICACIONES</span>
+        <h3>Primero el plan.<br><em>Después, a comer.</em></h3>
+        <p>Un paseo por los molinos, una tarde de feria o una salida con amigos. Y cuando toque sentarse, en El Consaburense nos tienes a un teléfono.</p>
+        <div class="agenda-showcase-actions"><a class="btn btn-gold" href="tel:+34925480700">Llamar para reservar <span aria-hidden="true">↗</span></a><a class="agenda-showcase-menu" href="#carta">Ver nuestra carta <span aria-hidden="true">→</span></a></div>
+        <small>Tel. 925 48 07 00 · Mesas sujetas a disponibilidad y confirmación.</small>
+      </div>
+    </div>
+    <div class="agenda-events-heading">
+      <div><span class="agenda-label">PRÓXIMAS CITAS</span><h3>Lo que se mueve <em>por el pueblo</em></h3></div>
+      <p>Fechas consultadas en fuentes municipales. La programación puede cambiar; compruébala antes de salir.</p>
+    </div>
+    <div class="agenda-next-grid" id="agenda-next-list">
+<article class="agenda-card agenda-card-featured" data-ends="2026-11-08">
+  <div class="agenda-card-date"><strong>07–08</strong><span>NOV</span></div>
+  <div class="agenda-card-copy">
+    <div class="agenda-card-top"><span class="agenda-card-category">FERIA · PASEO RAMÓN Y CAJAL</span><span class="agenda-card-badge">Fechas actualizadas</span></div>
+    <h4>Consuegra Fashion Weekend</h4>
+    <p class="agenda-when">7 y 8 de noviembre de 2026</p>
+    <p class="agenda-card-description">Dos días de comercio local, moda y propuestas para pasar por el centro. El Ayuntamiento ha trasladado la cita al 7 y 8 de noviembre, de 11:00 a 21:00. El programa de actos está pendiente de confirmación.</p>
+    <div class="agenda-card-actions"><a class="agenda-card-book" href="#reservas" data-agenda-booking data-booking-date="2026-11-07" data-booking-time="14:00">Preparar una mesa <span aria-hidden="true">→</span></a><a class="agenda-card-source" href="https://aytoconsuegra.es/iv-consuegra-fashion-weekend-2026-nueva-fecha-7-y-8-de-noviembre/" target="_blank" rel="noopener noreferrer" aria-label="Consultar los detalles municipales de Consuegra Fashion Weekend">Programa oficial <span aria-hidden="true">↗</span></a></div>
+  </div>
+</article>
+<article class="agenda-card" data-ends="2026-11-29">
+  <div class="agenda-card-date"><strong>29</strong><span>NOV</span></div>
+  <div class="agenda-card-copy">
+    <div class="agenda-card-top"><span class="agenda-card-category">CULTURA · TEATRO DON QUIJOTE</span><span class="agenda-card-badge">Para disfrutar en familia</span></div>
+    <h4>«Verduras monstruosas»</h4>
+    <p class="agenda-when">29 de noviembre de 2026 · 19:00 h</p>
+    <p class="agenda-card-description">Una función familiar de títeres en el Teatro Don Quijote a las 19:00. Si vais a pasar el día en Consuegra, podéis consultar mesa para comer antes.</p>
+    <div class="agenda-card-actions"><a class="agenda-card-book" href="#reservas" data-agenda-booking data-booking-date="2026-11-29" data-booking-time="14:00">Preparar una mesa <span aria-hidden="true">→</span></a><a class="agenda-card-source" href="https://aytoconsuegra.es/teatro-familiar-verduras-monstruosas/" target="_blank" rel="noopener noreferrer" aria-label="Consultar los detalles municipales de «Verduras monstruosas»">Programa oficial <span aria-hidden="true">↗</span></a></div>
+  </div>
+</article>
+<article class="agenda-card" data-ends="2026-12-26">
+  <div class="agenda-card-date"><strong>26</strong><span>DIC</span></div>
+  <div class="agenda-card-copy">
+    <div class="agenda-card-top"><span class="agenda-card-category">DEPORTE · PLAZA DE ESPAÑA</span><span class="agenda-card-badge">Tradición navideña</span></div>
+    <h4>Carrera de Navidad</h4>
+    <p class="agenda-when">26 de diciembre de 2026 · desde las 16:00 h</p>
+    <p class="agenda-card-description">La carrera infantil empieza a las 16:00 y la prueba para adultos a las 17:00. Un buen día para venir al pueblo, animar y terminar con una cena en familia.</p>
+    <div class="agenda-card-actions"><a class="agenda-card-book" href="#reservas" data-agenda-booking data-booking-date="2026-12-26" data-booking-time="21:00">Preparar una mesa <span aria-hidden="true">→</span></a><a class="agenda-card-source" href="https://aytoconsuegra.es/carrera-de-navidad-consuegra-2026-memorial-matias-punzon/" target="_blank" rel="noopener noreferrer" aria-label="Consultar los detalles municipales de Carrera de Navidad">Programa oficial <span aria-hidden="true">↗</span></a></div>
+  </div>
+</article>
+    </div>
+    <div class="agenda-no-events" id="agenda-no-events" hidden>
+      <p>Estas citas ya se celebraron. En el calendario del Ayuntamiento encontrarás los próximos planes de Consuegra.</p>
+      <a class="btn btn-outline" href="https://aytoconsuegra.es/agenda-ciudadana-pagina/" target="_blank" rel="noopener noreferrer">Consultar próximas actividades <span aria-hidden="true">↗</span></a>
+    </div>
+    <details class="fair-archive" id="programa-feria-2026" open>
+      <summary><span class="fair-archive-summary"><small>PARA RECORDAR Y PLANIFICAR OTRAS EDICIONES</small><strong>Así fue la Feria y Fiestas de Consuegra 2026</strong><span>Un recorrido por los días del 20 al 25 de septiembre. Pulsa cada fecha para ver los actos destacados.</span></span><span class="fair-archive-symbol" aria-hidden="true"></span></summary>
+      <div class="fair-archive-body">
+        <div class="fair-archive-note"><span>ARCHIVO 2026</span><p>Estos actos ya se han celebrado. Este es un resumen del programa municipal, no la agenda de próximos eventos.</p></div>
+        <div class="fair-days" role="group" aria-label="Días de la Feria y Fiestas 2026"><button class="fair-day is-active" type="button" data-fair-day="20" aria-pressed="true"><span>DOM</span><strong>20</strong><small>SEP</small></button><button class="fair-day" type="button" data-fair-day="21" aria-pressed="false"><span>LUN</span><strong>21</strong><small>SEP</small></button><button class="fair-day" type="button" data-fair-day="22" aria-pressed="false"><span>MAR</span><strong>22</strong><small>SEP</small></button><button class="fair-day" type="button" data-fair-day="23" aria-pressed="false"><span>MIÉ</span><strong>23</strong><small>SEP</small></button><button class="fair-day" type="button" data-fair-day="24" aria-pressed="false"><span>JUE</span><strong>24</strong><small>SEP</small></button><button class="fair-day" type="button" data-fair-day="25" aria-pressed="false"><span>VIE</span><strong>25</strong><small>SEP</small></button></div>
+        <div class="fair-day-panel" id="fair-day-panel" aria-live="polite">
+          <div><span class="fair-day-overline">ACTOS DESTACADOS</span><h4 id="fair-day-heading">Domingo 20 · Víspera patronal</h4></div>
+          <ol id="fair-day-activities"><li class="fair-activity"><time>12:00</time><span>Chupinazo en la Plaza de España.</span></li><li class="fair-activity"><time>12:00–14:00</time><span>Desfile de gigantes y cabezudos por Plaza de España y calle del Arco.</span></li><li class="fair-activity"><time>00:00</time><span>Orquesta Danubios en la Plaza de España.</span></li></ol>
+        </div>
+        <div class="fair-archive-footer"><span>Selección de actos de las fiestas patronales en honor al Cristo de la Vera Cruz.</span><a href="https://aytoconsuegra.es/feria-y-fiestas-consuegra-2026-programacion/" target="_blank" rel="noopener noreferrer">Consultar programa municipal completo 2026 <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </details>
+    <div class="agenda-closeout"><p>Para saber qué hay <strong>hoy, este fin de semana o en próximas fechas</strong>, lo mejor es la agenda oficial. Para sentarse a comer, nos llamas directamente.</p><div><a class="btn agenda-agency-secondary" href="https://aytoconsuegra.es/agenda-ciudadana-pagina/" target="_blank" rel="noopener noreferrer">Ver agenda ciudadana <span aria-hidden="true">↗</span></a><a class="btn btn-primary" href="tel:+34925480700">Reservar mesa por teléfono <span aria-hidden="true">↗</span></a></div></div>
+  </div>
+</section>
     <section class="section bookings-section" id="reservas"><div class="wrap booking-grid"><div class="booking-copy"><span class="eyebrow">COMPARTE UNA MESA</span><h2>¿Nos vemos en <em>El Consaburense?</em></h2><p>Prepara los datos de tu visita. El formulario genera un resumen que podrás copiar para contactar con el restaurante.</p><div class="booking-warning"><strong>Importante:</strong> estamos preparando las notificaciones de reservas por WhatsApp. Hasta activarlas, <strong>este formulario no envía solicitudes automáticamente ni confirma una mesa</strong>. Para reservar, llama al <a href="tel:+34925480700">925 48 07 00</a> y espera confirmación.</div><a class="text-link" href="https://maps.app.goo.gl/RFtfWHs8n9EE9Bss9" target="_blank" rel="noopener noreferrer">Abrir ficha del restaurante en Google Maps ↗</a></div><div class="booking-panel"><form id="booking-form"><div class="field-grid"><label>Nombre <input id="booking-name" name="name" required maxlength="90" autocomplete="name" placeholder="Tu nombre"></label><label>Teléfono de contacto <input id="booking-phone" name="phone" type="tel" required maxlength="28" autocomplete="tel" placeholder="Tu número"></label><label>Fecha <input id="booking-date" name="date" type="date" required></label><label>Hora deseada <select id="booking-time" name="time" required><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option></select></label><label>Comensales <select id="booking-guests" name="guests" required><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option></select></label><label>Tipo de visita <select id="booking-type" name="type"><option>Mesa</option><option>Comida de grupo</option><option>Celebración</option><option>Consulta de catering</option></select></label></div><label>Observaciones (opcional) <textarea id="booking-notes" name="notes" rows="3" maxlength="500" placeholder="Trona, preferencias o cualquier consulta. No incluyas datos médicos."></textarea></label><button class="btn btn-primary form-button" type="submit">Preparar solicitud <span aria-hidden="true">→</span></button></form><div id="booking-result" class="booking-result" hidden><p><strong>Solicitud preparada, pero NO enviada.</strong> Copia el texto y contacta con el restaurante para confirmar.</p><textarea id="booking-summary" aria-label="Resumen de solicitud" readonly rows="8"></textarea><button id="copy-summary" type="button" class="btn btn-outline">Copiar texto</button><a class="booking-call btn btn-primary" href="tel:+34925480700">Llamar al 925 48 07 00 para confirmar</a><p id="copy-status" class="copy-status" role="status"></p></div></div></div></section>
     <section class="section location-section" id="contacto"><div class="wrap location-grid"><div><span class="eyebrow">TE ESPERAMOS</span><h2>Nos encontrarás en <em>Consuegra</em></h2><p>En plena tierra de molinos, con mucho por descubrir a tu alrededor.</p><div class="address"><span aria-hidden="true">◎</span><div><strong>Bar Restaurante El Consaburense</strong><p>Av. Alcázar de San Juan, 58<br>45700 Consuegra, Toledo</p></div></div><p class="location-phone">Reservas y consultas: <a href="tel:+34925480700">925 48 07 00</a></p><p class="location-note">Consulta el horario actualizado y los datos de contacto en la ficha del establecimiento antes de desplazarte.</p><div class="contact-actions"><a class="btn btn-primary" href="tel:+34925480700">Llamar al 925 48 07 00 <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="https://maps.app.goo.gl/RFtfWHs8n9EE9Bss9" target="_blank" rel="noopener noreferrer">Abrir Google Maps <span aria-hidden="true">↗</span></a></div></div><div class="location-visual"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Consuegra,_street_to_the_windmills.jpg/960px-Consuegra,_street_to_the_windmills.jpg" alt="Calle de Consuegra con vistas hacia los molinos" loading="lazy"><div class="location-badge">39° 27′ N<br>3° 36′ O<br><small>CONSUEGRA · TOLEDO</small></div></div></div></section>
   </main>
-  <footer class="footer"><div class="wrap"><div class="footer-main"><div><a href="#inicio" class="footer-name">EL CONSABURENSE</a><p>Tradición, hospitalidad y sabor en Consuegra.</p><a class="footer-phone" href="tel:+34925480700" aria-label="Llamar al restaurante al 925 48 07 00"><span aria-hidden="true">☎</span> 925 48 07 00</a></div><nav aria-label="Enlaces de pie de página"><a href="#carta">Carta</a><a href="#vinos">Vinos</a><a href="#opiniones">Opiniones</a><a href="#eventos">Eventos</a><a href="#consuegra">Consuegra</a><a href="#contacto">Contacto</a></nav></div><div class="footer-bottom"><span>© 2026 El Consaburense. Consuegra, Toledo.</span><span><a href="creditos.html">Créditos de fotografías</a> · <a href="privacidad.html">Privacidad</a></span></div></div></footer>
+  <footer class="footer"><div class="wrap"><div class="footer-main"><div><a href="#inicio" class="footer-name">EL CONSABURENSE</a><p>Tradición, hospitalidad y sabor en Consuegra.</p><a class="footer-phone" href="tel:+34925480700" aria-label="Llamar al restaurante al 925 48 07 00"><span aria-hidden="true">☎</span> 925 48 07 00</a></div><nav aria-label="Enlaces de pie de página"><a href="#carta">Carta</a><a href="#vinos">Vinos</a><a href="#opiniones">Opiniones</a><a href="#eventos">Eventos</a><a href="#agenda">Agenda</a><a href="#consuegra">Consuegra</a><a href="#contacto">Contacto</a></nav></div><div class="footer-bottom"><span>© 2026 El Consaburense. Consuegra, Toledo.</span><span><a href="creditos.html">Créditos de fotografías</a> · <a href="privacidad.html">Privacidad</a></span></div></div></footer>
 </body>
 </html>

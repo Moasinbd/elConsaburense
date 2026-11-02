@@ -96,6 +96,79 @@ document.addEventListener('DOMContentLoaded',()=>{
   toggle?.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.setAttribute('aria-label',expanded?'Cerrar menú':'Abrir menú');nav.classList.toggle('is-open',expanded)});
   nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('is-open');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Abrir menú')}));
   const date=$('booking-date');if(date){const local=new Date(); const today=`${local.getFullYear()}-${String(local.getMonth()+1).padStart(2,'0')}-${String(local.getDate()).padStart(2,'0')}`;date.min=today;date.value=today}
+
+  // Agenda local. Las fechas pasadas se ocultan automáticamente en zona horaria de Consuegra.
+  const parts=new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const datePiece=type=>parts.find(part=>part.type===type)?.value||'00';
+  const todayConsuegra=datePiece('year')+'-'+datePiece('month')+'-'+datePiece('day');
+  const agendaCards=[...document.querySelectorAll('.agenda-card[data-ends]')];
+  agendaCards.forEach(card=>{
+    card.hidden=card.dataset.ends<todayConsuegra;
+  });
+  if(agendaCards.length && agendaCards.every(card=>card.hidden)){
+    const empty=$('agenda-no-events');if(empty)empty.hidden=false;
+  }
+  document.querySelectorAll('[data-agenda-booking]').forEach(link=>link.addEventListener('click',()=>{
+    const day=link.dataset.bookingDate;
+    if(date && day && day>=todayConsuegra && day>=date.min)date.value=day;
+    const time=$('booking-time');
+    if(time && link.dataset.bookingTime && [...time.options].some(option=>option.value===link.dataset.bookingTime)){
+      time.value=link.dataset.bookingTime;
+    }
+    const result=$('booking-result');if(result)result.hidden=true;
+  }));
+  const fairDays={
+    '20':{heading:'Domingo 20 · Víspera patronal',events:[
+      ['12:00','Chupinazo en la Plaza de España.'],
+      ['12:00–14:00','Gigantes y cabezudos por Plaza de España y calle del Arco.'],
+      ['00:00','Orquesta Danubios en la Plaza de España.']
+    ]},
+    '21':{heading:'Lunes 21 · Día del Cristo de la Vera Cruz',events:[
+      ['09:00','Diana musical por las calles de Consuegra.'],
+      ['19:00','Procesión del Santísimo Cristo de la Vera Cruz.'],
+      ['23:00','Fuegos artificiales junto al río Amarguillo.']
+    ]},
+    '22':{heading:'Martes 22 · Día del Ausente',events:[
+      ['12:00–15:00','Parque infantil de hinchables en Plaza de España.'],
+      ['19:30–21:30','Franja de atracciones con menor intensidad sonora y lumínica.'],
+      ['23:00','Orquesta Séptima Avenida en la Plaza de España.']
+    ]},
+    '23':{heading:'Miércoles 23 · Día del Niño',events:[
+      ['11:30','Bueyada infantil por la calle del Arco.'],
+      ['12:00–15:00','Juegos de habilidad y puntería en Plaza de España.'],
+      ['23:00','Orquesta Jenasan en la Plaza de España.']
+    ]},
+    '24':{heading:'Jueves 24 · Día del Mayor',events:[
+      ['10:00','Desayuno popular para mayores en Plaza de España.'],
+      ['12:30','Bingo musical para mayores en Plaza de España.'],
+      ['23:00','Orquesta Mambo Show en Plaza de España.']
+    ]},
+    '25':{heading:'Viernes 25 · Fin de feria',events:[
+      ['12:00–15:00','Jornada infantil de multiaventura en Plaza de España.'],
+      ['23:00','Fuegos artificiales en el entorno del molino Bolero.'],
+      ['23:30','Fiesta de cierre con DJ locales en la carpa municipal.']
+    ]}
+  };
+  const dayButtons=[...document.querySelectorAll('[data-fair-day]')];
+  const chooseFairDay=(day)=>{
+    const info=fairDays[day];if(!info)return;
+    dayButtons.forEach(button=>{
+      const isActive=button.dataset.fairDay===day;
+      button.classList.toggle('is-active',isActive);
+      button.setAttribute('aria-pressed',String(isActive));
+    });
+    const heading=$('fair-day-heading'),list=$('fair-day-activities');
+    if(heading)heading.textContent=info.heading;
+    if(list)list.replaceChildren(...info.events.map(([hour,description])=>{
+      const li=document.createElement('li');li.className='fair-activity';
+      const time=document.createElement('time');time.textContent=hour;
+      const activity=document.createElement('span');activity.textContent=description;
+      li.append(time,activity);
+      return li;
+    }));
+  };
+  dayButtons.forEach(button=>button.addEventListener('click',()=>chooseFairDay(button.dataset.fairDay)));
+
   $('booking-form')?.addEventListener('submit',event=>{
     event.preventDefault(); const f=event.currentTarget;
     if(!f.reportValidity())return;
