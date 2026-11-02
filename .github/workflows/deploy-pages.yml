@@ -40,6 +40,9 @@ jobs:
           grep -q 'id="agenda"' public/index.html
           grep -q 'agenda-ciudadana-pagina' public/index.html
           node --check public/app.js
+          for file in molinos castillo iglesia-san-juan plaza-espana; do test -s "public/media/consuegra/$file.webp"; done
+          grep -q 'media/consuegra/plaza-espana.webp' public/index.html
+          grep -q 'media/consuegra/molinos.webp' public/index.html
           grep -q 'id="town-lightbox"' public/index.html
           grep -q 'Iglesia de San Juan Bautista' public/index.html
           grep -q 'plaza-de-espana' public/index.html

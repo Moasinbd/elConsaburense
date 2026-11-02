@@ -85,8 +85,15 @@ def flickr_image_candidates(slug: str) -> list[str]:
 
 html = HTML.read_text(encoding="utf-8")
 for slug, urls in PHOTOS:
-    source_options = flickr_image_candidates(slug) + urls
     target = OUT / f"{slug}.webp"
+    # Fotografías versionadas en el repositorio: se mantienen aunque Wikimedia
+    # o Flickr limiten las descargas. Para cambiarlas, sustituir el archivo local.
+    if target.is_file() and target.stat().st_size > 8_000:
+        html = html.replace('src="' + urls[0] + '"',
+                            'src="media/consuegra/' + slug + '.webp"')
+        print(f"MONUMENTO LOCAL: {slug} ({target.stat().st_size} bytes)", flush=True)
+        continue
+    source_options = flickr_image_candidates(slug) + urls
     success = False
     for source in source_options:
         for attempt in range(2):
