@@ -6,15 +6,15 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; OUT=ROOT/'public'/'media'; OUT
 URLS=[
  ('Consuegra y sus molinos','https://upload.wikimedia.org/wikipedia/commons/e/e0/Windmills_and_castle_of_Consuegra_%287079301421%29.jpg'),
  ('Castillo de la Muela','https://upload.wikimedia.org/wikipedia/commons/9/9d/Castillo_de_Consuegra.jpg'),
- ('Pisto manchego','https://upload.wikimedia.org/wikipedia/commons/8/81/Pisto_manchego.jpg'),
- ('Croquetas tradicionales','https://upload.wikimedia.org/wikipedia/commons/2/2c/Croquetas_de_jam%C3%B3n_-_lacestabar.jpg'),
- ('El Consaburense | Tradición y sabor','')]
+ ('Croquetas tradicionales','https://images.pexels.com/photos/33389174/pexels-photo-33389174.jpeg?auto=compress&cs=tinysrgb&w=1280'),
+ ('Patatas bravas','https://images.pexels.com/photos/28490816/pexels-photo-28490816.jpeg?auto=compress&cs=tinysrgb&w=1280'),
+ ('El Consaburense | Tradición y sabor','https://images.pexels.com/photos/20887639/pexels-photo-20887639.jpeg?auto=compress&cs=tinysrgb&w=1280')]
 font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'; font2='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 slides=[]
 for i,(name,url) in enumerate(URLS):
     try:
-        if not url: raise ValueError('Final with brand')
-        req=urllib.request.Request(url,headers={'User-Agent':'ElConsaburenseWebsite/1.0 (contact: website)'}); 
+        user_agent='Mozilla/5.0 (compatible; ElConsaburense/1.0)' if 'images.pexels.com' in url else 'ElConsaburenseWebsite/1.0 (contact: website)'
+        req=urllib.request.Request(url,headers={'User-Agent':user_agent,'Accept':'image/*,*/*;q=0.8'}); 
         with urllib.request.urlopen(req,timeout=18) as response: raw=response.read(16000000)
         im=Image.open(io.BytesIO(raw)).convert('RGB'); im=ImageOps.fit(im,(960,540),method=Image.Resampling.LANCZOS)
         print('Photo OK',name)
