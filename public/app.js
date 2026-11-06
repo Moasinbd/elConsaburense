@@ -1,39 +1,47 @@
 'use strict';
 const menuData={
-  raciones:[
-    ['Croquetas de jamón (6 uds)','Croquetas tradicionales de jamón.'],
-    ['Croquetas de pollo (6 uds)','Deliciosas croquetas de pollo.'],
-    ['Croquetas de marisco (6 uds)','Croquetas con sabor a marisco.'],
-    ['Delicias de pollo al ajillo (10 uds)','Bocados de pollo al ajillo.'],
-    ['Ensaladilla rusa','Clásico de nuestra carta.'],
-    ['Gazpacho o salmorejo','Una opción fresca para disfrutar.'],
-    ['Patatas bravas','Patatas acompañadas de salsa brava.'],
-    ['Patatas dos salsas (bravas, alioli)','Patatas para compartir con dos salsas.'],
-    ['Calamares a la romana','Anillas de calamar rebozadas.'],
-    ['Pincho de tortilla','Una porción de tortilla de patatas.']
+  entrantes:[
+    ['Ensaladilla rusa casera','Un clásico de nuestra cocina.'],
+    ['Calamares a la romana','Crujientes y recién preparados.'],
+    ['Croquetas caseras de jamón ibérico','Cremosas, con jamón ibérico.'],
+    ['Croquetas caseras de gamba roja','Sabor intenso a mar.'],
+    ['Verduritas fritas con langostinos','Una combinación de verduras y marisco.']
   ],
-  combinados:[
-    ['Lomo, patatas y huevos','Lomo a la plancha con guarnición.'],
-    ['Bacon, patatas y huevos','Bacon acompañado de huevos y patatas.'],
-    ['Pica pollo','Pollo crujiente troceado.'],
-    ['Lomo con patatas','Lomo a la plancha y patatas.'],
-    ['Huevos rotos con jamón de bellota','Huevos y patatas con jamón.'],
-    ['Pisto manchego con huevo','Verduras y huevo al estilo manchego.'],
-    ['Salchipapas','Patatas fritas con salchichas.']
+  guisos:[
+    ['Callos a la madrileña','Receta tradicional.'],
+    ['Fabada asturiana con compango','Guiso asturiano de cuchara.'],
+    ['Albóndigas caseras en salsa','Sabor de cocina de siempre.'],
+    ['Suquet de langostinos con almejas','Guiso marinero.']
   ],
-  hamburguesas:[
-    ['Hamburguesa de ternera completa','Ternera, lechuga, tomate, queso, bacon, cebolla y huevo.'],
-    ['Hamburguesa de pollo','Pollo con lechuga, tomate, cebolla y huevo.']
+  carnes:[
+    ['Chuletitas de lechal manchego','Producto tradicional manchego.'],
+    ['Entrecot de vacuno mayor a la plancha','Carne a la plancha.'],
+    ['Solomillo de vacuno al ajillo suave','Con un toque de ajo.'],
+    ['Solomillo a la plancha o a la pimienta','A elegir la preparación.'],
+    ['Cachopín asturiano con patatas','Especialidad asturiana con guarnición.']
   ],
-  bocadillos:[
-    ['Bacon con queso o tomate','Bacon a la plancha.'],
-    ['Lomo con queso o tomate','Lomo tierno a la plancha.'],
-    ['Tortilla francesa','Tortilla francesa hecha al momento.'],
-    ['Tortilla de patatas','El clásico de tortilla de patatas.'],
-    ['Chorizo','Sabor tradicional.'],
-    ['Atún con tomate','Atún acompañado de tomate.'],
-    ['Jamón con tomate','Jamón y tomate.'],
-    ['Anchoas con tomate','Anchoas y tomate.']
+  encargos:[
+    ['Arroz a banda','Especial por encargo.'],
+    ['Arroz negro','Especial por encargo.'],
+    ['Arroz meloso','Especial por encargo.'],
+    ['Asado de cordero','Consultar encargo y disponibilidad.'],
+    ['Asado de lechal','Consultar encargo y disponibilidad.'],
+    ['Cochinillo asado','Consultar encargo y disponibilidad.'],
+    ['Pescados frescos a la plancha, al horno o a la sal','Consultar pescado disponible y preparación.']
+  ],
+  peques:[
+    ['Fingers de pollo crujientes','Para los más pequeños.'],
+    ['Hamburguesa completa con patatas','Con guarnición.'],
+    ['Pollo frito con patatas','Crujiente y sabroso.'],
+    ['Tortilla de patatas mini','El clásico en formato pequeño.']
+  ],
+  postres:[
+    ['Tarta de chocolate fondant','Para amantes del chocolate.'],
+    ['Brownie casero con nueces','Chocolate y nueces.'],
+    ['Tatín de manzana tradicional','Tarta de manzana invertida.'],
+    ['Tarta de queso cremosa','Un postre irresistible.'],
+    ['Compota de manzana casera','Dulce tradicional.'],
+    ['Helados variados de la casa','Consultar sabores disponibles.']
   ]
 };
 const $=id=>document.getElementById(id);
@@ -54,7 +62,7 @@ function showMenu(category){
   wrapper.setAttribute('aria-labelledby',`tab-${category}`);
 }
 document.addEventListener('DOMContentLoaded',()=>{
-  showMenu('raciones');
+  showMenu('entrantes');
 
   const foodTrack=$('food-track');
   if(foodTrack){
@@ -282,5 +290,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     townDialogImage?.removeAttribute('src');
     townLastTrigger?.focus();
   });
+
+  // Sol orienta a los visitantes; las respuestas de WhatsApp son humanas.
+  const solLauncher=$('sol-launcher'),solPanel=$('sol-panel'),solClose=$('sol-close');
+  const setSolOpen=open=>{if(!solLauncher||!solPanel)return;solPanel.hidden=!open;solLauncher.setAttribute('aria-expanded',String(open));};
+  solLauncher?.addEventListener('click',()=>setSolOpen(solPanel.hidden));
+  solClose?.addEventListener('click',()=>{setSolOpen(false);solLauncher?.focus();});
+  document.querySelectorAll('[data-sol-close]').forEach(a=>a.addEventListener('click',()=>setSolOpen(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&solPanel&&!solPanel.hidden){setSolOpen(false);solLauncher?.focus();}});
 
 });
