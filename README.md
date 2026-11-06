@@ -16,7 +16,7 @@ La sección `#eventos` incluye cumpleaños, bautizos y comuniones, bodas, reunio
 
 ## Publicación
 
-La fuente está en `public/` en `Moasinbd/elConsaburense`, rama `main`. GitHub Actions publica una copia en `gh-pages`, pero **no actualiza automáticamente el Worker que actualmente atiende `elconsaburense.moasin.dev`**. La versión debe publicarse al servicio del dominio. No habilitar `workers.dev`.
+La fuente está en `public/` en `Moasinbd/elConsaburense`, rama `main`. GitHub Actions publica en `gh-pages` y Cloudflare Pages despliega la rama de producción; verificar la publicación en `elconsaburense.moasin.dev`. No habilitar `workers.dev`.
 
 Antes de entregar: comprobar HTTPS y contenido del dominio, recepción en WhatsApp, privacidad y datos legales, carta e imágenes.
 
@@ -28,6 +28,6 @@ python3 -m http.server 8080 --directory public
 
 Créditos de fotografía: [Créditos](public/creditos.html).
 
-### Fotografías reales en archivos locales
+### Carrusel de imágenes fotorrealistas locales
 
-Las fotografías de referencia, procedentes de Pexels, están guardadas como imágenes WebP bajo `public/media/platos/`, dentro de GitHub. El carrusel apunta a rutas **locales**; no depende de descargas de terceros durante el despliegue. Créditos y fuente en `public/creditos.html`. Son fotos orientativas de platos similares, no fotos hechas en El Consaburense.
+Las 14 imágenes del carrusel se han generado con IA y optimizado en WebP. Están alojadas dentro de `public/media/carta-fotorealista/`, se incluyen en el repositorio y se sirven desde el mismo dominio, sin hotlinks externos. Son recreaciones visuales de los platos, no fotografías del restaurante. Los detalles y la presentación real pueden variar.
