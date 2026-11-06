@@ -24,8 +24,6 @@ jobs:
             sudo apt-get install -y -qq ffmpeg
           fi
           ffmpeg -version | head -n 1
-      - name: Preparar fotografías de vinos
-        run: python scripts/build_wines.py
       - name: Preparar fotografías de monumentos de Consuegra
         run: python scripts/build_town_gallery.py
       - name: Crear vídeo limpio de 15 segundos
@@ -44,6 +42,10 @@ jobs:
           done
           grep -q '"@type": "Restaurant"' public/index.html
           grep -q 'property="og:image"' public/index.html
+          test -s public/404.html
+          grep -q 'name="robots" content="noindex,follow"' public/404.html
+          for file in calderico castillo-consuegra altovela ojos-guadiana alcardet finca-antigua; do test -s "public/media/vinos/$file.webp"; done
+          ! grep -q 'src="https://images.pexels.com' public/index.html
           test -s public/styles.css
           test -s public/media/logo-consaburense.webp
           test -s public/media/sol-avatar.webp

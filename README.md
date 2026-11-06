@@ -57,3 +57,11 @@ Se añaden:
 - GitHub Actions utiliza el FFmpeg ya disponible en el runner y solo instala el paquete si falta, evitando `apt-get update` innecesarios.
 
 La publicación/validación de Google Search Console **requiere que el propietario verifique el dominio**; subir el sitemap al sitio no equivale a enviarlo a Google. No se han inventado horarios, reparto, precios, valoraciones ni imágenes reales del restaurante.
+
+## SEO local: tercera fase y futuro dominio
+
+- Se añade `public/404.html` para que Cloudflare Pages sirva una verdadera respuesta 404 ante URLs inexistentes, evitando mostrar la portada como un posible *soft 404*. Incluye `noindex,follow` y enlaces útiles.
+- Las seis fotografías decorativas de vinos se almacenan también en `public/media/vinos/` y se usan con rutas locales, evitando hotlinks de Pexels en tiempo de visita y descargas de esas fotos durante la CI.
+- Se valida en `scripts/check_seo.py` que las seis imágenes existan, que la página de error tenga noindex y que la navegación de recuperación esté presente.
+- **Dominio de destino previsto:** `elconsaburense.com`. Hasta que el propietario confirme el registro y la conexión HTTPS del dominio, **no sustituir todavía las URL canónicas ni el sitemap de `elconsaburense.moasin.dev`**. Entonces actualizar los 4 canonicals, el `Restaurant.url` y `hasMenu`, los datos de WebPage/BreadcrumbList, Open Graph, sitemap y robots; configurar redirecciones 301 uno a uno desde el subdominio provisional, actualizar el perfil de Google y verificar el dominio final en Search Console.
+- No se ha creado ni modificado ningún TXT DNS para Search Console.

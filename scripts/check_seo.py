@@ -110,6 +110,22 @@ tree = ET.parse(ROOT / "sitemap.xml")
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 urls = [x.text for x in tree.findall(".//sm:loc", ns)]
 assert len(urls) == 4 and sorted(urls) == sorted(all_canonicals), "Sitemap y canonical no coinciden"
+# Una ruta inexistente debe recibir la página 404 de Cloudflare Pages, sin indexarla.
+error_file = ROOT / "404.html"
+assert error_file.exists(), "404.html no existe: Pages puede confundir rutas no encontradas con la portada"
+error_html = error_file.read_text(encoding="utf-8")
+assert '<meta name="robots" content="noindex,follow">' in error_html, "La página de error no lleva noindex"
+for name in ("carta-para-llevar", "arroces-asados-por-encargo", "celebraciones"):
+    assert f'/{name}/' in error_html, f"Falta la ruta de recuperación: {name}"
+
+# Las fotos de vinos deben depender de archivos propios y no de hotlinks de Pexels.
+home_html = (ROOT / "index.html").read_text(encoding="utf-8")
+for slug in ("calderico", "castillo-consuegra", "altovela", "ojos-guadiana", "alcardet", "finca-antigua"):
+    target = ROOT / "media" / "vinos" / f"{slug}.webp"
+    assert target.is_file() and target.stat().st_size > 1000, f"Falta foto local de vinos: {slug}"
+    assert f'media/vinos/{slug}.webp' in home_html, f"HTML no usa la foto local: {slug}"
+assert 'src="https://images.pexels.com' not in home_html, "Quedan imágenes Pexels enlazadas externamente"
+
 robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
 assert "Sitemap: " + SITE + "/sitemap.xml" in robots, "Falta declarar sitemap"
 print("SEO OK: sitemap, robots, cuatro páginas y enlaces locales coherentes.")
