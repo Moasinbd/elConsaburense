@@ -27,3 +27,7 @@ python3 -m http.server 8080 --directory public
 ```
 
 Créditos de fotografía: [Créditos](public/creditos.html).
+
+### Fotografías reales del carrusel
+
+En `scripts/build_carta_photos.py` se descargan seis fotos reales desde Wikimedia Commons (CC BY / CC BY-SA), se verifican, recortan y optimizan en WebP bajo `public/media/carta/`. Las referencias del HTML apuntan exclusivamente a archivos locales, no a hotlinks. Si la descarga o validación falla, **GitHub Actions no publica una versión sin fotos**. Créditos y licencias en `public/creditos.html`. Son fotografías de referencia, no platos elaborados en el restaurante.
