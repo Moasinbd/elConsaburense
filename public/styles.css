@@ -401,3 +401,16 @@
 .seo-micro{font-size:.76rem!important;line-height:1.6!important;color:#87796e!important}
 @media(max-width:900px){.seo-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-cta-inner{display:block}.seo-steps{grid-template-columns:1fr}}
 @media(max-width:650px){.seo-card-grid,.seo-menu-items{grid-template-columns:1fr}.seo-page-top{padding:44px 0 50px}.seo-cta .btn{width:100%}}
+
+/* Navegación de páginas SEO: no depende del botón hamburguesa ni de JavaScript */
+@media(max-width:1040px){
+  .seo-page .nav-wrap{flex-wrap:wrap;padding:12px 0;gap:10px}
+  .seo-page .seo-page-nav{position:static;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:9px 14px;width:100%;padding:8px 0 3px;background:transparent;box-shadow:none}
+  .seo-page .seo-page-nav>a:not(.btn){font-size:.78rem;padding:3px 0}
+  .seo-page .seo-page-nav .nav-cta{padding:9px 12px;font-size:.74rem}
+}
+@media(max-width:540px){
+  .seo-page .seo-page-nav{gap:7px 13px}
+  .seo-page .seo-page-nav>a:not(.btn){font-size:.75rem}
+  .seo-page .seo-page-nav .nav-cta{width:100%;margin-top:4px}
+}
