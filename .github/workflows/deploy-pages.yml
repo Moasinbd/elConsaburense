@@ -35,7 +35,7 @@ jobs:
           test -s public/styles.css
           test -s public/media/logo-consaburense.webp
           test -s public/media/sol-avatar.webp
-          for file in croquetas callos entrecot arroz asado tarta; do test -s "public/media/carta/$file.webp"; done
+          for file in croquetas callos entrecot arroz asado tarta; do test -s "public/media/carta/$file.svg"; done
           grep -q 'id="sol-launcher"' public/index.html
           grep -q 'id="sol-panel"' public/index.html
           grep -q 'id="para-llevar"' public/index.html
