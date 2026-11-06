@@ -33,8 +33,8 @@ jobs:
           test -s public/styles.css
           test -s public/media/logo-consaburense.webp
           test -s public/media/sol-avatar.webp
-          for file in croquetas ensaladilla calamares callos fabada albondigas suquet arroz-meloso entrecot solomillo cordero-asado cochinillo queso brownie; do test -s "public/media/carta-fotorealista/$file.webp"; done
-          for file in croquetas ensaladilla calamares callos fabada albondigas suquet arroz-meloso entrecot solomillo cordero-asado cochinillo queso brownie; do grep -q "media/carta-fotorealista/$file.webp" public/index.html; done
+          for file in croquetas croquetas-gamba-roja ensaladilla calamares verduritas-langostinos callos fabada albondigas suquet chuletitas-lechal entrecot solomillo solomillo-ajillo cachopin arroz-banda arroz-negro arroz-meloso cordero-asado cochinillo pescado-sal fingers-pollo queso brownie tatin-manzana; do test -s "public/media/carta-fotorealista/$file.webp"; done
+          for file in croquetas croquetas-gamba-roja ensaladilla calamares verduritas-langostinos callos fabada albondigas suquet chuletitas-lechal entrecot solomillo solomillo-ajillo cachopin arroz-banda arroz-negro arroz-meloso cordero-asado cochinillo pescado-sal fingers-pollo queso brownie tatin-manzana; do grep -q "media/carta-fotorealista/$file.webp" public/index.html; done
           ! grep -q "Special:FilePath" public/index.html
           grep -q 'id="sol-launcher"' public/index.html
           grep -q 'id="sol-panel"' public/index.html
