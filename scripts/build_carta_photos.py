@@ -7,6 +7,8 @@ Las fotos representan platos similares; no son fotografías del restaurante.
 from __future__ import annotations
 
 import io
+import json
+import urllib.parse
 import pathlib
 import sys
 import time
@@ -20,45 +22,31 @@ OUT = BASE / "public" / "media" / "carta"
 OUT.mkdir(parents=True, exist_ok=True)
 
 SOURCES = [
-  {
-    "slug": "croquetas",
-    "source": "Croquetas_jamón_y_cecina.jpg",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Croquetas_jam%C3%B3n_y_cecina.jpg/960px-Croquetas_jam%C3%B3n_y_cecina.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Croquetas_jam%C3%B3n_y_cecina.jpg"
-  },
-  {
-    "slug": "callos",
-    "source": "Callos_a_la_Madrileña.jpg",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Callos_a_la_Madrile%C3%B1a.jpg/960px-Callos_a_la_Madrile%C3%B1a.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Callos_a_la_Madrile%C3%B1a.jpg"
-  },
-  {
-    "slug": "entrecot",
-    "source": "Entrecot_de_ternera.jpg",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Entrecot_de_ternera.jpg/800px-Entrecot_de_ternera.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Entrecot_de_ternera.jpg"
-  },
-  {
-    "slug": "arroz",
-    "source": "Arroz_caldoso_con_mariscos.jpg",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Arroz_caldoso_con_mariscos.jpg/800px-Arroz_caldoso_con_mariscos.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Arroz_caldoso_con_mariscos.jpg"
-  },
-  {
-    "slug": "asado",
-    "source": "Plato_de_lechazo,_Valladolid.jpg",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Plato_de_lechazo%2C_Valladolid.jpg/800px-Plato_de_lechazo%2C_Valladolid.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/3/31/Plato_de_lechazo%2C_Valladolid.jpg"
-  },
-  {
-    "slug": "tarta",
-    "source": "Tarta_de_Queso.jpg",
-    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Tarta_de_Queso.jpg/960px-Tarta_de_Queso.jpg",
-    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Tarta_de_Queso.jpg"
-  }
+    {"slug": "croquetas", "source": "Croquetas jamón y cecina.jpg"},
+    {"slug": "callos", "source": "Callos a la Madrileña.jpg"},
+    {"slug": "entrecot", "source": "Entrecot de ternera.jpg"},
+    {"slug": "arroz", "source": "Arroz con mariscos caldoso.jpg"},
+    {"slug": "asado", "source": "Plato de lechazo, Valladolid.jpg"},
+    {"slug": "tarta", "source": "Tarta de Queso.jpg"},
 ]
 UA = "ElConsaburense-website/1.0 (food gallery; Wikimedia Commons attribution at elconsaburense.moasin.dev/creditos.html)"
 HTTP_HEADERS = {"User-Agent": UA, "Accept": "image/jpeg,image/png,image/webp,image/*;q=0.8"}
+
+def resolve_commons_urls(filename: str) -> list[str]:
+    """Consulta MediaWiki para obtener las URLs reales (evita hashes de ruta inventados)."""
+    params = urllib.parse.urlencode({
+        "action": "query", "format": "json", "prop": "imageinfo",
+        "iiprop": "url", "iiurlwidth": "960", "titles": "File:" + filename
+    })
+    url = "https://commons.wikimedia.org/w/api.php?" + params
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=25) as resp:
+        result = json.load(resp)
+    pages = result.get("query", {}).get("pages", {})
+    found = next((page["imageinfo"][0] for page in pages.values() if page.get("imageinfo")), None)
+    if not found or not found.get("url"):
+        raise ValueError(f"Commons sin imagen disponible: {filename}")
+    return list(dict.fromkeys(x for x in (found.get("thumburl"), found["url"]) if x))
 
 def get_photo(url: str) -> bytes:
     request = urllib.request.Request(url, headers=HTTP_HEADERS)
@@ -91,7 +79,11 @@ def save_webp(payload: bytes, destination: pathlib.Path) -> tuple[int,int,int]:
 for item in SOURCES:
     destination = OUT / (item["slug"] + ".webp")
     error = None
-    for address in (item["thumbnail"], item["original"]):
+    try:
+        addresses = resolve_commons_urls(item["source"])
+    except (OSError, ValueError, urllib.error.URLError) as exc:
+        sys.exit(f"No se ha podido identificar la foto {item['slug']}: {exc}")
+    for address in addresses:
         for attempt in range(1, 4):
             try:
                 data = get_photo(address)
