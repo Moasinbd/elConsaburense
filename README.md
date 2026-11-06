@@ -1,34 +1,29 @@
 # El Consaburense — Consuegra
 
-Web estática responsive con carta, galería, agenda ciudadana y formulario de consultas para WhatsApp Business.
+Web responsive con carta, galería, agenda y reservas/eventos por WhatsApp Business directo.
 
 ## Contacto
 
-- Dominio previsto: https://elconsaburense.moasin.dev/
-- WhatsApp Business: https://wa.me/message/ACIXEAMQWNWME1
-- Teléfono para llamadas: 925 09 71 73 (`tel:+34925097173`).
+- Dominio oficial: https://elconsaburense.moasin.dev/
+- WhatsApp: https://wa.me/message/ACIXEAMQWNWME1
+- Teléfono de llamadas: 925 09 71 73 (`tel:+34925097173`).
 
-## Reservas
+## Reservas y eventos
 
-El visitante rellena los datos en el navegador, pulsa **Preparar mensaje para WhatsApp**, copia el resumen y abre el enlace corto de WhatsApp Business. **Debe pegar el texto y pulsar Enviar en WhatsApp.** No existe un envío automático de WhatsApp desde la web, ni servidor/API de reservas, ni confirmación automática de mesas. El restaurante responde y confirma manualmente la disponibilidad.
+El visitante pulsa **Solicitar mesa por WhatsApp** o **Consultar evento por WhatsApp** para abrir el enlace corto oficial y escribir directamente. **No existe formulario, mensaje precargado, copia y pega obligatorio ni envío automático desde la web.** El restaurante contesta y confirma la disponibilidad.
 
-Se usa el enlace corto facilitado por el restaurante para no suponer que el número de WhatsApp Business sea el mismo que el teléfono de llamadas. La URL corta no permite garantizar que los datos del formulario se precarguen: la interfaz ofrece copiar/pegar como mecanismo fiable.
+La sección `#eventos` incluye cumpleaños, bautizos y comuniones, bodas, reuniones de grupo y catering, todos sujetos a disponibilidad. El sitio **no envía avisos a los tres números personales**; eso requeriría otra integración o dispositivos vinculados.
 
-## Código y publicación
+## Publicación
 
-Código: `public/` en `Moasinbd/elConsaburense`, rama `main`. El workflow `.github/workflows/deploy-pages.yml` genera las imágenes y el vídeo y publica en la rama `gh-pages`. **Ese workflow no actualiza por sí mismo el Worker asociado al dominio personalizado de Cloudflare.** Para que las nuevas versiones se vean en el dominio hace falta publicar la versión en el servicio que lo atiende. No habilitar el subdominio `workers.dev`.
+La fuente está en `public/` en `Moasinbd/elConsaburense`, rama `main`. GitHub Actions publica una copia en `gh-pages`, pero **no actualiza automáticamente el Worker que actualmente atiende `elconsaburense.moasin.dev`**. La versión debe publicarse al servicio del dominio. No habilitar `workers.dev`.
 
-## Pendiente de validación operativa
+Antes de entregar: comprobar HTTPS y contenido del dominio, recepción en WhatsApp, privacidad y datos legales, carta e imágenes.
 
-- Confirmar la recepción del mensaje y las respuestas manuales en WhatsApp Business.
-- Verificar los datos del titular y completar aviso legal y política de privacidad definitiva.
-- Confirmar la carta e imágenes y sus derechos de uso.
-- Comprobar el contenido y HTTPS de `elconsaburense.moasin.dev` tras cada despliegue.
-
-## Desarrollo local
+## Desarrollo
 
 ```sh
 python3 -m http.server 8080 --directory public
 ```
 
-Licencias de terceros: [Créditos](public/creditos.html).
+Créditos de fotografía: [Créditos](public/creditos.html).

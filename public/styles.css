@@ -238,3 +238,26 @@
 .whatsapp-float:hover{transform:translateY(-3px);background:#105436;color:#fff}
 .whatsapp-float span[aria-hidden]{font-size:1.1rem}
 @media(max-width:600px){.topbar-map{display:none}.whatsapp-float{right:12px;bottom:12px;padding:10px 14px;font-size:.78rem}.booking-result-actions{flex-direction:column}.booking-result-actions .btn{width:100%;flex:initial}.booking-direct{width:100%}}
+
+/* Reservas directas: WhatsApp abre el chat sin formularios */
+.events-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.event-card{display:flex;flex-direction:column;min-height:245px}
+.event-card h3{margin:16px 0 12px}
+.event-card p{margin-bottom:24px}
+.event-contact{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin-top:auto;padding:8px 0;color:#f6cb90;font-size:.84rem;font-weight:800;border-bottom:1px solid currentColor}
+.event-contact:hover,.event-contact:focus-visible{color:#fff}
+.events-availability{color:#cebfb2;font-size:.79rem;line-height:1.6;margin:21px 0 20px}
+.events-main-cta{max-width:100%}
+.booking-heading{max-width:800px;margin-bottom:39px}
+.booking-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.booking-quick-card{display:flex;flex-direction:column;align-items:flex-start;background:#fffdfa;border:1px solid #e0cbb5;border-radius:8px;box-shadow:0 15px 36px #34231c0c;padding:clamp(26px,4vw,46px);min-width:0}
+.booking-quick-primary{background:#fffcf6;border-color:#d9b88e}
+.booking-quick-kicker{font-size:.7rem;letter-spacing:.14em;font-weight:800;color:#a05b37}
+.booking-quick-card h3{font:700 clamp(1.8rem,2.8vw,2.5rem)/1.2 var(--serif);margin:18px 0 15px;color:#34231c}
+.booking-quick-card p{font-size:.92rem;line-height:1.75;color:#675347;margin-bottom:29px}
+.booking-quick-btn{margin-top:auto;max-width:100%}
+.booking-quick-footer{text-align:center;max-width:830px;margin:25px auto 0;color:#645348}
+.booking-quick-footer p{font-size:.8rem;line-height:1.7;margin:0 0 7px}
+.booking-quick-footer a{text-decoration:underline;text-underline-offset:3px;color:#8e482c;font-weight:800}
+@media(max-width:790px){.events-grid,.booking-quick-grid{grid-template-columns:1fr}.booking-heading{margin-bottom:25px}}
+@media(max-width:550px){.booking-quick-card{padding:26px 23px}.booking-quick-btn,.events-main-cta{width:100%;white-space:normal;text-align:center}.event-card{min-height:unset}}

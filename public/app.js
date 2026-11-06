@@ -184,13 +184,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   const nav=$('main-nav'),toggle=$('nav-toggle');
   toggle?.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.setAttribute('aria-label',expanded?'Cerrar menú':'Abrir menú');nav.classList.toggle('is-open',expanded)});
   nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('is-open');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Abrir menú')}));
-  const date=$('booking-date');if(date){const local=new Date(); const today=`${local.getFullYear()}-${String(local.getMonth()+1).padStart(2,'0')}-${String(local.getDate()).padStart(2,'0')}`;date.min=today;date.value=today}
 
   // Agenda local. Las fechas pasadas se ocultan automáticamente en zona horaria de Consuegra.
   const parts=new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
   const datePiece=type=>parts.find(part=>part.type===type)?.value||'00';
   const todayConsuegra=datePiece('year')+'-'+datePiece('month')+'-'+datePiece('day');
-  if(date){date.min=todayConsuegra;if(!date.value||date.value<todayConsuegra)date.value=todayConsuegra;}
   const agendaCards=[...document.querySelectorAll('.agenda-card[data-ends]')];
   agendaCards.forEach(card=>{
     card.hidden=card.dataset.ends<todayConsuegra;
@@ -198,15 +196,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(agendaCards.length && agendaCards.every(card=>card.hidden)){
     const empty=$('agenda-no-events');if(empty)empty.hidden=false;
   }
-  document.querySelectorAll('[data-agenda-booking]').forEach(link=>link.addEventListener('click',()=>{
-    const day=link.dataset.bookingDate;
-    if(date && day && day>=todayConsuegra && day>=date.min)date.value=day;
-    const time=$('booking-time');
-    if(time && link.dataset.bookingTime && [...time.options].some(option=>option.value===link.dataset.bookingTime)){
-      time.value=link.dataset.bookingTime;
-    }
-    const result=$('booking-result');if(result)result.hidden=true;
-  }));
   const fairDays={
     '20':{heading:'Domingo 20 · Víspera patronal',events:[
       ['12:00','Chupinazo en la Plaza de España.'],
@@ -294,53 +283,4 @@ document.addEventListener('DOMContentLoaded',()=>{
     townLastTrigger?.focus();
   });
 
-  const bookingForm=$('booking-form');
-  const hidePreparedBooking=()=>{
-    const result=$('booking-result');
-    if(result)result.hidden=true;
-    const status=$('copy-status');
-    if(status)status.textContent='';
-  };
-  bookingForm?.addEventListener('input',hidePreparedBooking);
-  bookingForm?.addEventListener('change',hidePreparedBooking);
-  bookingForm?.addEventListener('submit',event=>{
-    event.preventDefault();
-    if(!event.currentTarget.reportValidity())return;
-    const name=$('booking-name').value.trim();
-    const phone=$('booking-phone').value.trim();
-    if(!name||!phone)return;
-    const summary=[
-      'Hola, me gustaría consultar disponibilidad en El Consaburense.',
-      'Nombre: '+name,
-      'Teléfono: '+phone,
-      'Fecha: '+$('booking-date').value,
-      'Hora deseada: '+$('booking-time').value,
-      'Comensales: '+$('booking-guests').value,
-      'Tipo de visita: '+$('booking-type').value,
-      'Observaciones: '+($('booking-notes').value.trim()||'Ninguna'),
-      '¿Podéis confirmarme disponibilidad? Muchas gracias.'
-    ].join('\n');
-    $('booking-summary').value=summary;
-    $('booking-result').hidden=false;
-    $('copy-status').textContent='';
-    $('booking-result').scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
-  const copyBookingSummary=async()=>{
-    const el=$('booking-summary'),status=$('copy-status');
-    if(!el||!el.value||!status)return;
-    try{
-      if(!navigator.clipboard?.writeText)throw new Error('Portapapeles no disponible');
-      await navigator.clipboard.writeText(el.value);
-      status.textContent='Solicitud copiada. Abre WhatsApp, pega el texto y pulsa Enviar.';
-    }catch(error){
-      el.focus();el.select();
-      status.textContent='No se ha podido copiar automáticamente. Mantén pulsado el texto para copiarlo, abre WhatsApp y pégalo allí.';
-    }
-  };
-  $('copy-summary')?.addEventListener('click',copyBookingSummary);
-  $('booking-whatsapp')?.addEventListener('click',()=>{
-    // El usuario debe pulsar Enviar en WhatsApp: no hay transmisión automática.
-    const message=$('booking-summary')?.value;
-    if(message&&navigator.clipboard?.writeText)navigator.clipboard.writeText(message).catch(()=>{});
-  });
 });

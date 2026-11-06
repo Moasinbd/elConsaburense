@@ -41,7 +41,12 @@ jobs:
           grep -q 'agenda-ciudadana-pagina' public/index.html
           node --check public/app.js
           grep -q 'wa.me/message/ACIXEAMQWNWME1' public/index.html
-          grep -q 'id="booking-whatsapp"' public/index.html
+          grep -q 'id="reservas"' public/index.html
+          grep -q 'id="eventos"' public/index.html
+          grep -q 'Cumpleaños' public/index.html
+          grep -q 'Bautizos y comuniones' public/index.html
+          ! grep -q 'id="booking-form"' public/index.html
+          ! grep -q 'booking-summary' public/index.html
           ! grep -q 'estamos preparando las notificaciones de reservas por WhatsApp' public/index.html
           for file in molinos castillo iglesia-san-juan plaza-espana; do test -s "public/media/consuegra/$file.webp"; done
           grep -q 'media/consuegra/plaza-espana.webp' public/index.html
