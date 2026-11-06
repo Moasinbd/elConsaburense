@@ -323,10 +323,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     encargoLastTrigger=null;
   });
   document.querySelectorAll('[data-encargo-dismiss]').forEach(a=>a.addEventListener('click',closeEncargo));
-  if(encargoDialog){
-    let encargoSeen=false;
-    try{encargoSeen=sessionStorage.getItem(encargoSessionKey)==='seen';}catch(_e){}
-    if(!encargoSeen)window.setTimeout(()=>openEncargo(),1300);
-  }
+  // La promoción se abre solo al pulsar «Ver especialidades»; no tapa el contenido al llegar desde Google.
 
 });

@@ -35,3 +35,15 @@ Las 24 imágenes del carrusel se han generado con IA y optimizado en WebP. Está
 ## Campaña de encargos al entrar
 
 El modal accesible `#encargo-dialog` aparece aproximadamente 1,3 segundos después de entrar **solo una vez por sesión de navegador** (mediante `sessionStorage`). Utiliza fotografías locales existentes de arroz meloso, cordero asado y pescado a la sal. Incluye llamada directa al 925 09 71 73 y contacto por WhatsApp Business para consultar entrega a domicilio o recogida. No tramita pedidos automáticamente ni garantiza servicio de reparto, horarios o precios. El visitante puede cerrar con X, Esc o clic en el fondo y reabrirlo desde «Ver especialidades» en la carta para llevar. Evitar eliminar este aviso de disponibilidad sin confirmar previamente el servicio real con el establecimiento.
+
+## SEO local: primera fase (06/11/2026)
+
+Se añaden:
+- Metadatos únicos (title, description, Open Graph, Twitter y canonical) en portada y páginas de servicios.
+- Datos estructurados JSON-LD `Restaurant` (dirección y teléfono confirmados, sin inventar horarios, valoraciones, precios ni reparto), más `WebPage` y `BreadcrumbList` en páginas de servicio.
+- Sitemap `public/sitemap.xml` y declaración en `robots.txt`.
+- Páginas HTML rastreables: `/carta-para-llevar/`, `/arroces-asados-por-encargo/`, `/celebraciones/`. El contenido se incluye en HTML para buscadores y visitantes sin JavaScript.
+- Enlaces internos y promoción de encargos que no abre un modal automáticamente al aterrizar desde Google; el diálogo sigue disponible bajo clic en «Ver especialidades».
+- Dimensiones explícitas para algunas imágenes existentes.
+
+**Pendiente de completar fuera del repositorio:** verificar propiedad y sitemap en Google Search Console; medir indexación/Core Web Vitals; revisar ficha de Google Business Profile y horarios; añadir fotos reales del local y revisar textos legales. **No se anuncia reparto garantizado**: si se ofrece más adelante, se actualizan la página de encargos, el schema y la ficha del negocio.

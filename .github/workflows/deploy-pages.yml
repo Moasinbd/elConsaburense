@@ -30,6 +30,17 @@ jobs:
       - name: Validar sitio y vídeo
         run: |
           test -s public/index.html
+          test -s public/sitemap.xml
+          grep -q 'Sitemap: https://elconsaburense.moasin.dev/sitemap.xml' public/robots.txt
+          for page in carta-para-llevar arroces-asados-por-encargo celebraciones; do
+            test -s "public/$page/index.html"
+            grep -q "rel=\"canonical\" href=\"https://elconsaburense.moasin.dev/$page/\"" "public/$page/index.html"
+            grep -q 'application/ld+json' "public/$page/index.html"
+            grep -q "<h1" "public/$page/index.html"
+            grep -q "href=\"+34925097173\"" "public/$page/index.html" || grep -q "tel:+34925097173" "public/$page/index.html"
+          done
+          grep -q '"@type": "Restaurant"' public/index.html
+          grep -q 'property="og:image"' public/index.html
           test -s public/styles.css
           test -s public/media/logo-consaburense.webp
           test -s public/media/sol-avatar.webp
@@ -42,7 +53,8 @@ jobs:
           grep -q 'id="encargo-dialog"' public/index.html
           grep -q 'id="encargo-open"' public/index.html
           grep -q 'id="encargo-title"' public/index.html
-          grep -q 'encargoSessionKey' public/app.js
+          grep -q "encargoOpen?.addEventListener" public/app.js
+          ! grep -q 'window.setTimeout(()=>openEncargo()' public/app.js
           for file in arroz-meloso cordero-asado pescado-sal; do test -s "public/media/carta-fotorealista/$file.webp"; done
           test -s public/media/consaburense-15s.mp4
           grep -q 'id="vinos"' public/index.html
