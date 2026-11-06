@@ -21,10 +21,6 @@ jobs:
           python -m pip install --disable-pip-version-check Pillow
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg
-      - name: Descargar y validar seis fotos reales de la carta
-        run: python scripts/build_carta_photos.py
-      - name: Preparar y optimizar las fotos de platos
-        run: python scripts/build_gallery.py
       - name: Preparar fotografías de vinos
         run: python scripts/build_wines.py
       - name: Preparar fotografías de monumentos de Consuegra
@@ -37,10 +33,9 @@ jobs:
           test -s public/styles.css
           test -s public/media/logo-consaburense.webp
           test -s public/media/sol-avatar.webp
-          for file in croquetas callos entrecot arroz asado tarta; do test -s "public/media/carta/$file.webp"; done
-          for file in croquetas callos entrecot arroz asado tarta; do grep -q "media/carta/$file.webp" public/index.html; done
+          for file in croquetas-tapas ensaladilla-rusa calamares-romana tortilla-patatas hamburguesa-ternera; do test -s "public/media/platos/$file.webp"; done
+          for file in croquetas-tapas ensaladilla-rusa calamares-romana tortilla-patatas hamburguesa-ternera; do grep -q "media/platos/$file.webp" public/index.html; done
           ! grep -q "Special:FilePath" public/index.html
-          ! grep -q 'data-carta-foto=".*" alt=".*svg' public/index.html
           grep -q 'id="sol-launcher"' public/index.html
           grep -q 'id="sol-panel"' public/index.html
           grep -q 'id="para-llevar"' public/index.html

@@ -28,6 +28,6 @@ python3 -m http.server 8080 --directory public
 
 Créditos de fotografía: [Créditos](public/creditos.html).
 
-### Fotografías reales del carrusel
+### Fotografías reales en archivos locales
 
-En `scripts/build_carta_photos.py` se descargan seis fotos reales desde Wikimedia Commons (CC BY / CC BY-SA), se verifican, recortan y optimizan en WebP bajo `public/media/carta/`. Las referencias del HTML apuntan exclusivamente a archivos locales, no a hotlinks. Si la descarga o validación falla, **GitHub Actions no publica una versión sin fotos**. Créditos y licencias en `public/creditos.html`. Son fotografías de referencia, no platos elaborados en el restaurante.
+Las fotografías de referencia, procedentes de Pexels, están guardadas como imágenes WebP bajo `public/media/platos/`, dentro de GitHub. El carrusel apunta a rutas **locales**; no depende de descargas de terceros durante el despliegue. Créditos y fuente en `public/creditos.html`. Son fotos orientativas de platos similares, no fotos hechas en El Consaburense.
