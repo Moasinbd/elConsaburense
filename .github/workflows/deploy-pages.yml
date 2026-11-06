@@ -39,6 +39,11 @@ jobs:
           grep -q 'id="sol-launcher"' public/index.html
           grep -q 'id="sol-panel"' public/index.html
           grep -q 'id="para-llevar"' public/index.html
+          grep -q 'id="encargo-dialog"' public/index.html
+          grep -q 'id="encargo-open"' public/index.html
+          grep -q 'id="encargo-title"' public/index.html
+          grep -q 'encargoSessionKey' public/app.js
+          for file in arroz-meloso cordero-asado pescado-sal; do test -s "public/media/carta-fotorealista/$file.webp"; done
           test -s public/media/consaburense-15s.mp4
           grep -q 'id="vinos"' public/index.html
           grep -q 'id="opiniones"' public/index.html

@@ -305,3 +305,42 @@
 @media(max-width:790px){.takeaway-inner{grid-template-columns:1fr}.takeaway-section{padding:32px 0}}
 @media(max-width:600px){.sol-assistant{right:10px;bottom:10px}.sol-launcher{padding:6px 12px 6px 6px}.sol-launcher-avatar{width:44px;height:44px}.sol-launcher-copy strong{font-size:.87rem}.sol-launcher-copy small{font-size:.65rem}.sol-panel{max-height:calc(100dvh - 105px);overflow-y:auto}.sol-panel-head{padding:14px}.sol-panel-body{padding:15px}}
 @media(prefers-reduced-motion:reduce){.sol-launcher,.sol-talk{transition:none}}
+
+/* Campaña de especialidades para disfrutar en casa: modal accesible, una vez por visita. */
+.encargo-dialog{width:min(940px,calc(100vw - 32px));max-height:min(92dvh,780px);padding:0;margin:auto;border:1px solid #edd6b4;border-radius:20px;background:#fffaf4;color:#3c271e;box-shadow:0 30px 100px #1c100fa8;overflow:auto;overscroll-behavior:contain}
+.encargo-dialog:not([open]){display:none}
+.encargo-dialog::backdrop{background:rgba(29,15,13,.78);backdrop-filter:blur(5px)}
+.encargo-modal-shell{display:grid;grid-template-columns:43% 57%;position:relative;min-height:494px}
+.encargo-modal-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:5px;background:#40251c;min-height:494px;overflow:hidden}
+.encargo-modal-photo{position:relative;overflow:hidden;margin:0;isolation:isolate;min-height:0}
+.encargo-modal-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.04);transition:transform .6s ease}
+.encargo-modal-photo:hover img{transform:scale(1.05)}
+.encargo-photo-arroz{grid-row:1 / span 2}
+.encargo-modal-photo::after{content:"";position:absolute;inset:50% 0 0;z-index:1;background:linear-gradient(transparent,#1b0b0be8);pointer-events:none}
+.encargo-modal-photo figcaption{position:absolute;bottom:13px;left:13px;right:8px;z-index:2;font-weight:850;letter-spacing:.09em;font-size:.79rem;line-height:1.45;color:white;text-shadow:0 1px 8px #21170f}
+.encargo-modal-photo figcaption span{display:block;color:#f2c688;font-size:.65rem;letter-spacing:.04em}
+.encargo-modal-copy{padding:clamp(27px,4vw,43px) clamp(22px,4vw,48px) 28px;align-self:center}
+.encargo-modal-kicker{font-size:.67rem;letter-spacing:.1em;color:#815334;font-weight:850}
+.encargo-modal-kicker span{color:#cc8d43;margin-right:3px}
+.encargo-modal-eyebrow{margin:20px 0 11px;color:#a5502e;font-size:.7rem;letter-spacing:.14em;font-weight:850}
+.encargo-modal-copy h2{font:700 clamp(2.35rem,4.7vw,3.85rem)/1.06 var(--serif);letter-spacing:-.025em;margin:0 0 15px;color:#34231c}
+.encargo-modal-copy h2 em{color:#af5334;font-weight:normal}
+.encargo-modal-lead{font-size:1rem;font-weight:730;color:#60483a;margin-bottom:11px;line-height:1.5}
+.encargo-modal-dishes{font-size:.88rem;line-height:1.68;color:#47352c;margin-bottom:12px}
+.encargo-modal-dishes strong{font-weight:750}
+.encargo-modal-info{font-size:.82rem;line-height:1.68;color:#705e52;margin-bottom:20px}
+.encargo-modal-actions{display:grid;gap:9px}
+.encargo-modal-primary,.encargo-modal-secondary{display:flex;align-items:center;justify-content:center;gap:12px;padding:12px 15px;min-height:46px;border-radius:6px;text-align:center;font-size:.8rem;line-height:1.4;font-weight:830;transition:background-color .2s,transform .2s}
+.encargo-modal-primary{background:#892a32;color:white}
+.encargo-modal-primary:hover,.encargo-modal-primary:focus-visible{background:#671c27;color:white;transform:translateY(-1px)}
+.encargo-modal-secondary{color:#7a3526;background:#fff5eb;border:1px solid #dbc1a4}
+.encargo-modal-secondary:hover,.encargo-modal-secondary:focus-visible{background:#f7e9d8}
+.encargo-modal-menu{display:inline-flex;gap:9px;align-items:center;font-size:.79rem;font-weight:760;color:#77503a;text-decoration:underline;text-underline-offset:4px;margin:15px 0 13px}
+.encargo-modal-disclaimer{display:block;font-size:.65rem;line-height:1.55;color:#75685f}
+.encargo-modal-close{position:absolute;right:13px;top:13px;z-index:10;width:38px;height:38px;border:1px solid #e9d9c9;border-radius:50%;background:#fffcf4;color:#4c2b27;font-size:1rem;font-weight:850;box-shadow:0 2px 14px #37251e22}
+.encargo-modal-close:hover,.encargo-modal-close:focus-visible{background:#f5d9b6}
+.encargo-open-btn{background:transparent;border-color:#edd7b4;color:#fff4e5}
+.encargo-open-btn:hover,.encargo-open-btn:focus-visible{background:#ffffff1f}
+@media(max-width:720px){.encargo-dialog{width:min(520px,calc(100vw - 24px));max-height:calc(100dvh - 24px);border-radius:16px}.encargo-modal-shell{display:flex;flex-direction:column;min-height:0}.encargo-modal-photos{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:145px;gap:4px;min-height:0}.encargo-photo-arroz{grid-row:auto}.encargo-modal-photo figcaption{font-size:.63rem;left:8px;bottom:8px}.encargo-modal-photo figcaption span{font-size:.53rem}.encargo-modal-copy{padding:24px 23px 22px}.encargo-modal-eyebrow{margin:12px 0 9px}.encargo-modal-copy h2{font-size:clamp(2rem,8vw,2.7rem)}.encargo-modal-info{margin-bottom:15px}.encargo-modal-close{right:10px;top:10px;width:34px;height:34px}}
+@media(max-width:400px){.encargo-modal-photos{grid-template-rows:105px}.encargo-modal-copy{padding:19px 18px}.encargo-modal-dishes{font-size:.8rem}.encargo-modal-info{font-size:.76rem}.encargo-modal-disclaimer{font-size:.61rem}}
+@media(prefers-reduced-motion:reduce){.encargo-modal-photo img,.encargo-modal-primary,.encargo-modal-secondary{transition:none}}

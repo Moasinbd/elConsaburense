@@ -31,3 +31,7 @@ Créditos de fotografía: [Créditos](public/creditos.html).
 ### Carrusel de imágenes fotorrealistas locales
 
 Las 24 imágenes del carrusel se han generado con IA y optimizado en WebP. Están alojadas dentro de `public/media/carta-fotorealista/`, se incluyen en el repositorio y se sirven desde el mismo dominio, sin hotlinks externos. Son recreaciones visuales de los platos, no fotografías del restaurante. Los detalles y la presentación real pueden variar.
+
+## Campaña de encargos al entrar
+
+El modal accesible `#encargo-dialog` aparece aproximadamente 1,3 segundos después de entrar **solo una vez por sesión de navegador** (mediante `sessionStorage`). Utiliza fotografías locales existentes de arroz meloso, cordero asado y pescado a la sal. Incluye llamada directa al 925 09 71 73 y contacto por WhatsApp Business para consultar entrega a domicilio o recogida. No tramita pedidos automáticamente ni garantiza servicio de reparto, horarios o precios. El visitante puede cerrar con X, Esc o clic en el fondo y reabrirlo desde «Ver especialidades» en la carta para llevar. Evitar eliminar este aviso de disponibilidad sin confirmar previamente el servicio real con el establecimiento.

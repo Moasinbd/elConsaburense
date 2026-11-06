@@ -299,4 +299,34 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('[data-sol-close]').forEach(a=>a.addEventListener('click',()=>setSolOpen(false)));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&solPanel&&!solPanel.hidden){setSolOpen(false);solLauncher?.focus();}});
 
+  // Especialidades por encargo: se muestra una sola vez por sesión, con cierre estándar de dialog.
+  const encargoDialog=$('encargo-dialog');
+  const encargoClose=$('encargo-close');
+  const encargoOpen=$('encargo-open');
+  const encargoSessionKey='consaburense-encargos-intro-v1';
+  let encargoLastTrigger=null;
+  const openEncargo=(trigger=null)=>{
+    if(!encargoDialog||encargoDialog.open)return;
+    if($('town-lightbox')?.open)return; // No superponer dos diálogos.
+    encargoLastTrigger=trigger;
+    if(typeof encargoDialog.showModal==='function'){
+      encargoDialog.showModal();
+      try{sessionStorage.setItem(encargoSessionKey,'seen');}catch(_e){}
+    }
+  };
+  const closeEncargo=()=>{if(encargoDialog?.open)encargoDialog.close();};
+  encargoOpen?.addEventListener('click',()=>openEncargo(encargoOpen));
+  encargoClose?.addEventListener('click',closeEncargo);
+  encargoDialog?.addEventListener('click',event=>{if(event.target===encargoDialog)closeEncargo();});
+  encargoDialog?.addEventListener('close',()=>{
+    if(encargoLastTrigger?.isConnected)encargoLastTrigger.focus();
+    encargoLastTrigger=null;
+  });
+  document.querySelectorAll('[data-encargo-dismiss]').forEach(a=>a.addEventListener('click',closeEncargo));
+  if(encargoDialog){
+    let encargoSeen=false;
+    try{encargoSeen=sessionStorage.getItem(encargoSessionKey)==='seen';}catch(_e){}
+    if(!encargoSeen)window.setTimeout(()=>openEncargo(),1300);
+  }
+
 });
