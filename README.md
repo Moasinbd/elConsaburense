@@ -47,3 +47,13 @@ Se añaden:
 - Dimensiones explícitas para algunas imágenes existentes.
 
 **Pendiente de completar fuera del repositorio:** verificar propiedad y sitemap en Google Search Console; medir indexación/Core Web Vitals; revisar ficha de Google Business Profile y horarios; añadir fotos reales del local y revisar textos legales. **No se anuncia reparto garantizado**: si se ofrece más adelante, se actualizan la página de encargos, el schema y la ficha del negocio.
+
+## SEO técnico: segunda fase (06/11/2026)
+
+- Póster del vídeo de portada alojado localmente y precargado con `fetchpriority=high`. Las imágenes de introducción y ubicación usan fotografías locales de Consuegra.
+- Imágenes Open Graph relevantes por página y tarjeta grande para redes sociales (recreaciones gastronómicas con texto alternativo descriptivo), además de `max-image-preview:large`.
+- JSON-LD `Menu` con 6 categorías y 31 platos reales de la carta para llevar, sin inventar precios.
+- `lastmod` en el sitemap y `scripts/check_seo.py` para validar automáticamente sitemap, canónicas, títulos, datos estructurados, enlaces internos y archivos antes de publicar.
+- GitHub Actions utiliza el FFmpeg ya disponible en el runner y solo instala el paquete si falta, evitando `apt-get update` innecesarios.
+
+La publicación/validación de Google Search Console **requiere que el propietario verifique el dominio**; subir el sitemap al sitio no equivale a enviarlo a Google. No se han inventado horarios, reparto, precios, valoraciones ni imágenes reales del restaurante.
