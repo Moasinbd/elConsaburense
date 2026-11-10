@@ -510,3 +510,76 @@
   .hero-film__video-layer,.hero-film__slides,.hero-film__slide,.hero-film__control{transition:none}
   .hero-film__video--ambient{filter:none;opacity:.25}
 }
+
+
+/*
+ * Desktop only: full-bleed motion background for the portrait kitchen film.
+ * Keep an un-cropped, full-height 9:16 master on the right. The second live
+ * layer fills all available desktop width with a subtle spatial softening,
+ * avoiding the previous heavily blurred empty bands. Mobile stays unchanged.
+ */
+@media (min-width:901px) {
+  .hero.hero-film {
+    height:calc(100svh - 124px);
+    min-height:640px;
+    max-height:1120px;
+  }
+  .hero-film__stage {
+    background-color:#241812;
+    background-image:url("media/zamburinas-preparacion-cartel-v2.webp");
+    background-size:cover;
+    background-position:center center;
+  }
+  .hero-film__video--ambient {
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center center;
+    transform:scale(1.015);
+    filter:blur(4px) brightness(.8) saturate(1.03);
+  }
+  .hero-film__video--main {
+    top:0;
+    right:0;
+    left:auto;
+    width:auto;
+    height:100%;
+    max-width:none;
+    transform:none;
+    object-fit:contain;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.36) 10%,rgba(0,0,0,.88) 24%,#000 36%);
+    mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.36) 10%,rgba(0,0,0,.88) 24%,#000 36%);
+  }
+  .hero-film__shade {
+    background:
+      linear-gradient(90deg,rgba(17,10,8,.91) 0%,rgba(19,12,9,.78) 29%,rgba(19,12,9,.4) 54%,rgba(19,12,9,.06) 80%),
+      linear-gradient(0deg,rgba(10,7,5,.6) 0%,transparent 35%,transparent 76%,rgba(16,10,7,.2));
+  }
+  .hero-film__copy {
+    width:min(100%,560px);
+  }
+}
+@media (min-width:681px) and (max-width:900px) {
+  .hero-film__video--ambient {
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:blur(5px) brightness(.8);
+    transform:scale(1.015);
+  }
+  .hero-film__video--main {
+    right:0;
+    left:auto;
+    top:0;
+    height:100%;
+    width:auto;
+    transform:none;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 32%);
+    mask-image:linear-gradient(to right,transparent 0%,#000 32%);
+  }
+}
+@media (prefers-reduced-motion:reduce) and (min-width:681px) {
+  .hero-film__video--ambient {filter:none; opacity:.4}
+}
