@@ -28,6 +28,8 @@ jobs:
         run: python scripts/build_town_gallery.py
       - name: Crear vídeo limpio de 15 segundos
         run: python scripts/build_video.py
+      - name: Recuperar promocional de zamburinas
+        run: python scripts/recover_zamburinas_video.py
       - name: Validar sitio y vídeo
         run: |
           test -s public/index.html
@@ -62,6 +64,8 @@ jobs:
           ! grep -q 'window.setTimeout(()=>openEncargo()' public/app.js
           for file in arroz-meloso cordero-asado pescado-sal; do test -s "public/media/carta-fotorealista/$file.webp"; done
           test -s public/media/consaburense-15s.mp4
+          test -s public/media/zamburinas-huevo-patatas-consaburense.mp4
+          test -s public/videos/zamburinas/index.html
           grep -q 'id="vinos"' public/index.html
           grep -q 'id="opiniones"' public/index.html
           grep -q 'id="agenda"' public/index.html
