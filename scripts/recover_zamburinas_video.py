@@ -1,38 +1,38 @@
 #!/usr/bin/env python3
-"""Recover the original promotional video for El Consaburense.
-
-The eight Base64 source parts preserve the video exactly. They are
-transport encoding, not encryption. Output integrity is SHA256 checked.
-"""
+"""Rebuild the exact 30-second vertical corporate video from 16 binary parts."""
 from __future__ import annotations
-
-import base64
 import hashlib
+import json
 import pathlib
 import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-SOURCES = ROOT / "assets" / "zamburinas-promo"
-TARGET = ROOT / "public" / "media" / "zamburinas-huevo-patatas-consaburense.mp4"
-SHA256 = "b8809a55594dd26d1be6fcab73b32295ab5145d7dc5aa260d7943aa878bcc234"
+SOURCE = ROOT / "assets" / "zamburinas-30s"
+DEST = ROOT / "public" / "media"
+SHA256 = "b38a11991eada2351be768c183517bb25b376bf3329b0aab7ff5a3156deac5e8"
+SIZE = 2896030
 
+def main():
+    paths = sorted(SOURCE.glob("part-*.bin"))
+    expected = [f"part-{i:02d}.bin" for i in range(1, 17)]
+    if [p.name for p in paths] != expected:
+        raise RuntimeError("Missing video parts")
+    data = b"".join(p.read_bytes() for p in paths)
+    if len(data) != SIZE or hashlib.sha256(data).hexdigest() != SHA256:
+        raise RuntimeError("Invalid video checksum")
+    DEST.mkdir(parents=True, exist_ok=True)
+    mp4 = DEST / "zamburinas-30s-20261110.mp4"
+    mp4.write_bytes(data)
+    (DEST / "zamburinas-huevo-patatas-consaburense.mp4").write_bytes(data)
+    info = subprocess.run(["ffprobe","-v","error","-select_streams","v:0","-show_entries","format=duration:stream=width,height","-of","json",str(mp4)],capture_output=True,text=True,check=True)
+    meta=json.loads(info.stdout)
+    video=meta["streams"][0]
+    if video["width"]!=540 or video["height"]!=960 or abs(float(meta["format"]["duration"])-30)>0.2:
+        raise RuntimeError("Unexpected video dimensions or duration")
+    poster=DEST / "zamburinas-cartel-20261110.webp"
+    subprocess.run(["ffmpeg","-y","-loglevel","error","-ss","0.9","-i",str(mp4),"-frames:v","1","-vf","scale=540:960","-c:v","libwebp","-q:v","78",str(poster)],check=True)
+    if poster.stat().st_size<1000:raise RuntimeError("Poster generation failed")
+    print("Verified promotional video",mp4,"seconds:",meta["format"]["duration"])
 
-def main() -> None:
-    parts = sorted(SOURCES.glob("part-*.b64"))
-    expected = [f"part-{index:02d}.b64" for index in range(1, 9)]
-    if [part.name for part in parts] != expected:
-        raise RuntimeError("Missing or misnumbered promotional video parts")
-    encoded = "".join("".join(part.read_text(encoding="ascii").split()) for part in parts)
-    content = base64.b64decode(encoded, validate=True)
-    actual = hashlib.sha256(content).hexdigest()
-    if actual != SHA256:
-        raise RuntimeError(f"Video integrity error: {actual}")
-    TARGET.parent.mkdir(parents=True, exist_ok=True)
-    TARGET.write_bytes(content)
-    subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration,size",
-                    "-of", "default=noprint_wrappers=1", str(TARGET)], check=True)
-    print(f"Verified promotional video: {TARGET.relative_to(ROOT)} ({len(content)} bytes)")
-
-
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
