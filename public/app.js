@@ -64,65 +64,181 @@ function showMenu(category){
 document.addEventListener('DOMContentLoaded',()=>{
   showMenu('entrantes');
 
-  // Reproducción corporativa en portada: silencio inicial, controles accesibles y ahorro de recursos.
-  const heroFilm=$('hero-zamburinas');
-  const heroFilmPlay=$('hero-zamburinas-play');
-  const heroFilmAudio=$('hero-zamburinas-audio');
-  if(heroFilm&&heroFilmPlay&&heroFilmAudio){
-    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-    let userPaused=reducedMotion.matches;
-    let heroVisible=true;
-    const playSymbol=heroFilmPlay.querySelector('.hero-feature__play-symbol');
-    const playLabel=heroFilmPlay.querySelector('.hero-feature__play-label');
-    const audioLabel=heroFilmAudio.querySelector('.hero-feature__audio-label');
-    const syncHeroFilm=()=>{
-      const playing=!heroFilm.paused;
-      const playText=playing?'Pausar':'Reproducir';
-      heroFilmPlay.setAttribute('aria-label',playText+' vídeo de portada');
-      heroFilmPlay.setAttribute('aria-pressed',String(!playing));
-      if(playSymbol)playSymbol.textContent=playing?'Ⅱ':'▶';
-      if(playLabel)playLabel.textContent=playText;
-      const audioText=heroFilm.muted?'Activar sonido':'Silenciar';
-      heroFilmAudio.setAttribute('aria-label',audioText+' del vídeo');
-      heroFilmAudio.setAttribute('aria-pressed',String(!heroFilm.muted));
-      if(audioLabel)audioLabel.textContent=audioText;
+
+  // Portada: el vídeo de 30 segundos se reproduce una sola vez y luego se muestran
+  // automáticamente las 24 imágenes del carrusel que ya existe en la carta.
+  const hero=$('video-zamburinas');
+  const film=$('hero-zamburinas');
+  const ambient=$('hero-film-ambient');
+  const filmPlay=$('hero-zamburinas-play');
+  const filmAudio=$('hero-zamburinas-audio');
+  const filmReplay=$('hero-film-replay');
+  const filmPrev=$('hero-film-prev');
+  const filmNext=$('hero-film-next');
+  const filmPhase=$('hero-film-phase');
+  const filmLabel=$('hero-film-feature-label');
+  const filmTitle=$('hero-film-feature-title');
+  const galleryA=$('hero-film-slide-a');
+  const galleryB=$('hero-film-slide-b');
+  if(hero&&film&&ambient&&filmPlay&&filmAudio&&filmReplay&&filmPrev&&filmNext&&filmPhase&&filmLabel&&filmTitle&&galleryA&&galleryB){
+    const cards=[...document.querySelectorAll('#food-track .food-card')];
+    const photographs=cards.map(card=>({
+      src:card.querySelector('img')?.getAttribute('src')||'',
+      title:card.querySelector('figcaption strong')?.textContent?.trim()||'Nuestra carta'
+    })).filter(item=>item.src);
+    const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let galleryMode=false;
+    let slideIndex=0;
+    let activeSlide=galleryA;
+    let userPaused=reduceMotion;
+    let isVisible=true;
+    let slideTimer=null;
+    let slideChangeId=0;
+    const slideDelay=4700;
+    const filmPlayIcon=filmPlay.querySelector('.hero-film__play-icon');
+    const filmPlayLabel=filmPlay.querySelector('.hero-film__play-label');
+    const filmAudioLabel=filmAudio.querySelector('.hero-film__audio-label');
+    const cancelSlideTimer=()=>{if(slideTimer!==null){window.clearTimeout(slideTimer);slideTimer=null;}};
+    const updateControls=()=>{
+      const playing=galleryMode?!userPaused:!film.paused;
+      const verb=playing?'Pausar':'Reproducir';
+      filmPlay.setAttribute('aria-label',verb+(galleryMode?' carrusel de fotos':' vídeo de portada'));
+      filmPlay.setAttribute('aria-pressed',String(!playing));
+      if(filmPlayIcon)filmPlayIcon.textContent=playing?'Ⅱ':'▶';
+      if(filmPlayLabel)filmPlayLabel.textContent=verb;
+      filmAudio.hidden=galleryMode;
+      filmReplay.hidden=!galleryMode;
+      filmNext.hidden=!galleryMode;
+      filmPrev.hidden=!galleryMode;
+      const audioVerb=film.muted?'Activar sonido':'Silenciar';
+      filmAudio.setAttribute('aria-label',audioVerb+' del vídeo');
+      filmAudio.setAttribute('aria-pressed',String(!film.muted));
+      if(filmAudioLabel)filmAudioLabel.textContent=film.muted?'Sonido':'Silenciar';
     };
-    const tryPlay=()=>{
-      if(document.hidden||!heroVisible||userPaused)return;
-      const attempt=heroFilm.play();
-      if(attempt&&typeof attempt.catch==='function')attempt.catch(()=>syncHeroFilm());
+    const stopVideos=()=>{film.pause();ambient.pause();};
+    const startVideos=()=>{
+      if(galleryMode||userPaused||document.hidden||!isVisible)return;
+      const attempt=film.play();
+      if(attempt&&typeof attempt.catch==='function')attempt.catch(()=>updateControls());
+      // Segundo vídeo decorativo: rellena los lados en ordenador sin deformar el original.
+      const backgroundAttempt=ambient.play();
+      if(backgroundAttempt&&typeof backgroundAttempt.catch==='function')backgroundAttempt.catch(()=>{});
     };
-    heroFilm.muted=true;
-    if(reducedMotion.matches){heroFilm.autoplay=false;heroFilm.pause();}
-    heroFilmPlay.addEventListener('click',()=>{
-      if(heroFilm.paused){userPaused=false;const result=heroFilm.play();result?.catch?.(()=>syncHeroFilm());}
-      else{userPaused=true;heroFilm.pause();}
-      syncHeroFilm();
+    const scheduleSlide=()=>{
+      cancelSlideTimer();
+      if(!galleryMode||userPaused||document.hidden||!isVisible||reduceMotion||photographs.length<2)return;
+      slideTimer=window.setTimeout(()=>showSlide((slideIndex+1)%photographs.length),slideDelay);
+    };
+    const showSlide=index=>{
+      if(!photographs.length)return;
+      const chosen=(index+photographs.length)%photographs.length;
+      const photo=photographs[chosen];
+      const nextImage=activeSlide===galleryA?galleryB:galleryA;
+      const serial=++slideChangeId;
+      const swap=()=>{
+        if(serial!==slideChangeId||!galleryMode)return;
+        nextImage.classList.add('is-active');
+        activeSlide.classList.remove('is-active');
+        activeSlide=nextImage;
+        slideIndex=chosen;
+        filmPhase.textContent='FOTO '+String(chosen+1).padStart(2,'0')+' / '+String(photographs.length).padStart(2,'0');
+        filmLabel.textContent='Descubre nuestra carta · Imágenes ilustrativas';
+        filmTitle.textContent=photo.title;
+        scheduleSlide();
+      };
+      nextImage.onload=null;
+      nextImage.onerror=null;
+      if(nextImage.getAttribute('src')!==photo.src)nextImage.setAttribute('src',photo.src);
+      if(nextImage.complete&&nextImage.naturalWidth>0){swap();}
+      else{
+        nextImage.onload=swap;
+        nextImage.onerror=()=>{if(serial===slideChangeId){slideIndex=chosen;scheduleSlide();}};
+      }
+    };
+    const showGallery=()=>{
+      if(galleryMode)return;
+      stopVideos();
+      galleryMode=true;
+      userPaused=reduceMotion;
+      hero.classList.add('hero-film--gallery');
+      activeSlide=galleryA;
+      galleryA.classList.add('is-active');
+      galleryB.classList.remove('is-active');
+      slideIndex=0;
+      const first=photographs[0];
+      if(first){
+        galleryA.src=first.src;
+        filmLabel.textContent='Descubre nuestra carta · Imágenes ilustrativas';
+        filmTitle.textContent=first.title;
+        filmPhase.textContent='FOTO 01 / '+String(photographs.length).padStart(2,'0');
+      }else{
+        filmLabel.textContent='Descubre nuestra cocina';
+        filmTitle.textContent='Sabores para compartir';
+        filmPhase.textContent='GALERÍA';
+      }
+      updateControls();
+      scheduleSlide();
+    };
+    const replay=()=>{
+      ++slideChangeId;
+      cancelSlideTimer();
+      galleryMode=false;
+      userPaused=false;
+      hero.classList.remove('hero-film--gallery');
+      filmLabel.textContent='En nuestra cocina · 30 segundos';
+      filmTitle.textContent='Zamburiñas con patatas y huevos';
+      filmPhase.textContent='VÍDEO · 30 S';
+      film.currentTime=0;
+      try{ambient.currentTime=0;}catch(_error){}
+      film.muted=true;
+      updateControls();
+      startVideos();
+    };
+    film.addEventListener('ended',showGallery);
+    film.addEventListener('error',showGallery);
+    film.addEventListener('play',updateControls);
+    film.addEventListener('pause',updateControls);
+    film.addEventListener('volumechange',updateControls);
+    film.addEventListener('timeupdate',()=>{
+      if(ambient.readyState>=1&&Math.abs(ambient.currentTime-film.currentTime)>.5){
+        try{ambient.currentTime=film.currentTime;}catch(_error){}
+      }
     });
-    heroFilmAudio.addEventListener('click',()=>{
-      heroFilm.muted=!heroFilm.muted;
-      if(!heroFilm.muted&&heroFilm.paused){userPaused=false;heroFilm.play()?.catch?.(()=>syncHeroFilm());}
-      syncHeroFilm();
+    filmPlay.addEventListener('click',()=>{
+      userPaused=!userPaused;
+      if(galleryMode){scheduleSlide();}
+      else if(userPaused){stopVideos();}
+      else{startVideos();}
+      updateControls();
     });
-    heroFilm.addEventListener('play',syncHeroFilm);
-    heroFilm.addEventListener('pause',syncHeroFilm);
-    heroFilm.addEventListener('volumechange',syncHeroFilm);
+    filmAudio.addEventListener('click',()=>{
+      film.muted=!film.muted;
+      if(!film.muted&&film.paused){userPaused=false;startVideos();}
+      updateControls();
+    });
+    filmReplay.addEventListener('click',replay);
+    filmNext.addEventListener('click',()=>showSlide(slideIndex+1));
+    filmPrev.addEventListener('click',()=>showSlide(slideIndex-1));
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden){stopVideos();cancelSlideTimer();}
+      else if(galleryMode){scheduleSlide();}
+      else{startVideos();}
+      updateControls();
+    });
     if('IntersectionObserver' in window){
       const observer=new IntersectionObserver(entries=>{
-        heroVisible=entries.some(entry=>entry.isIntersecting);
-        if(heroVisible)tryPlay();
-        else heroFilm.pause();
-      },{threshold:.2});
-      observer.observe(heroFilm);
+        isVisible=entries.some(entry=>entry.isIntersecting);
+        if(!isVisible){stopVideos();cancelSlideTimer();}
+        else if(galleryMode){scheduleSlide();}
+        else{startVideos();}
+        updateControls();
+      },{threshold:.12});
+      observer.observe(hero);
     }
-    document.addEventListener('visibilitychange',()=>{
-      if(document.hidden)heroFilm.pause();
-      else tryPlay();
-    });
-    syncHeroFilm();
-    tryPlay();
+    if(reduceMotion){film.autoplay=false;ambient.autoplay=false;stopVideos();}
+    else{startVideos();}
+    updateControls();
   }
-
 
   const foodTrack=$('food-track');
   if(foodTrack){

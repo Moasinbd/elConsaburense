@@ -50,8 +50,8 @@
 </script>
   <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
   <link rel="preload" as="image" href="media/zamburinas-cartel-20261110.webp" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20261110-portada-video2">
-  <script src="app.js?v=20261110-portada-video2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261110-film-gallery1">
+  <script src="app.js?v=20261110-film-gallery1" defer></script>
   <title>Restaurante en Consuegra | El Consaburense</title>
 </head>
 <body>
@@ -63,44 +63,48 @@
     <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   </div></header>
   <main id="contenido">
-    <section class="hero hero-feature" aria-labelledby="hero-title">
-      <div class="hero-feature__backdrop" aria-hidden="true"></div>
-      <div class="hero-feature__shade" aria-hidden="true"></div>
-      <div class="wrap hero-inner hero-feature__inner">
-        <div class="hero-feature__content">
+    <section class="hero hero-film" id="video-zamburinas" aria-labelledby="hero-title">
+      <div class="hero-film__stage" aria-hidden="true">
+        <div class="hero-film__video-layer" id="hero-film-video-layer">
+          <video class="hero-film__video hero-film__video--ambient" id="hero-film-ambient" autoplay muted playsinline preload="none" poster="media/zamburinas-cartel-20261110.webp" tabindex="-1">
+            <source src="media/zamburinas-30s-20261110.mp4" type="video/mp4">
+          </video>
+          <video class="hero-film__video hero-film__video--main" id="hero-zamburinas" autoplay muted playsinline preload="metadata" width="540" height="960" poster="media/zamburinas-cartel-20261110.webp" tabindex="-1">
+            <source src="media/zamburinas-30s-20261110.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="hero-film__slides" id="hero-film-slides">
+          <img class="hero-film__slide is-active" id="hero-film-slide-a" src="media/carta-fotorealista/croquetas.webp" alt="" width="960" height="720" decoding="async">
+          <img class="hero-film__slide" id="hero-film-slide-b" src="media/carta-fotorealista/croquetas-gamba-roja.webp" alt="" width="960" height="720" decoding="async">
+        </div>
+      </div>
+      <div class="hero-film__shade" aria-hidden="true"></div>
+      <div class="wrap hero-film__inner">
+        <div class="hero-film__copy">
           <p class="eyebrow light"><span class="dot"></span> Desde el corazón de La Mancha</p>
           <h1 id="hero-title">Restaurante en Consuegra,<br>cocina para <em>compartir.</em></h1>
-          <p class="hero-description">Sabores tradicionales, sobremesas que se alargan y una tierra que siempre invita a volver. Bienvenido a El Consaburense.</p>
-          <div class="hero-feature__signature">
-            <span class="hero-feature__signature-kicker">Hoy, en nuestra cocina</span>
-            <strong>Zamburiñas con patatas y huevos</strong>
-            <span>30 segundos de preparación y sabor</span>
+          <p class="hero-film__description">Sabores tradicionales, producto y sobremesas para recordar. Bienvenido a El Consaburense.</p>
+          <div class="hero-film__feature" aria-live="off">
+            <span class="hero-film__feature-label" id="hero-film-feature-label">En nuestra cocina · 30 segundos</span>
+            <strong id="hero-film-feature-title">Zamburiñas con patatas y huevos</strong>
           </div>
-          <div class="hero-actions hero-feature__actions">
-            <a class="btn btn-gold" href="#carta">Descubrir nuestra carta <span aria-hidden="true">↗</span></a>
+          <div class="hero-film__actions">
+            <a class="btn btn-gold" href="#carta">Descubrir la carta <span aria-hidden="true">↗</span></a>
             <a class="btn btn-whatsapp" href="https://wa.me/message/ACIXEAMQWNWME1" target="_blank" rel="noopener noreferrer">Reservar mesa <span aria-hidden="true">↗</span></a>
-            <a class="hero-feature__watch-link" href="videos/zamburinas/">Ver el vídeo completo <span aria-hidden="true">↗</span></a>
+            <a class="hero-film__video-link" href="videos/zamburinas/">Ver vídeo con controles <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="hero-caption">CONSUEGRA · TOLEDO · CASTILLA-LA MANCHA</div>
+          <p class="hero-film__place">EL CONSABURENSE · CONSUEGRA, TOLEDO</p>
         </div>
-        <figure class="hero-feature__visual" id="video-zamburinas">
-          <div class="hero-feature__halo" aria-hidden="true"></div>
-          <div class="hero-feature__video-shell">
-            <video id="hero-zamburinas" autoplay muted loop playsinline preload="metadata" width="540" height="960" poster="media/zamburinas-cartel-20261110.webp" aria-label="Vídeo corporativo de 30 segundos de la preparación de zamburiñas con patatas y huevos en El Consaburense">
-              <source src="media/zamburinas-30s-20261110.mp4" type="video/mp4">
-              Tu navegador no admite vídeo HTML5. <a href="videos/zamburinas/">Ver vídeo de zamburiñas</a>.
-            </video>
-            <div class="hero-feature__video-gradient" aria-hidden="true"></div>
-            <span class="hero-feature__video-tag"><span aria-hidden="true">●</span> EN NUESTRA COCINA</span>
-            <div class="hero-feature__video-controls" aria-label="Controles del vídeo de portada">
-              <button type="button" class="hero-feature__control" id="hero-zamburinas-play" aria-label="Pausar vídeo" aria-pressed="false"><span class="hero-feature__play-symbol" aria-hidden="true">Ⅱ</span><span class="hero-feature__play-label">Pausar</span></button>
-              <button type="button" class="hero-feature__control" id="hero-zamburinas-audio" aria-label="Activar sonido" aria-pressed="false"><span class="hero-feature__audio-symbol" aria-hidden="true">♫</span><span class="hero-feature__audio-label">Activar sonido</span></button>
-            </div>
-          </div>
-          <figcaption class="hero-feature__video-caption"><span>EL CONSABURENSE</span><span>Tradición y sabor · Consuegra</span></figcaption>
-        </figure>
       </div>
-      <a class="hero-feature__scroll" href="#nosotros" aria-label="Descubrir el restaurante"><span aria-hidden="true">↓</span> Descubre más</a>
+      <div class="hero-film__toolbar" aria-label="Controles multimedia de portada">
+        <span class="hero-film__phase" id="hero-film-phase">VÍDEO · 30 S</span>
+        <button type="button" class="hero-film__control" id="hero-film-replay" aria-label="Volver a ver el vídeo" hidden>↺ <span>Repetir vídeo</span></button>
+        <button type="button" class="hero-film__control" id="hero-film-prev" aria-label="Foto anterior" hidden>←</button>
+        <button type="button" class="hero-film__control" id="hero-film-next" aria-label="Foto siguiente" hidden>→</button>
+        <button type="button" class="hero-film__control" id="hero-zamburinas-play" aria-label="Pausar vídeo" aria-pressed="false"><span class="hero-film__play-icon" aria-hidden="true">Ⅱ</span><span class="hero-film__play-label">Pausar</span></button>
+        <button type="button" class="hero-film__control" id="hero-zamburinas-audio" aria-label="Activar sonido" aria-pressed="false"><span class="hero-film__audio-icon" aria-hidden="true">♫</span><span class="hero-film__audio-label">Sonido</span></button>
+      </div>
+      <a class="hero-film__scroll" href="#nosotros" aria-label="Descubrir el restaurante">Descubre más <span aria-hidden="true">↓</span></a>
     </section>
     <aside class="seo-promo-strip" aria-label="Especialidades para disfrutar en casa"><div class="wrap seo-promo-inner"><p><strong>¿Arroz, asado o pescado para casa?</strong> Descubre nuestras especialidades por encargo en Consuegra.</p><a href="arroces-asados-por-encargo/">Ver especialidades <span aria-hidden="true">↗</span></a></div></aside>
     <div class="feature-strip"><div class="wrap feature-grid"><div><span class="feature-icon">✦</span><div><strong>Cocina con raíces</strong><small>Inspiración manchega</small></div></div><div><span class="feature-icon">◉</span><div><strong>Para todos los días</strong><small>Raciones y platos para compartir</small></div></div><div><span class="feature-icon">✧</span><div><strong>Celebraciones</strong><small>Consulta opciones para grupos</small></div></div></div></div>
