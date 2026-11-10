@@ -433,3 +433,78 @@
 .culinary-video__figure figcaption{text-align:center;color:#cba782;font-size:.74rem}
 @media(max-width:820px){.culinary-video__grid{grid-template-columns:minmax(0,1fr);gap:30px}.culinary-video__copy{text-align:center}.culinary-video__lead{margin-inline:auto}.culinary-video__actions{justify-content:center}.culinary-video__frame{width:min(100%,345px)}}
 @media(max-width:430px){.culinary-video__copy h2{font-size:clamp(2.1rem,9vw,3rem)}.culinary-video__frame{width:min(100%,305px)}.culinary-video__actions .btn{width:100%}}
+
+
+/* El Consaburense | Portada editorial con vídeo vertical y autoplay */
+.hero.hero-feature{
+  background:#231712;min-height:clamp(650px,calc(100svh - 125px),880px);
+  height:auto;max-height:none;position:relative;isolation:isolate;overflow:hidden;
+  display:flex;align-items:center;
+}
+.hero-feature__backdrop,.hero-feature__shade{position:absolute;inset:0;pointer-events:none}
+.hero-feature__backdrop{background:url("media/consuegra/molinos.webp") center 42%/cover no-repeat;opacity:.35;filter:saturate(.68) blur(2px);transform:scale(1.025)}
+.hero-feature__shade{background:linear-gradient(90deg,rgba(27,17,13,.96) 0%,rgba(35,22,17,.87) 43%,rgba(30,18,14,.70) 100%),linear-gradient(0deg,#190f0ae6,transparent 43%)}
+.hero-feature__inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.17fr) minmax(0,.83fr);align-items:center;gap:clamp(28px,5vw,92px);padding:clamp(46px,6vw,92px) 0}
+.hero-feature__content{min-width:0;position:relative}
+.hero.hero-feature .hero-feature__content h1{font-size:clamp(2.65rem,5.15vw,5.2rem);line-height:1.08;max-width:750px;margin-bottom:22px}
+.hero.hero-feature .hero-description{max-width:520px;color:#f1e4d5;font-size:clamp(.93rem,1.4vw,1.08rem)}
+.hero-feature__signature{border-left:3px solid #d9a55c;margin:27px 0 9px;padding:5px 0 4px 18px;display:flex;gap:3px;flex-direction:column}
+.hero-feature__signature-kicker{color:#e7ba83;text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;font-weight:820}
+.hero-feature__signature strong{color:#fff4df;font:700 clamp(1.11rem,2vw,1.6rem)/1.25 Georgia,serif}
+.hero-feature__signature>span:last-child{color:#e6c7a7;font-size:.75rem}
+.hero.hero-feature .hero-feature__actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px;max-width:unset}
+.hero-feature__actions .btn{padding:13px 16px;min-height:45px}
+.hero-feature__watch-link{color:#f4d2a5;font-size:.79rem;font-weight:750;text-decoration:underline;text-underline-offset:4px;padding:10px 0}
+.hero.hero-feature .hero-caption{font-size:.61rem;letter-spacing:.22em;margin-top:36px}
+.hero-feature__visual{min-width:0;margin:0;position:relative;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:15px}
+.hero-feature__halo{position:absolute;inset:18% -4%;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,#bb8d55a1,transparent 65%);filter:blur(45px);opacity:.42}
+.hero-feature__video-shell{position:relative;width:min(100%,338px);aspect-ratio:9/16;overflow:hidden;background:#080605;border:1px solid #dbbd83a8;border-radius:17px;box-shadow:0 30px 75px #0009,0 0 0 7px #fff6ee0e;z-index:1}
+.hero-feature__video-shell video{display:block;width:100%;height:100%;aspect-ratio:9/16;object-fit:contain;background:#080605}
+.hero-feature__video-gradient{pointer-events:none;position:absolute;inset:0;background:linear-gradient(180deg,#0007,transparent 22%,transparent 72%,#000b)}
+.hero-feature__video-tag{position:absolute;top:13px;left:14px;padding:6px 10px;border:1px solid #ebc8a969;border-radius:50px;background:#150e0bbd;color:#fff2db;font-size:.57rem;font-weight:850;letter-spacing:.13em;backdrop-filter:blur(7px)}
+.hero-feature__video-tag span{color:#f1b67b;font-size:.52rem;margin-right:4px}
+.hero-feature__video-controls{position:absolute;bottom:11px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:9px}
+.hero-feature__control{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #fff5e55a;border-radius:50px;background:#1b120fd9;color:#fff5e8;font:730 .67rem/1.2 var(--sans);backdrop-filter:blur(8px);transition:background .2s,border-color .2s;min-height:35px}
+.hero-feature__control:hover,.hero-feature__control:focus-visible{background:#583823;border-color:#e3bb88}
+.hero-feature__play-symbol,.hero-feature__audio-symbol{font-size:.98rem;line-height:1}
+.hero-feature__video-caption{z-index:1;text-align:center;display:flex;flex-direction:column;gap:1px;color:#f1d7b2;text-shadow:0 2px 5px #0008}
+.hero-feature__video-caption span:first-child{font:700 .82rem Georgia,serif;letter-spacing:.2em}
+.hero-feature__video-caption span:last-child{font-size:.67rem;letter-spacing:.07em}
+.hero-feature__scroll{position:absolute;z-index:1;bottom:22px;left:50%;transform:translateX(-50%);color:#ead8bc;font-size:.7rem;font-weight:770;letter-spacing:.09em;display:flex;align-items:center;gap:10px;text-decoration:none}
+.hero-feature__scroll span{font-size:1.3rem}
+@media(max-width:1020px){
+  .hero-feature__inner{gap:28px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+  .hero.hero-feature .hero-feature__content h1{font-size:clamp(2.4rem,5.3vw,4rem)}
+  .hero-feature__video-shell{width:min(100%,295px)}
+  .hero-feature__actions .btn{padding:12px 13px}
+}
+@media(max-width:750px){
+  .hero.hero-feature{display:block;min-height:0;height:auto;max-height:none}
+  .hero-feature__inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"visual" "copy";gap:29px;padding:38px 0 66px}
+  .hero-feature__content{grid-area:copy;text-align:center}
+  .hero-feature__visual{grid-area:visual}
+  .hero-feature__video-shell{width:min(69vw,258px)}
+  .hero-feature__content h1{margin-inline:auto}
+  .hero.hero-feature .hero-feature__content h1{font-size:clamp(2.45rem,8vw,3.7rem)}
+  .hero.hero-feature .hero-description{margin-inline:auto;max-width:540px}
+  .hero-feature__signature{max-width:500px;margin:24px auto 0;text-align:left}
+  .hero.hero-feature .hero-feature__actions{justify-content:center;gap:10px}
+  .hero.hero-feature .hero-caption{margin-top:27px}
+  .hero-feature__scroll{bottom:16px}
+}
+@media(max-width:550px){
+  .hero-feature__inner{padding:28px 0 64px}
+  .hero.hero-feature .hero-feature__content h1{font-size:clamp(2.25rem,9.4vw,3.15rem)}
+  .hero.hero-feature .hero-feature__actions{display:grid;max-width:420px;margin:24px auto 0;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-feature__actions .btn{width:100%;white-space:normal;font-size:.75rem;padding:10px 8px}
+  .hero-feature__watch-link{grid-column:1/-1}
+  .hero-feature__video-shell{width:min(70vw,248px);border-radius:14px}
+  .hero-feature__video-controls{left:8px;right:8px;bottom:9px;gap:4px}
+  .hero-feature__control{padding:7px 8px;min-height:33px;font-size:.61rem}
+  .hero-feature__video-tag{font-size:.49rem;top:9px;left:9px}
+  .hero-feature__signature strong{font-size:1.1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-feature__control,.hero-feature__video-shell{transition:none}
+  .hero-feature__backdrop{transform:none;filter:none}
+}

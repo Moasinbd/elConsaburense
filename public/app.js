@@ -64,6 +64,66 @@ function showMenu(category){
 document.addEventListener('DOMContentLoaded',()=>{
   showMenu('entrantes');
 
+  // Reproducción corporativa en portada: silencio inicial, controles accesibles y ahorro de recursos.
+  const heroFilm=$('hero-zamburinas');
+  const heroFilmPlay=$('hero-zamburinas-play');
+  const heroFilmAudio=$('hero-zamburinas-audio');
+  if(heroFilm&&heroFilmPlay&&heroFilmAudio){
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let userPaused=reducedMotion.matches;
+    let heroVisible=true;
+    const playSymbol=heroFilmPlay.querySelector('.hero-feature__play-symbol');
+    const playLabel=heroFilmPlay.querySelector('.hero-feature__play-label');
+    const audioLabel=heroFilmAudio.querySelector('.hero-feature__audio-label');
+    const syncHeroFilm=()=>{
+      const playing=!heroFilm.paused;
+      const playText=playing?'Pausar':'Reproducir';
+      heroFilmPlay.setAttribute('aria-label',playText+' vídeo de portada');
+      heroFilmPlay.setAttribute('aria-pressed',String(!playing));
+      if(playSymbol)playSymbol.textContent=playing?'Ⅱ':'▶';
+      if(playLabel)playLabel.textContent=playText;
+      const audioText=heroFilm.muted?'Activar sonido':'Silenciar';
+      heroFilmAudio.setAttribute('aria-label',audioText+' del vídeo');
+      heroFilmAudio.setAttribute('aria-pressed',String(!heroFilm.muted));
+      if(audioLabel)audioLabel.textContent=audioText;
+    };
+    const tryPlay=()=>{
+      if(document.hidden||!heroVisible||userPaused)return;
+      const attempt=heroFilm.play();
+      if(attempt&&typeof attempt.catch==='function')attempt.catch(()=>syncHeroFilm());
+    };
+    heroFilm.muted=true;
+    if(reducedMotion.matches){heroFilm.autoplay=false;heroFilm.pause();}
+    heroFilmPlay.addEventListener('click',()=>{
+      if(heroFilm.paused){userPaused=false;const result=heroFilm.play();result?.catch?.(()=>syncHeroFilm());}
+      else{userPaused=true;heroFilm.pause();}
+      syncHeroFilm();
+    });
+    heroFilmAudio.addEventListener('click',()=>{
+      heroFilm.muted=!heroFilm.muted;
+      if(!heroFilm.muted&&heroFilm.paused){userPaused=false;heroFilm.play()?.catch?.(()=>syncHeroFilm());}
+      syncHeroFilm();
+    });
+    heroFilm.addEventListener('play',syncHeroFilm);
+    heroFilm.addEventListener('pause',syncHeroFilm);
+    heroFilm.addEventListener('volumechange',syncHeroFilm);
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{
+        heroVisible=entries.some(entry=>entry.isIntersecting);
+        if(heroVisible)tryPlay();
+        else heroFilm.pause();
+      },{threshold:.2});
+      observer.observe(heroFilm);
+    }
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden)heroFilm.pause();
+      else tryPlay();
+    });
+    syncHeroFilm();
+    tryPlay();
+  }
+
+
   const foodTrack=$('food-track');
   if(foodTrack){
     const foodCards=[...foodTrack.querySelectorAll('.food-card')];
