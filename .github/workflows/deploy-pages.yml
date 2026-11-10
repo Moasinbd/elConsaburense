@@ -28,7 +28,7 @@ jobs:
         run: python scripts/build_town_gallery.py
       - name: Crear vídeo limpio de 15 segundos
         run: python scripts/build_video.py
-      - name: Recuperar promocional de zamburinas
+      - name: Generar promocional solo con escenas de preparación
         run: python scripts/recover_zamburinas_video.py
       - name: Validar sitio y vídeo
         run: |
@@ -65,6 +65,8 @@ jobs:
           for file in arroz-meloso cordero-asado pescado-sal; do test -s "public/media/carta-fotorealista/$file.webp"; done
           test -s public/media/consaburense-15s.mp4
           test -s public/media/zamburinas-huevo-patatas-consaburense.mp4
+          test -s public/media/zamburinas-preparacion-sin-fotos-v2.mp4
+          test -s public/media/zamburinas-preparacion-cartel-v2.webp
           test -s public/videos/zamburinas/index.html
           grep -q 'id="vinos"' public/index.html
           grep -q 'id="opiniones"' public/index.html

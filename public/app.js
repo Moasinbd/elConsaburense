@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   showMenu('entrantes');
 
 
-  // Portada: el vídeo de 30 segundos se reproduce una sola vez y luego se muestran
+  // Portada: el vídeo de unos 20 segundos se reproduce una sola vez y luego se muestran
   // automáticamente las 24 imágenes del carrusel que ya existe en la carta.
   const hero=$('video-zamburinas');
   const film=$('hero-zamburinas');
@@ -185,9 +185,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       galleryMode=false;
       userPaused=false;
       hero.classList.remove('hero-film--gallery');
-      filmLabel.textContent='En nuestra cocina · 30 segundos';
+      filmLabel.textContent='En nuestra cocina · 20 segundos aprox.';
       filmTitle.textContent='Zamburiñas con patatas y huevos';
-      filmPhase.textContent='VÍDEO · 30 S';
+      filmPhase.textContent='VÍDEO · 20 S';
       film.currentTime=0;
       try{ambient.currentTime=0;}catch(_error){}
       film.muted=true;

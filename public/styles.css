@@ -439,7 +439,7 @@
 /* Portada cinematográfica: vídeo completo y después carrusel existente */
 .hero.hero-film{position:relative;isolation:isolate;display:flex;align-items:center;width:100%;height:calc(100svh - 124px);min-height:620px;max-height:920px;overflow:hidden;background:#160e0b;color:#fffaf0}
 .hero-film__stage,.hero-film__video-layer,.hero-film__slides,.hero-film__shade{position:absolute;inset:0;overflow:hidden}
-.hero-film__stage{z-index:-2;pointer-events:none;background:#231913 url("media/zamburinas-cartel-20261110.webp") 70% center/auto 100% no-repeat}
+.hero-film__stage{z-index:-2;pointer-events:none;background:#231913 url("media/zamburinas-preparacion-cartel-v2.webp") 70% center/auto 100% no-repeat}
 .hero-film__video-layer,.hero-film__slides{transition:opacity .95s ease}
 .hero-film__video-layer{opacity:1}
 .hero-film__video{position:absolute;display:block;max-width:none;pointer-events:none}
