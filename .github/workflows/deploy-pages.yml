@@ -26,6 +26,8 @@ jobs:
           ffmpeg -version | head -n 1
       - name: Preparar fotografías de monumentos de Consuegra
         run: python scripts/build_town_gallery.py
+      - name: Incorporar galería de fotografías reales autorizadas
+        run: python scripts/build_real_gallery.py
       - name: Crear vídeo limpio de 15 segundos
         run: python scripts/build_video.py
       - name: Generar promocional solo con escenas de preparación
