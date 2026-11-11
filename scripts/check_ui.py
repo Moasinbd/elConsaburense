@@ -53,6 +53,13 @@ ensure("media/consuegra/molinos.webp" in homepage,
 ensure(re.search(r'<video[^>]*id="hero-zamburinas"[^>]*autoplay', homepage) is not None,
        "Main video autoplay unexpectedly removed")
 ensure("rel=\"canonical\"" in homepage, "Canonical homepage URL missing")
+ensure('id="booking-faq-title"' in homepage and 'class="booking-how"' in homepage,
+       "Booking guidance and FAQ missing")
+ensure("zamburinas-preparacion-ambiente-v1.mp4" in homepage,
+       "Lightweight desktop ambient video is not linked")
+ensure('rel="preconnect" href="https://upload.wikimedia.org"' not in homepage,
+       "Unnecessary third-party preconnect is still configured")
+
 if errors:
     for error in errors:
         print("ERROR:", error, file=sys.stderr)

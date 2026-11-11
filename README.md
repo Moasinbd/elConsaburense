@@ -79,3 +79,13 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - Las pestañas de categorías admiten flechas izquierda/derecha, Inicio y Fin. El menú móvil se puede cerrar con Escape o tocando fuera.
 - En móvil y con ahorro de datos no se reproduce una segunda copia ambiental del vídeo de portada; se mantiene el vídeo principal y el carrusel de platos.
 - La imagen de molinos de la agenda ahora se carga desde la biblioteca local. No se han añadido librerías de terceros.
+
+## Experiencia de reservas y rendimiento (11/11/2026)
+
+- Se conservan los enlaces directos de WhatsApp Business y las consultas de disponibilidad; se explica el proceso de reserva en tres pasos y se añaden respuestas desplegables sin recopilar datos personales desde la web.
+- El segundo vídeo decorativo de escritorio utiliza ahora una versión más ligera (320×568, sin audio). Se conserva el original vertical para la imagen principal, sin deformaciones.
+- El vídeo corporativo secundario se compone con fotografías locales y ya no exige descargar imágenes de Wikimedia durante su creación.
+- La página no debe afirmar disponibilidad, horarios, precio ni servicio de reparto sin confirmación del restaurante.
+- **Fotos reales:** se requiere material autorizado del establecimiento. Las imágenes gastronómicas actuales siguen identificándose como recreaciones; no convertirlas en fotos auténticas.
+- **Despliegue automático:** el workflow contempla sincronización y verificación de Cloudflare Pages si se configuran `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` como secretos de GitHub Actions. Sin ellos se publica en `gh-pages` y aparece una advertencia; no se expone ninguna credencial en el repositorio.
+- **Dominio final:** las URL de `elconsaburense.com` solo se activarán cuando el dominio esté registrado, asignado al proyecto Pages y su HTTPS confirmado.
