@@ -58,6 +58,7 @@ function showMenu(category){
     const active=tab.dataset.category===category;
     tab.classList.toggle('is-active',active);
     tab.setAttribute('aria-selected',String(active));
+    tab.tabIndex=active?0:-1;
   });
   wrapper.setAttribute('aria-labelledby',`tab-${category}`);
 }
@@ -87,6 +88,8 @@ document.addEventListener('DOMContentLoaded',()=>{
       title:card.querySelector('figcaption strong')?.textContent?.trim()||'Nuestra carta'
     })).filter(item=>item.src);
     const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ambientDesktop=window.matchMedia('(min-width:681px)');
+    const saveData=Boolean(navigator.connection?.saveData);
     let galleryMode=false;
     let slideIndex=0;
     let activeSlide=galleryA;
@@ -120,9 +123,11 @@ document.addEventListener('DOMContentLoaded',()=>{
       if(galleryMode||userPaused||document.hidden||!isVisible)return;
       const attempt=film.play();
       if(attempt&&typeof attempt.catch==='function')attempt.catch(()=>updateControls());
-      // Segundo vídeo decorativo: rellena los lados en ordenador sin deformar el original.
-      const backgroundAttempt=ambient.play();
-      if(backgroundAttempt&&typeof backgroundAttempt.catch==='function')backgroundAttempt.catch(()=>{});
+      // Mantener el vídeo principal. Evitar segunda reproducción en móvil y ahorro de datos.
+      if(ambientDesktop.matches&&!saveData){
+        const backgroundAttempt=ambient.play();
+        if(backgroundAttempt&&typeof backgroundAttempt.catch==='function')backgroundAttempt.catch(()=>{});
+      }else ambient.pause();
     };
     const scheduleSlide=()=>{
       cancelSlideTimer();
@@ -200,7 +205,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     film.addEventListener('pause',updateControls);
     film.addEventListener('volumechange',updateControls);
     film.addEventListener('timeupdate',()=>{
-      if(ambient.readyState>=1&&Math.abs(ambient.currentTime-film.currentTime)>.5){
+      if(!ambient.paused&&ambient.readyState>=1&&Math.abs(ambient.currentTime-film.currentTime)>.5){
         try{ambient.currentTime=film.currentTime;}catch(_error){}
       }
     });
@@ -216,6 +221,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       if(!film.muted&&film.paused){userPaused=false;startVideos();}
       updateControls();
     });
+    window.addEventListener('resize',()=>{
+      if(!ambientDesktop.matches||saveData)ambient.pause();
+      else startVideos();
+    },{passive:true});
     filmReplay.addEventListener('click',replay);
     filmNext.addEventListener('click',()=>showSlide(slideIndex+1));
     filmPrev.addEventListener('click',()=>showSlide(slideIndex-1));
@@ -365,9 +374,46 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
 
   document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>showMenu(tab.dataset.category)));
+  // Teclado: flechas, Inicio y Fin para cambiar categorías de la carta.
+  const menuTabs=[...document.querySelectorAll('.menu-tabs [role="tab"]')];
+  document.querySelector('.menu-tabs[role="tablist"]')?.addEventListener('keydown',event=>{
+    const current=menuTabs.indexOf(document.activeElement);
+    if(current===-1)return;
+    let next=current;
+    if(event.key==='ArrowRight')next=(current+1)%menuTabs.length;
+    else if(event.key==='ArrowLeft')next=(current-1+menuTabs.length)%menuTabs.length;
+    else if(event.key==='Home')next=0;
+    else if(event.key==='End')next=menuTabs.length-1;
+    else return;
+    event.preventDefault();
+    menuTabs[next].focus();
+    showMenu(menuTabs[next].dataset.category);
+  });
   const nav=$('main-nav'),toggle=$('nav-toggle');
-  toggle?.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.setAttribute('aria-label',expanded?'Cerrar menú':'Abrir menú');nav.classList.toggle('is-open',expanded)});
-  nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('is-open');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Abrir menú')}));
+  const closeMobileNav=(restoreFocus=false)=>{
+    if(!nav?.classList.contains('is-open'))return;
+    nav.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded','false');
+    toggle?.setAttribute('aria-label','Abrir menú');
+    if(restoreFocus)toggle?.focus();
+  };
+  toggle?.addEventListener('click',()=>{
+    if(toggle.getAttribute('aria-expanded')==='true')closeMobileNav();
+    else {
+      toggle.setAttribute('aria-expanded','true');
+      toggle.setAttribute('aria-label','Cerrar menú');
+      nav?.classList.add('is-open');
+    }
+  });
+  nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>closeMobileNav()));
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&nav?.classList.contains('is-open')){
+      event.preventDefault();closeMobileNav(true);
+    }
+  });
+  document.addEventListener('pointerdown',event=>{
+    if(nav?.classList.contains('is-open')&&!nav.contains(event.target)&&!toggle?.contains(event.target))closeMobileNav();
+  });
 
   // Agenda local. Las fechas pasadas se ocultan automáticamente en zona horaria de Consuegra.
   const parts=new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -433,38 +479,67 @@ document.addEventListener('DOMContentLoaded',()=>{
   dayButtons.forEach(button=>button.addEventListener('click',()=>chooseFairDay(button.dataset.fairDay)));
 
 
-  // Ampliación accesible de las imágenes del pueblo sin salir de El Consaburense.
+  // Galería de monumentos con flechas, contador y deslizamiento en móvil.
   const townDialog=$('town-lightbox');
   const townDialogImage=$('town-lightbox-image');
   const townDialogTitle=$('town-lightbox-title');
   const townDialogMore=$('town-lightbox-more');
   const townClose=$('town-lightbox-close');
-  let townLastTrigger=null;
-  document.querySelectorAll('.town-gallery .town-card').forEach(card=>{
-    const trigger=card.querySelector('.town-photo-open');
-    const photo=trigger?.querySelector('img');
-    const heading=card.querySelector('figcaption strong')?.textContent?.trim();
-    const more=card.querySelector('a.town-more');
-    trigger?.addEventListener('click',()=>{
-      if(!townDialog||!photo||!townDialogImage||!townDialogTitle||!townDialogMore||!more)return;
-      townLastTrigger=trigger;
-      townDialogImage.src=photo.currentSrc||photo.src;
-      townDialogImage.alt=photo.alt;
-      townDialogTitle.textContent=heading||'Consuegra';
-      townDialogMore.href=more.href;
-      townDialogMore.setAttribute('aria-label','Saber más sobre '+(heading||'Consuegra')+' en la página oficial de Turismo');
-      if(typeof townDialog.showModal==='function')townDialog.showModal();
-      else window.open(photo.currentSrc||photo.src,'_blank','noopener,noreferrer');
-    });
+  const townPrev=$('town-lightbox-prev'),townNext=$('town-lightbox-next'),townCount=$('town-lightbox-count');
+  const townPhotos=[...document.querySelectorAll('.town-gallery .town-card')].map(card=>({
+    trigger:card.querySelector('.town-photo-open'),
+    photo:card.querySelector('.town-photo-open img'),
+    heading:card.querySelector('figcaption strong')?.textContent?.trim()||'Consuegra',
+    more:card.querySelector('a.town-more')
+  })).filter(item=>item.trigger&&item.photo&&item.more);
+  let townIndex=0,townLastTrigger=null;
+  const renderTownPhoto=()=>{
+    const item=townPhotos[townIndex];
+    if(!item||!townDialogImage||!townDialogTitle||!townDialogMore)return;
+    townDialogImage.src=item.photo.currentSrc||item.photo.src;
+    townDialogImage.alt=item.photo.alt;
+    townDialogTitle.textContent=item.heading;
+    townDialogMore.href=item.more.href;
+    townDialogMore.setAttribute('aria-label','Saber más sobre '+item.heading+' en Turismo de Consuegra');
+    if(townCount)townCount.textContent=String(townIndex+1).padStart(2,'0')+' / '+String(townPhotos.length).padStart(2,'0');
+    if(townPrev)townPrev.disabled=townPhotos.length<2;
+    if(townNext)townNext.disabled=townPhotos.length<2;
+  };
+  const changeTownPhoto=step=>{
+    if(townPhotos.length<2||!townDialog?.open)return;
+    townIndex=(townIndex+step+townPhotos.length)%townPhotos.length;
+    renderTownPhoto();
+  };
+  townPhotos.forEach((item,index)=>item.trigger.addEventListener('click',()=>{
+    if(!townDialog||townDialog.open)return;
+    townLastTrigger=item.trigger;townIndex=index;renderTownPhoto();
+    if(typeof townDialog.showModal==='function')townDialog.showModal();
+    else window.open(item.photo.currentSrc||item.photo.src,'_blank','noopener,noreferrer');
+  }));
+  townPrev?.addEventListener('click',()=>changeTownPhoto(-1));
+  townNext?.addEventListener('click',()=>changeTownPhoto(1));
+  townDialog?.addEventListener('keydown',event=>{
+    if(!townDialog.open)return;
+    if(event.key==='ArrowLeft'){event.preventDefault();changeTownPhoto(-1);}
+    if(event.key==='ArrowRight'){event.preventDefault();changeTownPhoto(1);}
   });
-  const closeTownDialog=()=>{if(townDialog?.open)townDialog.close()};
+  let townTouchStart=null;
+  townDialogImage?.addEventListener('touchstart',event=>{
+    if(event.touches.length===1)townTouchStart={x:event.touches[0].clientX,y:event.touches[0].clientY};
+  },{passive:true});
+  townDialogImage?.addEventListener('touchend',event=>{
+    if(!townTouchStart||!event.changedTouches.length)return;
+    const dx=event.changedTouches[0].clientX-townTouchStart.x;
+    const dy=event.changedTouches[0].clientY-townTouchStart.y;
+    townTouchStart=null;
+    if(Math.abs(dx)>=55&&Math.abs(dx)>Math.abs(dy)*1.3)changeTownPhoto(dx<0?1:-1);
+  },{passive:true});
+  const closeTownDialog=()=>{if(townDialog?.open)townDialog.close();};
   townClose?.addEventListener('click',closeTownDialog);
-  townDialog?.addEventListener('click',event=>{
-    if(event.target===townDialog)closeTownDialog();
-  });
+  townDialog?.addEventListener('click',event=>{if(event.target===townDialog)closeTownDialog();});
   townDialog?.addEventListener('close',()=>{
     townDialogImage?.removeAttribute('src');
-    townLastTrigger?.focus();
+    townLastTrigger?.focus();townLastTrigger=null;
   });
 
   // Sol orienta a los visitantes; las respuestas de WhatsApp son humanas.
