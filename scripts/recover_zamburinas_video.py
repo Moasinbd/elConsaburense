@@ -69,6 +69,22 @@ def main() -> None:
     if POSTER.stat().st_size < 1000:
         raise RuntimeError("Failed to generate preparation-only poster")
 
+    # Lightweight, silent secondary layer only for large screens.
+    # The original 540x960 film remains untouched and is never stretched.
+    ambient = DEST / "zamburinas-preparacion-ambiente-v1.mp4"
+    execute(
+        "ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+        "-i", str(OUTPUT),
+        "-vf", "scale=320:568:flags=lanczos,fps=20,format=yuv420p",
+        "-an", "-c:v", "libx264", "-preset", "fast", "-crf", "31",
+        "-maxrate", "400k", "-bufsize", "800k", "-movflags", "+faststart",
+        str(ambient),
+    )
+    if ambient.stat().st_size < 5000 or ambient.stat().st_size >= OUTPUT.stat().st_size:
+        raise RuntimeError("Ambient video should be valid and smaller than the master")
+    print(f"Silent desktop background: {ambient.stat().st_size} bytes")
+
+
     # Avoid retaining the old intro/outro at the two published legacy paths.
     for old_name in ("zamburinas-30s-20261110.mp4",
                      "zamburinas-huevo-patatas-consaburense.mp4"):
