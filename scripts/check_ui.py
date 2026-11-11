@@ -40,6 +40,8 @@ ensure("changeTownPhoto" in js and "touchend" in js and "ArrowRight" in js,
        "Town gallery navigation is incomplete")
 ensure("closeMobileNav" in js and "event.key==='Escape'" in js,
        "Mobile navigation dismiss behavior is incomplete")
+ensure("sol-pause-launcher" in js and ".sol-assistant.sol-pause-launcher" in (ROOT / "styles.css").read_text(encoding="utf-8"),
+       "Floating assistant must not obstruct the video controls")
 ensure("ambientDesktop.matches&&!saveData" in js,
        "Data-saving ambient video optimization missing")
 ensure("backTop.hidden" in motion and "compareDocumentPosition" in motion,

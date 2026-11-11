@@ -544,7 +544,22 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   // Sol orienta a los visitantes; las respuestas de WhatsApp son humanas.
   const solLauncher=$('sol-launcher'),solPanel=$('sol-panel'),solClose=$('sol-close');
-  const setSolOpen=open=>{if(!solLauncher||!solPanel)return;solPanel.hidden=!open;solLauncher.setAttribute('aria-expanded',String(open));};
+  const solAside=solLauncher?.closest('.sol-assistant');
+  const setSolOpen=open=>{
+    if(!solLauncher||!solPanel)return;
+    solPanel.hidden=!open;
+    solLauncher.setAttribute('aria-expanded',String(open));
+    solAside?.classList.toggle('sol-is-open',open);
+  };
+  // La ayuda flotante no debe ocultar los controles del vídeo de portada.
+  // La CTA principal de reservas sigue visible; Sol reaparece al bajar.
+  if(solAside&&hero&&'IntersectionObserver' in window){
+    const solObserver=new IntersectionObserver(entries=>{
+      const visible=entries.some(entry=>entry.isIntersecting&&entry.intersectionRatio>=.22);
+      solAside.classList.toggle('sol-pause-launcher',visible);
+    },{threshold:[0,.22]});
+    solObserver.observe(hero);
+  }
   solLauncher?.addEventListener('click',()=>setSolOpen(solPanel.hidden));
   solClose?.addEventListener('click',()=>{setSolOpen(false);solLauncher?.focus();});
   document.querySelectorAll('[data-sol-close]').forEach(a=>a.addEventListener('click',()=>setSolOpen(false)));
