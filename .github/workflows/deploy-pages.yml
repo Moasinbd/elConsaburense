@@ -75,7 +75,7 @@ jobs:
           node --check public/app.js
           node --check public/motion.js
           test -s public/motion.css
-          grep -q 'motion.js?v=20261110-1' public/index.html
+          grep -q 'motion.js?v=20261111-2' public/index.html
           grep -q 'wa.me/message/ACIXEAMQWNWME1' public/index.html
           grep -q 'id="reservas"' public/index.html
           grep -q 'id="eventos"' public/index.html
