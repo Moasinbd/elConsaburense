@@ -53,8 +53,8 @@
   <link rel="stylesheet" href="styles.css?v=20261110-desktop-fullbleed-v3">
   <script src="app.js?v=20261110-preparacion-v2" defer></script>
   <title>Restaurante en Consuegra | El Consaburense</title>
-  <link rel="stylesheet" href="motion.css?v=20261110-1">
-  <script src="motion.js?v=20261110-1" defer></script>
+  <link rel="stylesheet" href="motion.css?v=20261111-2">
+  <script src="motion.js?v=20261111-2" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -68,7 +68,7 @@
     <section class="hero hero-film" id="video-zamburinas" aria-labelledby="hero-title">
       <div class="hero-film__stage" aria-hidden="true">
         <div class="hero-film__video-layer" id="hero-film-video-layer">
-          <video class="hero-film__video hero-film__video--ambient" id="hero-film-ambient" autoplay muted playsinline preload="none" poster="media/zamburinas-preparacion-cartel-v2.webp" tabindex="-1">
+          <video class="hero-film__video hero-film__video--ambient" id="hero-film-ambient" muted playsinline preload="none" poster="media/zamburinas-preparacion-cartel-v2.webp" tabindex="-1">
             <source src="media/zamburinas-preparacion-sin-fotos-v2.mp4" type="video/mp4">
           </video>
           <video class="hero-film__video hero-film__video--main" id="hero-zamburinas" autoplay muted playsinline preload="metadata" width="540" height="960" poster="media/zamburinas-preparacion-cartel-v2.webp" tabindex="-1">
@@ -284,9 +284,14 @@
 <dialog class="town-lightbox" id="town-lightbox" aria-labelledby="town-lightbox-title">
   <div class="town-lightbox-shell">
     <button id="town-lightbox-close" type="button" class="town-lightbox-close" aria-label="Cerrar fotografía ampliada">✕</button>
-    <img id="town-lightbox-image" alt="" width="1400" height="900">
+    <img id="town-lightbox-image" alt="" width="1400" height="900" decoding="async">
+    <div class="town-lightbox-pager" role="group" aria-label="Navegar entre fotografías de Consuegra">
+      <button type="button" id="town-lightbox-prev" aria-label="Fotografía anterior"><span aria-hidden="true">←</span> Anterior</button>
+      <span id="town-lightbox-count" class="town-lightbox-count" aria-live="off">01 / 04</span>
+      <button type="button" id="town-lightbox-next" aria-label="Fotografía siguiente">Siguiente <span aria-hidden="true">→</span></button>
+    </div>
     <div class="town-lightbox-footer">
-      <div><span>DESCUBRE CONSUEGRA</span><strong id="town-lightbox-title">Fotografía de Consuegra</strong></div>
+      <div><span>DESCUBRE CONSUEGRA</span><strong id="town-lightbox-title" aria-live="polite">Fotografía de Consuegra</strong></div>
       <a id="town-lightbox-more" class="town-lightbox-more" href="https://www.consuegra.es/es/descubre/monumentos/molinos-de-consuegra" target="_blank" rel="noopener noreferrer">Saber más en Turismo de Consuegra <span aria-hidden="true">↗</span></a>
     </div>
   </div>
@@ -303,7 +308,7 @@
     </div>
     <div class="agenda-showcase">
       <div class="agenda-showcase-photo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Windmills_and_castle_of_Consuegra_%287079301421%29.jpg" alt="Molinos y castillo de Consuegra, en el Cerro Calderico" loading="lazy" decoding="async" width="960" height="720">
+        <img src="media/consuegra/molinos.webp" alt="Molinos y castillo de Consuegra, en el Cerro Calderico" loading="lazy" decoding="async" width="960" height="720">
         <span class="agenda-photo-label">CONSUEGRA · TOLEDO</span>
       </div>
       <div class="agenda-showcase-message">
