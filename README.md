@@ -65,3 +65,9 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - Se valida en `scripts/check_seo.py` que las seis imágenes existan, que la página de error tenga noindex y que la navegación de recuperación esté presente.
 - **Dominio de destino previsto:** `elconsaburense.com`. Hasta que el propietario confirme el registro y la conexión HTTPS del dominio, **no sustituir todavía las URL canónicas ni el sitemap de `elconsaburense.moasin.dev`**. Entonces actualizar los 4 canonicals, el `Restaurant.url` y `hasMenu`, los datos de WebPage/BreadcrumbList, Open Graph, sitemap y robots; configurar redirecciones 301 uno a uno desde el subdominio provisional, actualizar el perfil de Google y verificar el dominio final en Search Console.
 - No se ha creado ni modificado ningún TXT DNS para Search Console.
+ 
+## Animaciones y transiciones (10/11/2026)
+
+- `public/motion.css` y `public/motion.js`: efectos propios de entrada al desplazarse con IntersectionObserver, aparicion escalonada de tarjetas, microinteracciones al pasar el raton y barra de progreso discreta.
+- El menu de la portada cambia con una transicion breve y la navegacion destaca la seccion visible. El video original y el carrusel mantienen su logica.
+- Se aplican a portada y las tres paginas SEO de servicios. Se respeta `prefers-reduced-motion`, se mantiene el contenido visible sin JavaScript y no se anaden librerias ni recursos externos.
