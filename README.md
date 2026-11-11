@@ -96,3 +96,12 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - Añadir sus fichas a `public/media/fotos-reales/manifest.json`: `{"photos":[{"file":"salon.webp","title":"Nuestro salón","alt":"Vista real del comedor de El Consaburense","credit":"El Consaburense"}]}`.
 - El paso `scripts/build_real_gallery.py` comprueba los archivos, créditos y texto alternativo; solo crea una sección visible cuando hay fotografías verificadas. El manifiesto permanece vacío por defecto.
 - No incluir imágenes de personas identificables sin los permisos pertinentes. Usar títulos, descripción y créditos fieles; no etiquetar imágenes generadas con IA como fotografías auténticas.
+
+## Carta de sugerencias (documento A5 del restaurante, noviembre de 2026)
+
+- Se ha integrado una sección editorial `#sugerencias` justo después de `#carta` y antes de `#para-llevar`.
+- Contiene las 12 sugerencias, divididas en `Entrantes y para compartir` (5) y `Guisos, pescados y carnes` (7), con los precios del archivo entregado.
+- La carta general sigue sin precios, según lo solicitado anteriormente. Los precios aparecen **solo en la sección de sugerencias** por estar indicados en el documento.
+- Los alérgenos son los símbolos marcados en el archivo de origen. No se han inferido alérgenos ausentes; se invita a consultar al personal por intolerancias, contacto cruzado y disponibilidad.
+- La sección tiene acceso desde el encabezado de la carta, y contacto por WhatsApp y teléfono. No se añaden imágenes de platos sin referencias autorizadas.
+- Para actualizar las sugerencias más adelante, modificar el bloque `day-suggestions-section` de `public/index.html` y el listado validado en `scripts/check_ui.py`.

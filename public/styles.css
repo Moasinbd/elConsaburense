@@ -623,3 +623,76 @@
 .sol-assistant.sol-pause-launcher:not(.sol-is-open){opacity:0;visibility:hidden;pointer-events:none}
 .sol-assistant{transition:opacity .2s ease,visibility .2s ease}
 @media(prefers-reduced-motion:reduce){.sol-assistant{transition:none}}
+
+/* Sugerencias del día · reinterpretación web de la carta A5 del restaurante.
+   Bloque editorial dentro del recorrido de Carta, antes de Carta para llevar. */
+.day-suggestions-section{
+  background:#30231e;
+  background-image:radial-gradient(circle at 2% 4%,#6a45332c,transparent 36%),radial-gradient(circle at 100% 100%,#b4814a1b,transparent 40%);
+  color:#fdf4e6;overflow:hidden;
+}
+.day-suggestions-wrap{position:relative;z-index:1}
+.day-suggestions-header{display:flex;gap:45px;justify-content:space-between;align-items:flex-end;margin:0 0 38px}
+.day-suggestions-header>div:first-child{max-width:700px}
+.day-suggestions-overline{color:#d4b48b;display:inline-flex;gap:8px;align-items:center}
+.day-suggestions-header h2{color:#fff8ec;margin:13px 0 14px;font-size:clamp(2.35rem,4.6vw,4.4rem);line-height:1.06;letter-spacing:-.035em}
+.day-suggestions-header h2 em{color:#d7b080;font-weight:400}
+.day-suggestions-header p{color:#e2d1c1;line-height:1.75;max-width:640px;margin:0}
+.day-suggestions-header-action{display:flex;flex-direction:column;align-items:flex-end;gap:16px;flex:none}
+.day-suggestions-edition{color:#dfbd92;font-size:.62rem;font-weight:800;letter-spacing:.14em}
+.day-suggestions-header-action .btn{white-space:nowrap}
+.day-suggestions-grid{display:grid;grid-template-columns:.96fr 1.04fr;gap:22px;align-items:start}
+.day-suggestions-group{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:#fffaf2;color:#3e2b23;border:1px solid #dfc6a4;border-radius:9px;
+  box-shadow:0 24px 54px #180c0833;padding:clamp(21px,2.5vw,32px);
+}
+.day-suggestions-group:before{
+  content:"";position:absolute;z-index:-1;right:-65px;top:15px;width:220px;height:220px;
+  background:url("media/logo-consaburense.webp") center/contain no-repeat;opacity:.035;pointer-events:none;
+}
+.day-suggestions-group-head{display:flex;align-items:center;gap:13px;padding-bottom:19px;margin-bottom:2px;border-bottom:1px solid #d9c29e}
+.day-suggestions-category-mark{display:grid;place-items:center;width:43px;height:43px;flex:none;border:1px solid #e1c9a7;border-radius:50%;color:#a0633c;font-size:1.35rem}
+.day-suggestions-category-kicker{color:#aa7149;font-size:.6rem;font-weight:800;letter-spacing:.17em}
+.day-suggestions-group-head h3{font:700 clamp(1.28rem,1.9vw,1.75rem)/1.2 var(--serif);margin:5px 0 0}
+.day-suggestions-list{margin:0;padding:0;list-style:none}
+.day-suggestion{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid #eadfce}
+.day-suggestion:last-child{border-bottom:none;padding-bottom:2px}
+.day-suggestion-info{min-width:0}
+.day-suggestion-name{font:700 clamp(.92rem,1.12vw,1.05rem)/1.42 var(--serif);color:#3e2b23;display:block}
+.day-suggestion-allergens{display:block;margin-top:6px;letter-spacing:.1em;font-size:.88rem;line-height:1.4}
+.day-suggestion-price{font:800 .96rem/1.3 var(--sans);color:#925231;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.day-suggestions-footer{display:grid;grid-template-columns:1.18fr .82fr;gap:25px;align-items:start;margin-top:28px;padding:24px 26px;border:1px solid #80634b;border-radius:8px;background:#3d2a21}
+.day-suggestions-allergens strong{display:block;font-size:.78rem;color:#f5dcba;margin-bottom:10px}
+.day-suggestions-allergens p{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0}
+.day-suggestions-allergens p span{font-size:.74rem;color:#f2e4d3;white-space:nowrap}
+.day-suggestions-legal{font-size:.73rem;line-height:1.7;color:#d8c9b9;margin:0}
+.day-suggestions-contact{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:30px;padding-top:25px;border-top:1px solid #7e604c}
+.day-suggestions-contact p{color:#eedcc6;font:italic 1.16rem var(--serif);margin:0}
+.day-suggestions-contact>div{display:flex;align-items:center;flex-wrap:wrap;gap:16px 22px}
+.day-suggestions-contact a{font-weight:800;font-size:.82rem;color:#f4d0a7;text-decoration:underline;text-underline-offset:5px}
+.day-suggestions-contact a:hover{color:#fff}
+.menu-suggestions-link{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:14px;padding:11px 17px;border:1px solid #c29a6a;border-radius:999px;color:#704324;background:#fdf7eb;font-size:.83rem;font-weight:800;transition:background .2s ease,transform .2s ease}
+.menu-suggestions-link:hover{background:#efe0c8;transform:translateY(-2px)}
+.day-suggestions-section :is(a):focus-visible{outline:3px solid #e7bb84;outline-offset:4px}
+@media(max-width:1050px){
+  .day-suggestions-header{align-items:start;flex-direction:column;gap:20px}
+  .day-suggestions-header-action{align-items:start}
+}
+@media(max-width:850px){
+  .day-suggestions-grid{grid-template-columns:1fr;gap:19px}
+  .day-suggestions-footer{grid-template-columns:1fr;gap:20px}
+  .day-suggestions-contact{flex-direction:column;align-items:start}
+}
+@media(max-width:600px){
+  .day-suggestions-group{padding:22px 20px}
+  .day-suggestions-section .wrap{width:min(100% - 30px,1180px)}
+  .day-suggestions-header h2{font-size:clamp(2.3rem,11vw,3.2rem)}
+  .day-suggestions-header p{font-size:.88rem}
+  .day-suggestions-header-action .btn{width:100%;white-space:normal}
+  .day-suggestions-footer{padding:20px}
+  .day-suggestion{gap:10px;padding:15px 0}
+  .day-suggestion-price{font-size:.87rem}
+  .day-suggestions-contact>div{flex-direction:column;align-items:start;gap:15px}
+}
+@media(prefers-reduced-motion:reduce){.menu-suggestions-link{transition:none}.menu-suggestions-link:hover{transform:none}}

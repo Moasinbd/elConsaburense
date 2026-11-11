@@ -72,7 +72,7 @@
       '.reviews-top','.review-card','.town-card',
       '.agenda-heading','.agenda-showcase','.agenda-events-heading',
       '.agenda-next-grid > .agenda-card','.booking-quick-card',
-      '.location-grid > div','.seo-section-heading','.seo-card',
+      '.location-grid > div','.day-suggestions-header','.day-suggestions-group','.day-suggestions-footer','.day-suggestions-contact','.seo-section-heading','.seo-card',
       '.seo-menu-group','.seo-cta-inner'
     ];
     const gridCard = '.wine-card,.event-card,.review-card,.town-card,.agenda-card,.booking-quick-card,.seo-card';
