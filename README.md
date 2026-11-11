@@ -89,3 +89,10 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - **Fotos reales:** se requiere material autorizado del establecimiento. Las imágenes gastronómicas actuales siguen identificándose como recreaciones; no convertirlas en fotos auténticas.
 - **Despliegue automático:** el workflow contempla sincronización y verificación de Cloudflare Pages si se configuran `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID` como secretos de GitHub Actions. Sin ellos se publica en `gh-pages` y aparece una advertencia; no se expone ninguna credencial en el repositorio.
 - **Dominio final:** las URL de `elconsaburense.com` solo se activarán cuando el dominio esté registrado, asignado al proyecto Pages y su HTTPS confirmado.
+
+## Galería de fotografías reales (opt-in)
+
+- Subir fotos autorizadas a `public/media/fotos-reales/` en WebP/JPG/PNG.
+- Añadir sus fichas a `public/media/fotos-reales/manifest.json`: `{"photos":[{"file":"salon.webp","title":"Nuestro salón","alt":"Vista real del comedor de El Consaburense","credit":"El Consaburense"}]}`.
+- El paso `scripts/build_real_gallery.py` comprueba los archivos, créditos y texto alternativo; solo crea una sección visible cuando hay fotografías verificadas. El manifiesto permanece vacío por defecto.
+- No incluir imágenes de personas identificables sin los permisos pertinentes. Usar títulos, descripción y créditos fieles; no etiquetar imágenes generadas con IA como fotografías auténticas.
