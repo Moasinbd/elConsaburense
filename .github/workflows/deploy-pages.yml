@@ -97,7 +97,7 @@ jobs:
       - name: Identificar versión compilada y verificar interacción
         run: |
           python scripts/check_ui.py
-          python -c 'import json,os,pathlib;pathlib.Path("public/deploy-version.json").write_text(json.dumps({"source_commit":os.environ["GITHUB_SHA"],"source_branch":"main","published_via":"github-actions-gh-pages"},separators=(",",":"))+"\\n",encoding="utf-8")'
+          python -c 'import json,os,pathlib;pathlib.Path("public/deploy-version.json").write_text(json.dumps({"source_commit":os.environ["GITHUB_SHA"],"source_branch":"main","published_via":"github-actions-gh-pages"},separators=(",",":")),encoding="utf-8")'
           test -s public/deploy-version.json
           grep -q "$GITHUB_SHA" public/deploy-version.json
       - name: Publicar usando GitHub Pages como Portfolio
