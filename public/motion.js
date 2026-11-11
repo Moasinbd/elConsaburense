@@ -8,11 +8,28 @@
     const targets = navLinks.map(link => {
       const id = link.getAttribute('href').slice(1);
       return { link, section:document.getElementById(id) };
-    }).filter(item => item.section);
+    }).filter(item => item.section).sort((a,b)=>{
+      if(a.section===b.section)return 0;
+      return a.section.compareDocumentPosition(b.section)&Node.DOCUMENT_POSITION_FOLLOWING?-1:1;
+    });
     const progress = document.createElement('div');
     progress.className = 'reading-progress';
     progress.setAttribute('aria-hidden','true');
     document.body.append(progress);
+    const backTop=document.createElement('button');
+    backTop.type='button';
+    backTop.className='back-to-top';
+    backTop.hidden=true;
+    backTop.setAttribute('aria-label','Volver al principio de la página');
+    const arrow=document.createElement('span');
+    arrow.textContent='↑';arrow.setAttribute('aria-hidden','true');
+    const label=document.createElement('span');
+    label.className='back-to-top__label';label.textContent='Subir';
+    backTop.append(arrow,label);
+    backTop.addEventListener('click',()=>window.scrollTo({
+      top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'
+    }));
+    document.body.append(backTop);
 
     // Un unico calculo por fotograma: barra de lectura y enlace activo.
     let framePending = false;
@@ -21,6 +38,7 @@
       const available = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
       const ratio = available ? Math.min(1, Math.max(0, window.scrollY / available)) : 0;
       progress.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
+      backTop.hidden=window.scrollY<Math.max(620,window.innerHeight*.8);
       if (!targets.length) return;
       const marker = (header ? header.getBoundingClientRect().height : 80)
         + Math.min(window.innerHeight * .31, 225);
