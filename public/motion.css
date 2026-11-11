@@ -106,3 +106,21 @@
     transform:none !important;
   }
 }
+
+
+/* Visor del patrimonio: pasar entre fotografías sin cerrar el diálogo. */
+.town-lightbox-pager{display:flex;justify-content:center;align-items:center;gap:clamp(10px,3vw,28px);padding:11px 18px;background:#19110e;border-top:1px solid #745642}
+.town-lightbox-pager button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:110px;min-height:44px;padding:7px 14px;border:1px solid #98765b;border-radius:99px;color:#fff6e8;background:#34241b;font-weight:700;font-size:.8rem;transition:background .2s,border-color .2s}
+.town-lightbox-pager button:not(:disabled):hover{background:#7a4c35;border-color:#e7bb84}
+.town-lightbox-pager button:disabled{opacity:.4;cursor:default}
+.town-lightbox-pager .town-lightbox-count{color:#e7be8a;font-size:.73rem;letter-spacing:.12em;font-weight:800;min-width:65px;text-align:center}
+.town-lightbox #town-lightbox-image{max-height:calc(94dvh - 163px)}
+@media(max-width:550px){.town-lightbox-pager{padding:9px;gap:8px}.town-lightbox-pager button{min-width:95px;padding:7px 10px;font-size:.72rem}.town-lightbox #town-lightbox-image{max-height:calc(94dvh - 197px)}}
+/* Botón Subir junto al margen izquierdo: Sol queda libre a la derecha. */
+.back-to-top{position:fixed;bottom:max(22px,env(safe-area-inset-bottom));left:clamp(14px,2.5vw,32px);z-index:55;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:48px;min-height:48px;padding:9px 15px;background:rgba(48,31,23,.94);color:#fff3e3;border:1px solid #a98159;border-radius:999px;font-size:.82rem;font-weight:800;box-shadow:0 9px 28px #25171240;backdrop-filter:blur(10px);transition:transform .25s var(--motion-ease),background .25s ease}
+.back-to-top[hidden]{display:none!important}
+.back-to-top:hover{background:#80482c;transform:translateY(-3px)}
+.back-to-top>span:first-child{font-size:1.22rem;line-height:1}
+@media(max-width:680px){.back-to-top{left:12px;bottom:max(16px,env(safe-area-inset-bottom));width:47px;height:47px;padding:0}.back-to-top__label{display:none}}
+:is(.back-to-top,.town-lightbox-pager button,.menu-tabs .tab,#nav-toggle):focus-visible{outline:3px solid #eeb66b;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.back-to-top,.town-lightbox-pager button{transition:none}.back-to-top:hover{transform:none}}
