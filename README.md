@@ -71,3 +71,11 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - `public/motion.css` y `public/motion.js`: efectos propios de entrada al desplazarse con IntersectionObserver, aparicion escalonada de tarjetas, microinteracciones al pasar el raton y barra de progreso discreta.
 - El menu de la portada cambia con una transicion breve y la navegacion destaca la seccion visible. El video original y el carrusel mantienen su logica.
 - Se aplican a portada y las tres paginas SEO de servicios. Se respeta `prefers-reduced-motion`, se mantiene el contenido visible sin JavaScript y no se anaden librerias ni recursos externos.
+
+## Segunda fase de mejoras visuales y de uso (11/11/2026)
+
+- La galería de Consuegra admite botones anterior/siguiente, contador, flechas del teclado y deslizamiento lateral en móvil. Conserva las fuentes oficiales de cada monumento y devuelve el foco al cerrar.
+- Se incorpora el botón «Subir», con posición opuesta a la asistente Sol. El menú destaca la sección activa según el orden del documento.
+- Las pestañas de categorías admiten flechas izquierda/derecha, Inicio y Fin. El menú móvil se puede cerrar con Escape o tocando fuera.
+- En móvil y con ahorro de datos no se reproduce una segunda copia ambiental del vídeo de portada; se mantiene el vídeo principal y el carrusel de platos.
+- La imagen de molinos de la agenda ahora se carga desde la biblioteca local. No se han añadido librerías de terceros.
