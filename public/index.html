@@ -49,12 +49,12 @@
 }
 </script>
   <link rel="preload" as="image" href="media/zamburinas-preparacion-cartel-v2.webp" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20261112-sources-v7">
+  <link rel="stylesheet" href="styles.css?v=20261112-gallery-v8">
   <script src="app.js?v=20261111-sol-media-3" defer></script>
   <title>Restaurante en Consuegra | El Consaburense</title>
   <link rel="stylesheet" href="motion.css?v=20261111-2">
   <script src="motion.js?v=20261111-2" defer></script>
-  <script src="wine-gallery.js?v=20261112-editorial-v5" defer></script>
+  <script src="wine-gallery.js?v=20261112-gallery-v6" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -284,27 +284,28 @@
           <p class="si-body">En <strong>El Consaburense</strong> compramos sus vinos porque nos gusta servir el trabajo de nuestra tierra, no solo hablar de él.</p>
           <a class="si-btn si-btn-primary" href="https://www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro" target="_blank" rel="noopener noreferrer">Conoce la cooperativa <span aria-hidden="true">↗</span></a>
         </div>
-        <figure class="si-vineyard si-gallery" id="si-gallery" aria-labelledby="si-gallery-title" aria-roledescription="carrusel">
+        <figure class="si-vineyard si-gallery is-video-active" id="si-gallery" aria-labelledby="si-gallery-title" aria-roledescription="carrusel">
           <div class="si-gallery-photos">
-            <img class="si-gallery-slide is-active" src="media/vinos/castillo-consuegra.webp" alt="Fotografía ambiental ilustrativa de un viñedo al atardecer" width="900" height="750" loading="lazy" decoding="async" data-caption="El paisaje de la vid">
+            <video id="si-promo-video" class="si-gallery-slide si-gallery-video is-active" controls muted playsinline preload="metadata" poster="media/san-isidro-presentacion.webp?v=20261112-gallery-v2" width="1280" height="720" aria-label="Presentación audiovisual de San Isidro Labrador, 30 segundos. Música original e imágenes ilustrativas" data-caption="La historia de San Isidro · Vídeo">
+              <source src="media/san-isidro-presentacion.mp4?v=20261112-gallery-v2" type="video/mp4">
+              Tu navegador no puede reproducir el vídeo. Consulta las fotografías con las flechas de la galería.
+            </video>
+            <img class="si-gallery-slide" src="media/vinos/castillo-consuegra.webp" alt="Fotografía ambiental ilustrativa de un viñedo al atardecer" width="900" height="750" loading="lazy" decoding="async" data-caption="El paisaje de la vid" aria-hidden="true">
             <img class="si-gallery-slide" src="media/vinos/calderico.webp" alt="Fotografía ambiental de una botella sin etiqueta visible y una copa de vino tinto" width="900" height="750" loading="lazy" decoding="async" data-caption="El valor de cada copa" aria-hidden="true">
             <img class="si-gallery-slide" src="media/vinos/altovela.webp" alt="Copa de vino tinto junto a una mesa de madera iluminada por el sol" width="900" height="750" loading="lazy" decoding="async" data-caption="Momentos para compartir" aria-hidden="true">
             <img class="si-gallery-slide" src="media/vinos/finca-antigua.webp" alt="Primer plano ambiental de copas de vino blanco y tinto" width="900" height="750" loading="lazy" decoding="async" data-caption="La cultura del vino" aria-hidden="true">
-          </div>
-          <div class="si-gallery-overlay" aria-hidden="true">
-            <span>CONSUEGRA · TOLEDO</span>
-            <strong>Del viñedo<br><em>a la mesa.</em></strong>
+            <div class="si-gallery-overlay" aria-hidden="true"><span>CONSUEGRA · TOLEDO</span></div>
           </div>
           <div class="si-gallery-toolbar">
             <figcaption>
-              <strong id="si-gallery-title">El paisaje de la vid</strong>
-              <small>Fotografías ambientales ilustrativas, no de la cooperativa.</small>
+              <strong id="si-gallery-title">La historia de San Isidro · Vídeo</strong>
+              <small>Fotografías ambientales ilustrativas, no de la cooperativa. Vídeo recreado.</small>
             </figcaption>
-            <div class="si-gallery-controls" role="group" aria-label="Control de la galería automática">
-              <button type="button" id="si-gallery-prev" aria-label="Imagen anterior">‹</button>
-              <span id="si-gallery-count" aria-live="off">01 / 04</span>
-              <button type="button" id="si-gallery-next" aria-label="Imagen siguiente">›</button>
-              <button type="button" id="si-gallery-toggle" aria-label="Pausar galería" aria-pressed="false">Ⅱ</button>
+            <div class="si-gallery-controls" role="group" aria-label="Control del vídeo y las fotografías">
+              <button type="button" id="si-gallery-prev" aria-label="Diapositiva anterior">‹</button>
+              <span id="si-gallery-count" aria-live="off">01 / 05</span>
+              <button type="button" id="si-gallery-next" aria-label="Diapositiva siguiente">›</button>
+              <button type="button" id="si-gallery-toggle" aria-label="Pausar reproducción automática" aria-pressed="false">Ⅱ</button>
             </div>
           </div>
         </figure>
@@ -314,20 +315,6 @@
         <div class="si-fact"><dt>Socios fundadores</dt><dd>43</dd></div>
         <div class="si-fact"><dt>Socios recogidos en la ficha turística</dt><dd>215</dd></div>
       </dl>
-      <div class="si-film" aria-labelledby="si-film-title">
-        <div class="si-film-media">
-          <video id="si-promo-video" class="si-film-video" controls playsinline preload="metadata" poster="media/san-isidro-presentacion.webp" width="1280" height="720" aria-label="Película de presentación de San Isidro Labrador, con imágenes ambientales ilustrativas y banda sonora original">
-            <source src="media/san-isidro-presentacion.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-        </div>
-        <div class="si-film-copy">
-          <span class="si-craft-eyebrow">30 SEGUNDOS DE NUESTRA TIERRA</span>
-          <h4 id="si-film-title">Una historia<br><em>para brindar.</em></h4>
-          <p>De las primeras vendimias de 1958 a los vinos de hoy: descubre, en imágenes, el espíritu cooperativo de San Isidro Labrador.</p>
-          <small>Imágenes ambientales ilustrativas, no grabadas en las instalaciones de la cooperativa. Música original.</small>
-        </div>
-      </div>
       <div class="si-craft">
         <div class="si-craft-story">
           <span class="si-craft-eyebrow">LA HISTORIA CONTINÚA EN CADA VENDIMIA</span>
