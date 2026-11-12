@@ -56,6 +56,25 @@ ensure(re.search(r'<video[^>]*id="hero-zamburinas"[^>]*autoplay', homepage) is n
        "Main video autoplay unexpectedly removed")
 ensure("rel=\"canonical\"" in homepage, "Canonical homepage URL missing")
 
+# Homenaje sin atribuir a la cooperativa un patrocinio no confirmado.
+ensure(homepage.count('id="san-isidro-labrador"') == 1,
+       "La mención a San Isidro debe tener un enlace único")
+ensure('href="#san-isidro-labrador"' in homepage,
+       "Debe poderse abrir desde la introducción de vinos")
+ensure('Cooperativa <em>San Isidro Labrador</em>' in homepage,
+       "Falta la mención principal a la cooperativa")
+ensure('Consaburum y Regates' in homepage and '1958' in homepage,
+       "Faltan las marcas y el origen comprobados en Turismo de Consuegra")
+ensure('www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro' in homepage,
+       "Falta el enlace al perfil oficial de Turismo de Consuegra")
+ensure('Fotografía del entorno de Consuegra, no de las instalaciones de la bodega' in homepage,
+       "Hay que identificar correctamente la fotografía")
+ensure('patrocinado' not in homepage.lower() and 'colaboración oficial' not in homepage.lower(),
+       "No se puede anunciar un acuerdo comercial aún no confirmado")
+ensure('.san-isidro-feature' in (ROOT / "styles.css").read_text(encoding="utf-8"),
+       "No se han integrado los estilos de San Isidro")
+
+
 # El documento A5 de sugerencias tiene 12 referencias y sus precios.
 suggestion_names = ["Chorizo Criollo a la Parrilla","Nuestras Famosas Croquetas Caseras de Jamón Ibérico","Ensalada de Tomate de la Huerta con Ventresca","Huevo Roto Trufado sobre Cama de Patatas","Zamburiñas Selectas (al Ajillo o con Huevo y Patata)","Callos Tradicionales Consaburense","Carrillada Ibérica Estofada al Vino D.O.","Lomo de Rodaballo Salteado con Verduritas","Bacalao Confitado sobre Pisto Manchego","Chuletillas de Lechal Manchego Fritas","Entrecot de Ternera Mayor a la Parrilla","Solomillo de Vacuno (a la Plancha o al Ajillo Suave)"]
 suggestion_prices = ["7,40 €","9,70 €","12,50 €","12,80 €","18,90 €","11,40 €","14,30 €","17,80 €","20,00 €","22,40 €","22,60 €","22,60 €"]

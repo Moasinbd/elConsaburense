@@ -68,7 +68,7 @@
     const selectors = [
       '.intro-visual','.intro-copy','.section-heading','.food-showcase',
       '.menu-tabs','#menu-items','.takeaway-identity','.takeaway-action',
-      '.wine-intro > *','.wine-card','.events-grid > .event-card',
+      '.wine-intro > *','.san-isidro-feature','.wine-card','.events-grid > .event-card',
       '.reviews-top','.review-card','.town-card',
       '.agenda-heading','.agenda-showcase','.agenda-events-heading',
       '.agenda-next-grid > .agenda-card','.booking-quick-card',

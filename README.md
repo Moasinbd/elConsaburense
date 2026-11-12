@@ -105,3 +105,11 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - Los alérgenos son los símbolos marcados en el archivo de origen. No se han inferido alérgenos ausentes; se invita a consultar al personal por intolerancias, contacto cruzado y disponibilidad.
 - La sección tiene acceso desde el encabezado de la carta, y contacto por WhatsApp y teléfono. No se añaden imágenes de platos sin referencias autorizadas.
 - Para actualizar las sugerencias más adelante, modificar el bloque `day-suggestions-section` de `public/index.html` y el listado validado en `scripts/check_ui.py`.
+
+## Bodega de confianza: Cooperativa San Isidro Labrador (Consuegra)
+
+- En la sección de vinos se incluye un bloque editorial destacado con enlace permanente `#san-isidro-labrador`, antes del catálogo de otras bodegas.
+- La relación comercial conocida por el restaurante es la compra de vino a la cooperativa. La web expresa reconocimiento y gratitud, **sin afirmar patrocinio, exclusividad ni acuerdo de colaboración formal**.
+- Datos históricos verificados en la ficha oficial de Turismo de Consuegra: cooperativa fundada en 1958 y marcas Consaburum y Regates. URL: https://www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro
+- Se utiliza una foto **de los molinos de Consuegra**, ya disponible localmente, señalizada expresamente como paisaje del entorno y no de la bodega. Se podrá sustituir más adelante por fotografías y logotipo autorizados de la cooperativa.
+- Se añade enlace desde el encabezado de vinos, botón a su ficha oficial y consulta por WhatsApp para conocer las referencias concretas disponibles.
