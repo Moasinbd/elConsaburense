@@ -84,6 +84,16 @@ ensure(gallery_script.is_file() and "IntersectionObserver" in gallery_script.rea
        "Falta autoplay condicionado a la visibilidad")
 ensure('wine-gallery.js?v=20261112-editorial-v5' in homepage,
        "El script de galería debe estar enlazado desde portada")
+ensure('Gran Selección Plata' in homepage and 'Gran Selección Oro' in homepage,
+       "Deben indicarse los reconocimientos históricos de Consaburum")
+ensure('anteriores a 2015' in homepage and 'anteriores a 2016' in homepage,
+       "Deben precisarse las categorías de los premios")
+ensure('239 millones €' in homepage and 'provincia de Toledo' in homepage,
+       "No debe atribuirse la inversión provincial a San Isidro")
+ensure('guia.patatasanta.com/es/actividades-experiencias-enoturismo' in homepage,
+       "Falta el recurso de enoturismo de Patata Santa")
+ensure('Fotografías ambientales ilustrativas, no de la cooperativa' in homepage,
+       "Las fotografías deben conservar una descripción fiel")
 ensure('id="encargo-open"' in homepage and 'href="https://wa.me/message/ACIXEAMQWNWME1"' in homepage,
        "Deben seguir disponibles los encargos y WhatsApp")
 
