@@ -1,0 +1,126 @@
+/* Microinteracciones ligeras de El Consaburense: sin dependencias externas. */
+:root { --motion-ease: cubic-bezier(.22,1,.36,1); }
+.reading-progress {
+  position:fixed; left:0; top:0; z-index:70; width:100%; height:3px;
+  pointer-events:none; background:linear-gradient(90deg,#a65a3d,#e3bf85);
+  transform:scaleX(0); transform-origin:0 50%;
+}
+.motion-item {
+  opacity:0; transform:translate3d(0,28px,0);
+  transition:opacity .76s ease, transform .76s var(--motion-ease),
+    box-shadow .3s ease, border-color .3s ease;
+}
+.motion-item[data-motion-axis="left"] { transform:translate3d(-30px,12px,0); }
+.motion-item[data-motion-axis="right"] { transform:translate3d(30px,12px,0); }
+.motion-item.is-visible { opacity:1; transform:translate3d(0,0,0); }
+.motion-item.motion-delay-1 { transition-delay:90ms; }
+.motion-item.motion-delay-2 { transition-delay:180ms; }
+
+/* La película sigue intacta; solo entra la tipografía en secuencia. */
+@keyframes consaburense-hero-enter {
+  from { opacity:0; transform:translate3d(0,16px,0); }
+  to { opacity:1; transform:translate3d(0,0,0); }
+}
+.hero-film__copy > .eyebrow { animation:consaburense-hero-enter .7s var(--motion-ease) both .08s; }
+.hero-film__copy > h1 { animation:consaburense-hero-enter .82s var(--motion-ease) both .18s; }
+.hero-film__copy > .hero-film__description { animation:consaburense-hero-enter .8s var(--motion-ease) both .3s; }
+.hero-film__copy > .hero-film__feature { animation:consaburense-hero-enter .8s var(--motion-ease) both .38s; }
+.hero-film__copy > .hero-film__actions { animation:consaburense-hero-enter .8s var(--motion-ease) both .48s; }
+.hero-film__copy > .hero-film__place { animation:consaburense-hero-enter .8s var(--motion-ease) both .56s; }
+.seo-page-top .eyebrow { animation:consaburense-hero-enter .68s var(--motion-ease) both .06s; }
+.seo-page-top h1 { animation:consaburense-hero-enter .78s var(--motion-ease) both .16s; }
+.seo-page-top p { animation:consaburense-hero-enter .78s var(--motion-ease) both .27s; }
+.seo-page-top .btn { animation:consaburense-hero-enter .78s var(--motion-ease) both .38s; }
+
+/* La carta se renueva con una transición breve cada vez que cambian las pestañas. */
+@keyframes consaburense-menu-enter {
+  from { opacity:0; transform:translate3d(0,10px,0); }
+  to { opacity:1; transform:none; }
+}
+#menu-items > .menu-item { animation:consaburense-menu-enter .42s var(--motion-ease) both; }
+#menu-items > .menu-item:nth-child(2) { animation-delay:45ms; }
+#menu-items > .menu-item:nth-child(3) { animation-delay:90ms; }
+#menu-items > .menu-item:nth-child(4) { animation-delay:135ms; }
+#menu-items > .menu-item:nth-child(n+5) { animation-delay:170ms; }
+
+/* Navegación editorial: subrayado que se dibuja y sección actual. */
+#main-nav > a:not(.btn) { position:relative; }
+#main-nav > a:not(.btn)::after {
+  content:""; position:absolute; left:0; right:0; bottom:-8px; height:2px;
+  background:#b26d48; transform:scaleX(0); transform-origin:left center;
+  transition:transform .32s var(--motion-ease);
+}
+#main-nav > a:not(.btn):hover::after,
+#main-nav > a:not(.btn):focus-visible::after,
+#main-nav > a.is-current:not(.btn)::after { transform:scaleX(1); }
+#main-nav > a.is-current:not(.btn) { color:#a05a35; }
+
+@media (hover:hover) and (pointer:fine) {
+  .event-card, .review-card, .booking-quick-card, .seo-card {
+    transition:transform .32s var(--motion-ease), box-shadow .32s ease, border-color .32s ease;
+  }
+  :is(.event-card,.review-card,.booking-quick-card,.seo-card):hover {
+    transform:translate3d(0,-5px,0);
+    box-shadow:0 18px 38px rgba(43,26,17,.14);
+    border-color:#c39a6e;
+  }
+  .event-card:hover { border-color:#ad8866; box-shadow:0 18px 38px #0d090822; }
+  .motion-item.is-visible:is(.event-card,.review-card,.booking-quick-card,.seo-card,.wine-card,.agenda-card):hover {
+    transform:translate3d(0,-5px,0);
+  }
+  .intro-image img, .location-visual img, .seo-card img {
+    transition:transform .7s var(--motion-ease);
+  }
+  .intro-visual:hover .intro-image img,
+  .location-visual:hover img,
+  .seo-card:hover img { transform:scale(1.045); }
+  .feature-grid .feature-icon { display:inline-block; transition:transform .4s var(--motion-ease); }
+  .feature-grid > div:hover .feature-icon { transform:translate3d(0,-4px,0) rotate(-7deg); }
+  :is(.btn-gold,.btn-primary,.btn-whatsapp):hover { box-shadow:0 12px 26px #56332130; }
+  :is(.text-link,.town-more,.event-contact,.wine-card-bottom a,.hero-film__actions a)
+    span[aria-hidden="true"] { display:inline-block; transition:transform .25s var(--motion-ease); }
+  :is(.text-link,.town-more,.event-contact,.wine-card-bottom a,.hero-film__actions a):hover
+    span[aria-hidden="true"] { transform:translate3d(4px,-2px,0); }
+}
+@media (max-width:790px) {
+  #main-nav > a:not(.btn)::after { left:13px; right:auto; width:49px; bottom:8px; }
+  .motion-item[data-motion-axis] { transform:translate3d(0,19px,0); }
+  .motion-item.is-visible { transform:translate3d(0,0,0); }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto !important; }
+  .motion-item,.motion-item[data-motion-axis],.motion-item.is-visible {
+    opacity:1 !important; transform:none !important; transition:none !important;
+  }
+  .hero-film__copy > *, .seo-page-top .eyebrow,.seo-page-top h1,
+  .seo-page-top p,.seo-page-top .btn, #menu-items > .menu-item {
+    animation:none !important;
+  }
+  #main-nav > a:not(.btn)::after,
+  .intro-image img,.location-visual img,.seo-card img,.feature-grid .feature-icon {
+    transition:none !important;
+  }
+  :is(.event-card,.review-card,.booking-quick-card,.seo-card,.wine-card,.agenda-card):hover,
+  .intro-visual:hover .intro-image img,.location-visual:hover img,
+  .seo-card:hover img,.feature-grid > div:hover .feature-icon {
+    transform:none !important;
+  }
+}
+
+
+/* Visor del patrimonio: pasar entre fotografías sin cerrar el diálogo. */
+.town-lightbox-pager{display:flex;justify-content:center;align-items:center;gap:clamp(10px,3vw,28px);padding:11px 18px;background:#19110e;border-top:1px solid #745642}
+.town-lightbox-pager button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:110px;min-height:44px;padding:7px 14px;border:1px solid #98765b;border-radius:99px;color:#fff6e8;background:#34241b;font-weight:700;font-size:.8rem;transition:background .2s,border-color .2s}
+.town-lightbox-pager button:not(:disabled):hover{background:#7a4c35;border-color:#e7bb84}
+.town-lightbox-pager button:disabled{opacity:.4;cursor:default}
+.town-lightbox-pager .town-lightbox-count{color:#e7be8a;font-size:.73rem;letter-spacing:.12em;font-weight:800;min-width:65px;text-align:center}
+.town-lightbox #town-lightbox-image{max-height:calc(94dvh - 163px)}
+@media(max-width:550px){.town-lightbox-pager{padding:9px;gap:8px}.town-lightbox-pager button{min-width:95px;padding:7px 10px;font-size:.72rem}.town-lightbox #town-lightbox-image{max-height:calc(94dvh - 197px)}}
+/* Botón Subir junto al margen izquierdo: Sol queda libre a la derecha. */
+.back-to-top{position:fixed;bottom:max(22px,env(safe-area-inset-bottom));left:clamp(14px,2.5vw,32px);z-index:55;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:48px;min-height:48px;padding:9px 15px;background:rgba(48,31,23,.94);color:#fff3e3;border:1px solid #a98159;border-radius:999px;font-size:.82rem;font-weight:800;box-shadow:0 9px 28px #25171240;backdrop-filter:blur(10px);transition:transform .25s var(--motion-ease),background .25s ease}
+.back-to-top[hidden]{display:none!important}
+.back-to-top:hover{background:#80482c;transform:translateY(-3px)}
+.back-to-top>span:first-child{font-size:1.22rem;line-height:1}
+@media(max-width:680px){.back-to-top{left:12px;bottom:max(16px,env(safe-area-inset-bottom));width:47px;height:47px;padding:0}.back-to-top__label{display:none}}
+:is(.back-to-top,.town-lightbox-pager button,.menu-tabs .tab,#nav-toggle):focus-visible{outline:3px solid #eeb66b;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.back-to-top,.town-lightbox-pager button{transition:none}.back-to-top:hover{transform:none}}
