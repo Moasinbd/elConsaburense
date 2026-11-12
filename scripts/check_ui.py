@@ -61,7 +61,7 @@ ensure(homepage.count('id="si-promo-video"') == 1, "Debe existir un solo vídeo 
 ensure(homepage.count('media/san-isidro-presentacion.mp4') == 1, "El vídeo solo debe estar en la galería")
 ensure('media/san-isidro-presentacion.webp' in homepage, "Falta cartel del vídeo")
 ensure('controls muted playsinline preload="metadata"' in homepage, "Vídeo no accesible en móvil")
-ensure('Imágenes ambientales ilustrativas, no de la cooperativa' in homepage,
+ensure('Fotografías ambientales ilustrativas, no de la cooperativa' in homepage,
        "Debe identificarse la galería como ilustrativa")
 ensure('class="si-film"' not in homepage, "No debe duplicarse el reproductor")
 ensure(homepage.find('id="si-promo-video"') < homepage.find('src="media/vinos/castillo-consuegra.webp"'),
