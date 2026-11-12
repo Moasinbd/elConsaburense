@@ -124,3 +124,12 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - `public/wine-gallery.js`: autoplay cada 5,7 s solo si visible y sin `prefers-reduced-motion`; pausa al pasar el ratón, navegar con teclado o situar el foco; controles anterior/siguiente/pausa con estado accesible y sin dependencias.
 - Información histórica resumida en un listado semántico `dl`, marcas en apartado propio y fuente de los datos visible, sin presentar una colaboración comercial formal.
 - Imágenes auténticas publicadas en el sitio oficial de turismo requieren confirmar permisos de reutilización antes de rehostearlas en el dominio del restaurante.
+
+## Enriquecimiento de contenidos a partir de fuentes de enoturismo (noviembre 2026)
+
+- Se detallan los premios **Gran Selección Plata 2017** (tintos de añadas anteriores a 2015) y **Gran Selección Oro 2018** (tintos de añadas anteriores a 2016) atribuidos a Consaburum en la nota oficial.
+- La Junta documentó una inversión de **718.355 €** y ayuda FOCAL de **129.303 €** en la cooperativa (información histórica de marzo de 2019). Los **239 millones €** del titular son del conjunto de la provincia de Toledo, NO una inversión individual de San Isidro Labrador.
+- La guía de **Patata Santa** se enlaza como recurso de enoturismo general; **no acredita visitas, catas ni acuerdos comerciales** con San Isidro Labrador.
+- Fotografías auténticas de la cooperativa: enlace externo a la galería de Turismo de Consuegra; **no se descargan ni republican imágenes sin autorización**. Se mantienen las fotos ambientales del carrusel, bien etiquetadas.
+- Fuente: https://pepac.castillalamancha.es/pdr/articulos-de-prensa/las-ayudas-focal-han-generado-inversiones-privadas-por-un-valor-total-de
+- Guía: https://guia.patatasanta.com/es/actividades-experiencias-enoturismo
