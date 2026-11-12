@@ -56,25 +56,36 @@ ensure(re.search(r'<video[^>]*id="hero-zamburinas"[^>]*autoplay', homepage) is n
        "Main video autoplay unexpectedly removed")
 ensure("rel=\"canonical\"" in homepage, "Canonical homepage URL missing")
 
-# Cooperativa San Isidro: datos extraídos de Turismo de Consuegra y sin patrocinio inventado.
-ensure(homepage.count('id="san-isidro-labrador"') == 1,
-       "Debe haber una sola sección dedicada a San Isidro Labrador")
-ensure('href="#san-isidro-labrador"' in homepage,
-       "El homenaje debe ser accesible desde la sección de vinos")
-for value in ("43", "215", "1958", "18 millones kg", "2016",
-              "Consaburum", "Regates", "Airén", "Tempranillo",
-              "roble americano y francés"):
-    ensure(value in homepage, f"Faltan datos acreditados de San Isidro: {value}")
-ensure('Cooperativa San Isidro Labrador' in homepage,
-       "La cooperativa debe aparecer identificada con su nombre completo")
-ensure('www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro' in homepage,
-       "Falta la referencia principal a Turismo de Consuegra")
-ensure('ilustrativa y no correspondiente a las instalaciones' in homepage,
-       "Es imprescindible etiquetar la imagen ambiental correctamente")
-ensure('no supone un acuerdo publicitario' in homepage,
-       "Debe aclararse el carácter editorial de la mención")
-ensure('.si-showcase' in (ROOT / "styles.css").read_text(encoding="utf-8"),
-       "No se han integrado los estilos del rediseño")
+# Cooperativa San Isidro: contenido sin duplicar y galería controlable.
+ensure(homepage.count('id="san-isidro-labrador"') == 1, "Cooperativa: sección duplicada")
+ensure('Cooperativa<br><em>San Isidro Labrador</em>' in homepage,
+       "Falta la identidad de la cooperativa")
+for value in ("1958", "43", "215", "Consaburum", "Regates",
+              "Airén", "Tempranillo", "roble americano y francés"):
+    ensure(value in homepage, f"Falta un dato de la ficha turística: {value}")
+ensure(homepage.count('si-btn si-btn-primary') == 1,
+       "Cooperativa: debe haber un único botón principal")
+ensure(homepage.count('www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro') >= 1,
+       "Debe incluirse el enlace a la fuente oficial")
+ensure(homepage.count('si-gallery-slide') == 4,
+       "La galería debe ofrecer cuatro imágenes propias")
+for control in ('si-gallery-prev','si-gallery-next','si-gallery-toggle','si-gallery-count'):
+    ensure(f'id="{control}"' in homepage, f"Falta control de galería: {control}")
+ensure('Fotografías ambientales ilustrativas, no de la cooperativa' in homepage,
+       "La galería debe identificar honestamente las imágenes")
+ensure('sin acuerdo publicitario formal' in homepage,
+       "No atribuir patrocinios inexistentes")
+ensure('Ver vídeo con controles' not in homepage and
+       'Planifica tu visita' not in homepage and
+       'Descubre a nuestros productores locales' not in homepage,
+       "Persisten enlaces y redundancias evitables")
+gallery_script = ROOT / "wine-gallery.js"
+ensure(gallery_script.is_file() and "IntersectionObserver" in gallery_script.read_text(encoding="utf-8"),
+       "Falta autoplay condicionado a la visibilidad")
+ensure('wine-gallery.js?v=20261112-editorial-v5' in homepage,
+       "El script de galería debe estar enlazado desde portada")
+ensure('id="encargo-open"' in homepage and 'href="https://wa.me/message/ACIXEAMQWNWME1"' in homepage,
+       "Deben seguir disponibles los encargos y WhatsApp")
 
 ensure('id="booking-faq-title"' in homepage and 'class="booking-how"' in homepage,
        "Booking guidance and FAQ missing")

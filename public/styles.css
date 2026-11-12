@@ -698,74 +698,57 @@
 @media(prefers-reduced-motion:reduce){.menu-suggestions-link{transition:none}.menu-suggestions-link:hover{transform:none}}
 
 
-/* San Isidro Labrador. Rediseño editorial de la mención a nuestros proveedores.
-   Viñedo local ilustrativo, no imagen de las instalaciones ni de sus productos. */
-.san-isidro-feature{background:#efe3cf;color:#2e2020;margin:34px 0 58px;border-radius:6px;overflow:hidden;box-shadow:0 22px 60px #0a03052d;position:relative;isolation:isolate}
-.si-showcase{display:grid;grid-template-columns:1.12fr .88fr;min-height:555px;background:#2c171c}
-.si-story{padding:clamp(30px,4vw,64px) clamp(28px,4.1vw,66px);display:flex;flex-direction:column;justify-content:center;position:relative;color:#fff6e9;background:radial-gradient(circle at 2% 100%,#6e3b3f49,transparent 47%),#29161a}
-.si-story:before{content:"";position:absolute;inset:12px;border:1px solid #d7b89020;pointer-events:none}
-.si-story-topline{display:flex;align-items:center;gap:11px;color:#cca78c;font-size:.57rem;letter-spacing:.16em;font-weight:800;line-height:1.4;flex-wrap:wrap}
-.si-story-topline .si-dot{color:#d9b57e}
-.si-eyebrow{margin:35px 0 12px;color:#d3a979;letter-spacing:.14em;font-size:.64rem;font-weight:800}
-.si-story h3{color:#fff7ed;margin:0 0 17px;max-width:590px;font:700 clamp(2.65rem,4.6vw,4.85rem)/.96 var(--serif);letter-spacing:-.045em}
-.si-story h3 em{font-weight:400;color:#e1b980;display:block;letter-spacing:-.04em}
-.si-headline{font:italic clamp(1.15rem,1.8vw,1.43rem)/1.42 var(--serif);color:#f1deca;margin:7px 0 23px;max-width:560px}
-.si-story .si-body{font-size:.83rem;color:#d5c3b8;line-height:1.8;margin:0 0 13px}
-.si-story .si-body strong{color:#fff3de}
-.si-tribute{border-left:2px solid #d8b27f;padding:4px 0 4px 17px;margin:13px 0 22px;color:#f3e3cf;font:italic 1.04rem/1.5 var(--serif)}
-.si-tribute cite{display:block;font:650 .67rem/1.5 var(--sans);color:#d0ab80;letter-spacing:.02em;margin-top:8px}
-.si-primary-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.si-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:47px;border-radius:3px;padding:12px 16px;font-size:.73rem;line-height:1.35;font-weight:800;transition:background .2s ease,transform .2s ease;text-align:center}
-.si-btn-primary{background:#dbb47c;color:#2a151a}
-.si-btn-primary:hover{background:#f4d5a5;transform:translateY(-2px)}
-.si-btn-secondary{border:1px solid #a67d67;color:#f4d9b3}
-.si-btn-secondary:hover{background:#4a252a;transform:translateY(-2px)}
-.si-vineyard{position:relative;margin:0;min-width:0;min-height:555px;overflow:hidden;background:#382727}
-.si-vineyard>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:48% 50%;filter:saturate(.85) brightness(.72);transition:transform .8s ease}
-.si-vineyard:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#1a0c1375 0%,transparent 25%,#1f0d15a0 84%,#190c13dc 100%)}
-.si-vineyard-overlay{position:absolute;inset:24px;z-index:1;border:1px solid #fae1b673;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;color:#fff1dc;padding:18px}
-.si-vineyard-top,.si-vineyard-bottom{font-weight:800;letter-spacing:.2em;font-size:.64rem}
-.si-vineyard-top{position:absolute;top:22px}.si-vineyard-bottom{position:absolute;bottom:28px}
-.si-vineyard-emblem{font:400 1.7rem var(--serif);letter-spacing:.16em;border:1px solid #f1dcb895;border-radius:50%;width:84px;height:84px;display:flex;align-items:center;justify-content:center;gap:2px;background:#351d2477;margin-bottom:22px}
-.si-vineyard-emblem span{font:400 1rem var(--serif);color:#e5b781}
-.si-vineyard-name{font:700 clamp(2.1rem,3.6vw,3.6rem)/1.13 var(--serif);text-shadow:0 2px 14px #0d080d83}
-.si-vineyard-name em{font-weight:400;color:#f5d4a0}
-.si-vineyard figcaption{position:absolute;z-index:2;bottom:7px;left:18px;right:18px;color:#edd7c4db;font-size:.57rem;text-align:center;line-height:1.4}
-.si-heritage{background:#d6b989;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 25px;gap:0}
-.si-fact{display:flex;flex-direction:column;justify-content:center;min-height:76px;padding:8px 22px;border-right:1px solid #73503a55}
+/* Cooperativa San Isidro Labrador · edición simplificada y galería automática.
+   Imágenes ambientales autorizadas previamente en este repositorio. */
+.san-isidro-feature{margin:35px 0 55px;background:#f2e6d5;color:#35221f;border-radius:8px;overflow:hidden;box-shadow:0 22px 55px #0b04072d;isolation:isolate}
+.si-showcase{display:grid;grid-template-columns:1.02fr .98fr;background:#301a21}
+.si-story{color:#fff3e6;background:radial-gradient(circle at 0% 0%,#6c3d4545,transparent 60%),#29161a;min-height:510px;padding:clamp(30px,4.6vw,62px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.si-eyebrow{font-size:.63rem;font-weight:800;letter-spacing:.18em;color:#e0b883;margin:0 0 22px}
+.si-story h3{font:700 clamp(2.7rem,4vw,4.65rem)/1.05 var(--serif);letter-spacing:-.04em;margin:0 0 19px;color:#fff6ed}
+.si-story h3 em{font-weight:400;color:#e1b47e;white-space:normal}
+.si-story .si-headline{font:italic clamp(1.15rem,1.7vw,1.48rem)/1.45 var(--serif);color:#f0d4b5;margin:0 0 18px}
+.si-story .si-body{font-size:.87rem;line-height:1.75;color:#e0cfc4;max-width:590px;margin:0 0 12px}
+.si-story .si-body strong{color:#fff0db}
+.si-btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;min-height:47px;padding:13px 18px;margin-top:17px;border-radius:4px;letter-spacing:.01em;font-weight:800;font-size:.83rem;transition:transform .2s ease,background .2s ease}
+.si-btn-primary{background:#deb985;color:#311d1e}
+.si-btn-primary:hover{background:#f1d2a3;transform:translateY(-2px)}
+.si-vineyard{margin:0;position:relative;min-height:510px;background:#301b22;overflow:hidden}
+.si-gallery-photos{position:absolute;inset:0}
+.si-gallery-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;visibility:hidden;transition:opacity 900ms ease,visibility 900ms ease;filter:saturate(.86) brightness(.68)}
+.si-gallery-slide.is-active{opacity:1;visibility:visible}
+.si-vineyard:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#150b1266 0%,transparent 35%,#120910c4 100%)}
+.si-gallery-overlay{position:absolute;z-index:1;inset:35px 23px 130px;border:1px solid #f9d6a068;color:#fff1df;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;gap:22px;padding:15px}
+.si-gallery-overlay>span{font-size:.67rem;letter-spacing:.2em;font-weight:800}
+.si-gallery-overlay>strong{font:700 clamp(2.25rem,4vw,4.2rem)/1.12 var(--serif);text-shadow:0 4px 24px #1f0b1aaa}
+.si-gallery-overlay em{font-weight:400;color:#f0c892}
+.si-gallery-toolbar{position:absolute;z-index:2;bottom:15px;left:22px;right:22px;display:flex;align-items:end;justify-content:space-between;gap:18px;color:#fff6eb}
+.si-gallery-toolbar figcaption{display:flex;flex-direction:column;gap:3px;min-width:0}
+.si-gallery-toolbar figcaption strong{font:700 1.04rem var(--serif)}
+.si-gallery-toolbar figcaption small{font-size:.65rem;color:#e7d4c8;line-height:1.5}
+.si-gallery-controls{display:flex;align-items:center;gap:6px;flex:none}
+.si-gallery-controls button{width:39px;height:39px;display:grid;place-items:center;border-radius:50%;background:#291821c9;border:1px solid #dfc5ab75;color:#fff5df;font-size:1.52rem;font-weight:700;transition:background .2s ease}
+.si-gallery-controls button#si-gallery-toggle{font-size:.8rem;letter-spacing:-.12em}
+.si-gallery-controls button:hover{background:#8d573d}
+.si-gallery-controls #si-gallery-count{font-size:.69rem;min-width:44px;text-align:center;font-weight:800;letter-spacing:.07em}
+.si-heritage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#dfc39d;padding:17px 28px;margin:0}
+.si-fact{display:flex;flex-direction:column-reverse;gap:4px;justify-content:center;padding:13px 25px;border-right:1px solid #7451394f;min-height:93px}
 .si-fact:last-child{border:0}
-.si-fact strong{font:700 clamp(1.65rem,2.7vw,2.45rem)/1.18 var(--serif);color:#3b2222;white-space:normal}
-.si-fact span{font-size:.7rem;line-height:1.45;color:#654438;margin-top:4px}
-.si-craft{display:grid;grid-template-columns:1.17fr .83fr;gap:clamp(25px,4vw,62px);padding:clamp(29px,4.4vw,62px);background:#f8f0e2}
-.si-craft-eyebrow{color:#a56b47;font-size:.64rem;letter-spacing:.17em;font-weight:850}
-.si-craft h4{color:#36221d;margin:12px 0 21px;font:700 clamp(1.7rem,2.45vw,2.35rem)/1.2 var(--serif)}
-.si-craft h4 em{color:#a76b45;font-weight:400}
-.si-craft-story>p{color:#6e5448;font-size:.83rem;line-height:1.8;margin:0 0 16px}
-.si-variety-groups{display:grid;gap:13px;margin:22px 0}
-.si-variety-groups>div{border-left:3px solid #bb8e63;padding-left:13px}
-.si-variety-title{font-size:.62rem;letter-spacing:.12em;color:#9b6347;font-weight:850}
-.si-variety-groups p{margin:4px 0 0;font-size:.84rem;line-height:1.5;color:#583d32}
-.si-craft-story p.si-oak{font-size:.8rem;margin:20px 0 0}
-.si-labels{padding:29px;background:#ecdbc5;border:1px solid #d9b996;border-radius:4px}
-.si-labels h4{margin:10px 0 20px;font-size:1.7rem}
-.si-label-card{display:flex;align-items:center;gap:18px;padding:18px 0;border-top:1px solid #cdae8e}
-.si-label-card:last-of-type{border-bottom:1px solid #cdae8e}
-.si-label-icon{font:italic 1.4rem var(--serif);color:#ae7352;min-width:32px}
-.si-label-card strong{font:700 1.5rem var(--serif);color:#472a27;display:block}
-.si-label-card small{font-size:.74rem;color:#755448}
-.si-labels>p{font-size:.74rem;line-height:1.65;color:#765b4b;margin:20px 0 10px}
-.si-labels>a{color:#78442c;font-weight:800;font-size:.78rem;display:inline-block;text-decoration:underline;text-underline-offset:4px;line-height:1.55}
-.si-footer{padding:19px clamp(29px,4.4vw,62px);border-top:1px solid #c7ad8d;display:flex;justify-content:space-between;align-items:center;gap:15px;background:#f0e3cd}
-.si-footer>div{display:flex;gap:11px;align-items:center}
-.si-footer .si-footer-star{color:#9d6344}
-.si-footer p{margin:0;font:italic .98rem/1.45 var(--serif);color:#61493e}
-.si-footer a{font-size:.7rem;color:#73462d;text-decoration:underline;text-underline-offset:3px;font-weight:800}
-.si-source{margin:0;padding:10px clamp(29px,4.4vw,62px);background:#e4d2b7;color:#795f50;font-size:.64rem;line-height:1.55}
-.wine-feature-jump{display:inline-flex;gap:7px;align-items:center;color:#edbe85;border-bottom:1px solid #edbe85;font-size:.8rem;font-weight:800;margin-top:11px;padding-bottom:3px}
-.wine-feature-jump:hover{color:#fff2d7;border-color:#fff2d7}
-.san-isidro-feature a:focus-visible,.wine-feature-jump:focus-visible{outline:3px solid #dba663;outline-offset:4px}
-@media(hover:hover) and (pointer:fine){.san-isidro-feature:hover .si-vineyard>img{transform:scale(1.035)}}
-@media(max-width:1080px){.si-showcase{grid-template-columns:1fr 1fr}.si-story{padding:35px}.si-primary-actions{flex-direction:column;align-items:stretch}.si-craft{gap:25px}}
-@media(max-width:860px){.si-showcase{grid-template-columns:1fr}.si-story{padding:clamp(27px,5vw,45px)}.si-vineyard{min-height:360px;max-height:430px}.si-heritage{grid-template-columns:repeat(2,minmax(0,1fr))}.si-fact:nth-child(2){border-right:none}.si-fact:nth-child(-n+2){border-bottom:1px solid #73503a55}.si-craft{grid-template-columns:1fr}}
-@media(max-width:530px){.si-story-topline{font-size:.54rem;gap:6px}.si-story h3{font-size:clamp(2.65rem,10vw,3.5rem)}.si-story{padding:28px 22px 31px}.si-vineyard{min-height:330px;max-height:none}.si-vineyard-overlay{inset:14px}.si-vineyard-name{font-size:clamp(2rem,9vw,3.1rem)}.si-heritage{padding:13px}.si-fact{padding:12px 13px;min-height:90px}.si-fact strong{font-size:1.8rem}.si-fact span{font-size:.67rem}.si-craft{padding:27px 20px}.si-labels{padding:23px 18px}.si-footer{align-items:flex-start;flex-direction:column;gap:8px;padding:20px}.si-source{padding:13px 20px}.si-primary-actions{gap:10px}.si-btn{width:100%}}
-@media(prefers-reduced-motion:reduce){.si-btn,.si-vineyard>img{transition:none}.san-isidro-feature:hover .si-vineyard>img,.si-btn:hover{transform:none}}
+.si-fact dd{font:700 clamp(2rem,3vw,2.8rem)/1.05 var(--serif);color:#382122;margin:0}
+.si-fact dt{font-size:.71rem;color:#6b4e40;line-height:1.4}
+.si-craft{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(20px,4vw,55px);padding:clamp(28px,4vw,55px);background:#fbf3e7}
+.si-craft-eyebrow{font-size:.64rem;letter-spacing:.12em;font-weight:850;color:#9d6349}
+.si-craft h4{font:700 clamp(1.9rem,2.75vw,2.7rem)/1.15 var(--serif);color:#39271f;margin:12px 0 16px}
+.si-craft h4 em{font-weight:400;color:#9b6441}
+.si-craft-story p{max-width:560px;font-size:.88rem;color:#6d5547;line-height:1.8;margin:0}
+.si-labels{background:#f0e0ca;border:1px solid #dec39f;padding:24px 28px;display:flex;flex-direction:column;justify-content:center;border-radius:5px}
+.si-label-card{display:flex;flex-direction:column;gap:3px;border-bottom:1px solid #d3b693;padding:13px 0}
+.si-label-card strong{font:700 1.65rem var(--serif);color:#563426}
+.si-label-card small{font-size:.74rem;color:#795b49}
+.si-labels p{font-size:.74rem;line-height:1.6;color:#795b49;margin:15px 0 0}
+.si-source{margin:0;padding:15px clamp(28px,4vw,55px);background:#e5d2b7;color:#725544;font-size:.68rem;line-height:1.75}
+.si-source a{color:#5c3928;text-decoration:underline;text-underline-offset:3px;font-weight:800}
+.si-gallery-controls button:focus-visible,.si-btn:focus-visible,.si-source a:focus-visible{outline:3px solid #e8bd81;outline-offset:3px}
+@media(max-width:950px){.si-showcase{grid-template-columns:1fr}.si-story{min-height:0;padding:clamp(30px,5vw,50px)}.si-vineyard{min-height:410px}.si-gallery-overlay{inset:22px 20px 116px}}
+@media(max-width:720px){.si-craft{grid-template-columns:1fr}.si-heritage{padding:13px}.si-fact{padding:11px 15px}}
+@media(max-width:530px){.si-story{padding:31px 23px 35px}.si-story h3{font-size:clamp(2.6rem,9.4vw,3.6rem)}.si-vineyard{min-height:385px}.si-gallery-overlay{inset:18px 14px 123px}.si-gallery-overlay>strong{font-size:clamp(2.4rem,10vw,3.5rem)}.si-gallery-toolbar{left:15px;right:15px;bottom:11px;gap:6px}.si-gallery-toolbar figcaption strong{font-size:.92rem}.si-gallery-toolbar figcaption small{font-size:.55rem;max-width:170px}.si-gallery-controls{gap:3px}.si-gallery-controls button{width:33px;height:33px;font-size:1.3rem}.si-gallery-controls #si-gallery-count{font-size:.61rem;min-width:37px}.si-fact{padding:13px 8px;min-height:84px}.si-fact dd{font-size:1.8rem}.si-fact dt{font-size:.58rem}.si-craft{padding:29px 22px}.si-labels{padding:23px}.si-source{padding:14px 22px}}
+@media(prefers-reduced-motion:reduce){.si-gallery-slide{transition:none}.si-btn{transition:none}.si-btn:hover{transform:none}}

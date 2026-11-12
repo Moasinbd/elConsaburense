@@ -115,3 +115,12 @@ La publicación/validación de Google Search Console **requiere que el propietar
 - Se afirma la compra de vinos a la cooperativa, según la información facilitada por el restaurante. No se afirma patrocinio, exclusividad ni colaboración comercial formal.
 - La fotografía se presenta explícitamente como viñedo ambiental ilustrativo, sin atribuirla a la cooperativa. Las fotografías de sus instalaciones y productos deben obtener autorización antes de replicarse. Se enlaza directamente su ficha oficial y su teléfono publicado.
 - Criterio comercial: transmitir valor de marca y promoción genuina para abrir una futura colaboración, sin convertir el sitio del restaurante en una oferta publicitaria propia.
+ 
+## Edición editorial y galería automática (12/11/2026)
+
+- Reducción de repeticiones y botones superfluos en portada, introducción, carta, sugerencias, sección de encargos y presentación de vinos.
+- La cooperativa conserva **un CTA principal** hacia la fuente turística, sin duplicación de WhatsApp y llamadas. El resto de la web mantiene reservas y pedidos.
+- Galería de cuatro imágenes ambientales ya utilizadas en el sitio (`public/media/vinos`): viñedos, botella y copas. **No corresponden a las instalaciones ni productos reales de la cooperativa**; se etiqueta de forma visible y se enlaza la galería auténtica publicada por Turismo de Consuegra.
+- `public/wine-gallery.js`: autoplay cada 5,7 s solo si visible y sin `prefers-reduced-motion`; pausa al pasar el ratón, navegar con teclado o situar el foco; controles anterior/siguiente/pausa con estado accesible y sin dependencias.
+- Información histórica resumida en un listado semántico `dl`, marcas en apartado propio y fuente de los datos visible, sin presentar una colaboración comercial formal.
+- Imágenes auténticas publicadas en el sitio oficial de turismo requieren confirmar permisos de reutilización antes de rehostearlas en el dominio del restaurante.
