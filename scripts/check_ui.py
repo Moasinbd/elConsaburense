@@ -56,6 +56,13 @@ ensure(re.search(r'<video[^>]*id="hero-zamburinas"[^>]*autoplay', homepage) is n
        "Main video autoplay unexpectedly removed")
 ensure("rel=\"canonical\"" in homepage, "Canonical homepage URL missing")
 
+# Vídeo editorial: accesible, subtitulado por su propia cartelería y sin autoplay.
+ensure('id="si-promo-video"' in homepage, "Falta el reproductor de la cooperativa")
+ensure('media/san-isidro-presentacion.mp4' in homepage, "Falta vídeo de San Isidro")
+ensure('media/san-isidro-presentacion.webp' in homepage, "Falta cartel del vídeo")
+ensure('controls playsinline preload="metadata"' in homepage, "Vídeo no accesible en móvil")
+ensure('Imágenes ambientales ilustrativas, no grabadas en las instalaciones' in homepage,
+       "Falta advertencia sobre origen ilustrativo")
 # Cooperativa San Isidro: contenido sin duplicar y galería controlable.
 ensure(homepage.count('id="san-isidro-labrador"') == 1, "Cooperativa: sección duplicada")
 ensure('Cooperativa<br><em>San Isidro Labrador</em>' in homepage,
