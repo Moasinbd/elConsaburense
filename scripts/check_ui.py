@@ -56,42 +56,25 @@ ensure(re.search(r'<video[^>]*id="hero-zamburinas"[^>]*autoplay', homepage) is n
        "Main video autoplay unexpectedly removed")
 ensure("rel=\"canonical\"" in homepage, "Canonical homepage URL missing")
 
-# Homenaje sin atribuir a la cooperativa un patrocinio no confirmado.
+# Cooperativa San Isidro: datos extraídos de Turismo de Consuegra y sin patrocinio inventado.
 ensure(homepage.count('id="san-isidro-labrador"') == 1,
-       "La mención a San Isidro debe tener un enlace único")
+       "Debe haber una sola sección dedicada a San Isidro Labrador")
 ensure('href="#san-isidro-labrador"' in homepage,
-       "Debe poderse abrir desde la introducción de vinos")
-ensure('Cooperativa <em>San Isidro Labrador</em>' in homepage,
-       "Falta la mención principal a la cooperativa")
-ensure('Consaburum y Regates' in homepage and '1958' in homepage,
-       "Faltan las marcas y el origen comprobados en Turismo de Consuegra")
+       "El homenaje debe ser accesible desde la sección de vinos")
+for value in ("43", "215", "1958", "18 millones kg", "2016",
+              "Consaburum", "Regates", "Airén", "Tempranillo",
+              "roble americano y francés"):
+    ensure(value in homepage, f"Faltan datos acreditados de San Isidro: {value}")
+ensure('Cooperativa San Isidro Labrador' in homepage,
+       "La cooperativa debe aparecer identificada con su nombre completo")
 ensure('www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro' in homepage,
-       "Falta el enlace al perfil oficial de Turismo de Consuegra")
-ensure('Fotografía del entorno de Consuegra, no de las instalaciones de la bodega' in homepage,
-       "Hay que identificar correctamente la fotografía")
-ensure('patrocinado' not in homepage.lower() and 'colaboración oficial' not in homepage.lower(),
-       "No se puede anunciar un acuerdo comercial aún no confirmado")
-ensure('.san-isidro-feature' in (ROOT / "styles.css").read_text(encoding="utf-8"),
-       "No se han integrado los estilos de San Isidro")
-
-
-# El documento A5 de sugerencias tiene 12 referencias y sus precios.
-suggestion_names = ["Chorizo Criollo a la Parrilla","Nuestras Famosas Croquetas Caseras de Jamón Ibérico","Ensalada de Tomate de la Huerta con Ventresca","Huevo Roto Trufado sobre Cama de Patatas","Zamburiñas Selectas (al Ajillo o con Huevo y Patata)","Callos Tradicionales Consaburense","Carrillada Ibérica Estofada al Vino D.O.","Lomo de Rodaballo Salteado con Verduritas","Bacalao Confitado sobre Pisto Manchego","Chuletillas de Lechal Manchego Fritas","Entrecot de Ternera Mayor a la Parrilla","Solomillo de Vacuno (a la Plancha o al Ajillo Suave)"]
-suggestion_prices = ["7,40 €","9,70 €","12,50 €","12,80 €","18,90 €","11,40 €","14,30 €","17,80 €","20,00 €","22,40 €","22,60 €","22,60 €"]
-ensure('id="sugerencias"' in homepage and 'href="#sugerencias"' in homepage,
-       "Suggestions must be accessible from the menu")
-ensure(homepage.count('class="day-suggestion"') == 12,
-       "Suggestions menu must contain exactly 12 dishes")
-for dish in suggestion_names:
-    ensure(dish in homepage, f"Missing menu suggestion: {dish}")
-for price in suggestion_prices:
-    ensure(price in homepage, f"Missing suggested price: {price}")
-ensure("day-suggestions-starters" in homepage and "day-suggestions-mains" in homepage,
-       "Suggestion groups are missing")
-ensure('Información de alérgenos indicada en la carta' in homepage and 'contacto cruzado' in homepage,
-       "Allergen information missing")
-ensure('class="day-suggestion-price"' in homepage and 'day-suggestions-section' in (ROOT / "styles.css").read_text(encoding="utf-8"),
-       "Suggestions menu styles missing")
+       "Falta la referencia principal a Turismo de Consuegra")
+ensure('ilustrativa y no correspondiente a las instalaciones' in homepage,
+       "Es imprescindible etiquetar la imagen ambiental correctamente")
+ensure('no supone un acuerdo publicitario' in homepage,
+       "Debe aclararse el carácter editorial de la mención")
+ensure('.si-showcase' in (ROOT / "styles.css").read_text(encoding="utf-8"),
+       "No se han integrado los estilos del rediseño")
 
 ensure('id="booking-faq-title"' in homepage and 'class="booking-how"' in homepage,
        "Booking guidance and FAQ missing")

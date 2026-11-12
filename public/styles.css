@@ -698,64 +698,74 @@
 @media(prefers-reduced-motion:reduce){.menu-suggestions-link{transition:none}.menu-suggestions-link:hover{transform:none}}
 
 
-/* Cooperativa San Isidro Labrador · homenaje editorial a un proveedor local.
-   Se usa una fotografía de Consuegra (no de la bodega ni de sus etiquetas).
-   El homenaje no sugiere patrocinio ni un acuerdo de colaboración formal. */
-.san-isidro-feature {
-  display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);
-  background:#fbf4e9;border:1px solid #be997a;border-radius:12px;
-  box-shadow:0 27px 65px #10080c3b;overflow:hidden;color:#392920;
-  margin:34px 0 52px;isolation:isolate;
-}
-.san-isidro-visual {margin:0;position:relative;min-height:560px;overflow:hidden;background:#3f3529}
-.san-isidro-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#180f0e21 12%,#160c0b05 46%,#180e0ed9 100%);pointer-events:none}
-.san-isidro-visual img {width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;filter:saturate(.84);transition:transform .85s cubic-bezier(.22,1,.36,1)}
-.san-isidro-visual .san-isidro-year {position:absolute;top:28px;left:28px;z-index:1;border:1px solid #f0d7b5a6;background:#25150ec9;color:#f5d6ac;display:flex;flex-direction:column;justify-content:center;align-items:center;width:108px;height:108px;border-radius:100px;box-shadow:0 10px 30px #1b0e0d40}
-.san-isidro-year span{font-size:.62rem;font-weight:850;letter-spacing:.25em}
-.san-isidro-year strong{font:700 2.05rem/1.13 var(--serif)}
-.san-isidro-visual figcaption{position:absolute;z-index:1;bottom:28px;left:30px;right:26px;font-size:.65rem;font-weight:800;color:#fff2e4;letter-spacing:.15em;line-height:1.7;text-shadow:0 2px 8px #170f0de8}
-.san-isidro-content{padding:clamp(28px,3.5vw,52px);display:flex;flex-direction:column;justify-content:center}
-.san-isidro-kicker{color:#aa714a;font-size:.66rem;font-weight:850;letter-spacing:.12em;display:inline-flex;gap:9px;align-items:center}
-.san-isidro-content h3{font:700 clamp(2rem,3.25vw,3.25rem)/1.12 var(--serif);letter-spacing:-.027em;margin:18px 0 20px;color:#35251d;max-width:640px}
-.san-isidro-content h3 em{color:#a76542;font-weight:400}
-.san-isidro-content>p{color:#69574a;line-height:1.8;font-size:.88rem;margin:0 0 17px}
-.san-isidro-content p.san-isidro-lead{font:italic clamp(1.05rem,1.7vw,1.22rem)/1.5 var(--serif);color:#694a39;margin:0 0 17px}
-.san-isidro-quote{display:flex;gap:12px;align-items:start;border-left:3px solid #a9794d;background:#f1e5d4;border-radius:0 6px 6px 0;padding:15px 20px;margin:8px 0 25px}
-.san-isidro-quote span{font:700 2.4rem/1 var(--serif);color:#a97449;flex:none}
-.san-isidro-quote p{font:italic 1.05rem/1.55 var(--serif);color:#513625;margin:0}
-.san-isidro-details{display:flex;flex-wrap:wrap;gap:10px 25px;padding:18px 0;border-top:1px solid #d9c3a6;border-bottom:1px solid #d9c3a6}
-.san-isidro-details span{display:flex;flex-direction:column;color:#786253;font-size:.68rem;line-height:1.6}
-.san-isidro-details strong{color:#8c5030;font-size:.84rem;line-height:1.4}
-.san-isidro-content p.san-isidro-availability{font-size:.72rem;color:#795f4d;margin:10px 0 17px}
-.san-isidro-actions{display:flex;align-items:stretch;flex-wrap:wrap;gap:10px}
-.san-isidro-actions a{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:5px;font-size:.76rem;font-weight:800;line-height:1.4;min-height:44px;transition:background .22s ease,color .22s ease,transform .22s ease}
-.san-isidro-actions .san-isidro-official{background:#4e3124;color:#ffedda;border:1px solid #4e3124}
-.san-isidro-actions .san-isidro-contact{background:transparent;color:#583827;border:1px solid #bd9773}
-.san-isidro-actions a:hover{transform:translateY(-2px)}
-.san-isidro-actions .san-isidro-official:hover{background:#815338}
-.san-isidro-actions .san-isidro-contact:hover{background:#f0e1cd}
-.san-isidro-content p.san-isidro-source{font-size:.65rem;line-height:1.6;color:#8b7665;margin:16px 0 0}
-.wine-feature-jump{display:inline-flex;gap:8px;align-items:center;color:#edbe85;border-bottom:1px solid #edbe85;font-size:.82rem;font-weight:800;margin-top:12px;padding-bottom:2px}
+/* San Isidro Labrador. Rediseño editorial de la mención a nuestros proveedores.
+   Viñedo local ilustrativo, no imagen de las instalaciones ni de sus productos. */
+.san-isidro-feature{background:#efe3cf;color:#2e2020;margin:34px 0 58px;border-radius:6px;overflow:hidden;box-shadow:0 22px 60px #0a03052d;position:relative;isolation:isolate}
+.si-showcase{display:grid;grid-template-columns:1.12fr .88fr;min-height:555px;background:#2c171c}
+.si-story{padding:clamp(30px,4vw,64px) clamp(28px,4.1vw,66px);display:flex;flex-direction:column;justify-content:center;position:relative;color:#fff6e9;background:radial-gradient(circle at 2% 100%,#6e3b3f49,transparent 47%),#29161a}
+.si-story:before{content:"";position:absolute;inset:12px;border:1px solid #d7b89020;pointer-events:none}
+.si-story-topline{display:flex;align-items:center;gap:11px;color:#cca78c;font-size:.57rem;letter-spacing:.16em;font-weight:800;line-height:1.4;flex-wrap:wrap}
+.si-story-topline .si-dot{color:#d9b57e}
+.si-eyebrow{margin:35px 0 12px;color:#d3a979;letter-spacing:.14em;font-size:.64rem;font-weight:800}
+.si-story h3{color:#fff7ed;margin:0 0 17px;max-width:590px;font:700 clamp(2.65rem,4.6vw,4.85rem)/.96 var(--serif);letter-spacing:-.045em}
+.si-story h3 em{font-weight:400;color:#e1b980;display:block;letter-spacing:-.04em}
+.si-headline{font:italic clamp(1.15rem,1.8vw,1.43rem)/1.42 var(--serif);color:#f1deca;margin:7px 0 23px;max-width:560px}
+.si-story .si-body{font-size:.83rem;color:#d5c3b8;line-height:1.8;margin:0 0 13px}
+.si-story .si-body strong{color:#fff3de}
+.si-tribute{border-left:2px solid #d8b27f;padding:4px 0 4px 17px;margin:13px 0 22px;color:#f3e3cf;font:italic 1.04rem/1.5 var(--serif)}
+.si-tribute cite{display:block;font:650 .67rem/1.5 var(--sans);color:#d0ab80;letter-spacing:.02em;margin-top:8px}
+.si-primary-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.si-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:47px;border-radius:3px;padding:12px 16px;font-size:.73rem;line-height:1.35;font-weight:800;transition:background .2s ease,transform .2s ease;text-align:center}
+.si-btn-primary{background:#dbb47c;color:#2a151a}
+.si-btn-primary:hover{background:#f4d5a5;transform:translateY(-2px)}
+.si-btn-secondary{border:1px solid #a67d67;color:#f4d9b3}
+.si-btn-secondary:hover{background:#4a252a;transform:translateY(-2px)}
+.si-vineyard{position:relative;margin:0;min-width:0;min-height:555px;overflow:hidden;background:#382727}
+.si-vineyard>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:48% 50%;filter:saturate(.85) brightness(.72);transition:transform .8s ease}
+.si-vineyard:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#1a0c1375 0%,transparent 25%,#1f0d15a0 84%,#190c13dc 100%)}
+.si-vineyard-overlay{position:absolute;inset:24px;z-index:1;border:1px solid #fae1b673;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;color:#fff1dc;padding:18px}
+.si-vineyard-top,.si-vineyard-bottom{font-weight:800;letter-spacing:.2em;font-size:.64rem}
+.si-vineyard-top{position:absolute;top:22px}.si-vineyard-bottom{position:absolute;bottom:28px}
+.si-vineyard-emblem{font:400 1.7rem var(--serif);letter-spacing:.16em;border:1px solid #f1dcb895;border-radius:50%;width:84px;height:84px;display:flex;align-items:center;justify-content:center;gap:2px;background:#351d2477;margin-bottom:22px}
+.si-vineyard-emblem span{font:400 1rem var(--serif);color:#e5b781}
+.si-vineyard-name{font:700 clamp(2.1rem,3.6vw,3.6rem)/1.13 var(--serif);text-shadow:0 2px 14px #0d080d83}
+.si-vineyard-name em{font-weight:400;color:#f5d4a0}
+.si-vineyard figcaption{position:absolute;z-index:2;bottom:7px;left:18px;right:18px;color:#edd7c4db;font-size:.57rem;text-align:center;line-height:1.4}
+.si-heritage{background:#d6b989;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:22px 25px;gap:0}
+.si-fact{display:flex;flex-direction:column;justify-content:center;min-height:76px;padding:8px 22px;border-right:1px solid #73503a55}
+.si-fact:last-child{border:0}
+.si-fact strong{font:700 clamp(1.65rem,2.7vw,2.45rem)/1.18 var(--serif);color:#3b2222;white-space:normal}
+.si-fact span{font-size:.7rem;line-height:1.45;color:#654438;margin-top:4px}
+.si-craft{display:grid;grid-template-columns:1.17fr .83fr;gap:clamp(25px,4vw,62px);padding:clamp(29px,4.4vw,62px);background:#f8f0e2}
+.si-craft-eyebrow{color:#a56b47;font-size:.64rem;letter-spacing:.17em;font-weight:850}
+.si-craft h4{color:#36221d;margin:12px 0 21px;font:700 clamp(1.7rem,2.45vw,2.35rem)/1.2 var(--serif)}
+.si-craft h4 em{color:#a76b45;font-weight:400}
+.si-craft-story>p{color:#6e5448;font-size:.83rem;line-height:1.8;margin:0 0 16px}
+.si-variety-groups{display:grid;gap:13px;margin:22px 0}
+.si-variety-groups>div{border-left:3px solid #bb8e63;padding-left:13px}
+.si-variety-title{font-size:.62rem;letter-spacing:.12em;color:#9b6347;font-weight:850}
+.si-variety-groups p{margin:4px 0 0;font-size:.84rem;line-height:1.5;color:#583d32}
+.si-craft-story p.si-oak{font-size:.8rem;margin:20px 0 0}
+.si-labels{padding:29px;background:#ecdbc5;border:1px solid #d9b996;border-radius:4px}
+.si-labels h4{margin:10px 0 20px;font-size:1.7rem}
+.si-label-card{display:flex;align-items:center;gap:18px;padding:18px 0;border-top:1px solid #cdae8e}
+.si-label-card:last-of-type{border-bottom:1px solid #cdae8e}
+.si-label-icon{font:italic 1.4rem var(--serif);color:#ae7352;min-width:32px}
+.si-label-card strong{font:700 1.5rem var(--serif);color:#472a27;display:block}
+.si-label-card small{font-size:.74rem;color:#755448}
+.si-labels>p{font-size:.74rem;line-height:1.65;color:#765b4b;margin:20px 0 10px}
+.si-labels>a{color:#78442c;font-weight:800;font-size:.78rem;display:inline-block;text-decoration:underline;text-underline-offset:4px;line-height:1.55}
+.si-footer{padding:19px clamp(29px,4.4vw,62px);border-top:1px solid #c7ad8d;display:flex;justify-content:space-between;align-items:center;gap:15px;background:#f0e3cd}
+.si-footer>div{display:flex;gap:11px;align-items:center}
+.si-footer .si-footer-star{color:#9d6344}
+.si-footer p{margin:0;font:italic .98rem/1.45 var(--serif);color:#61493e}
+.si-footer a{font-size:.7rem;color:#73462d;text-decoration:underline;text-underline-offset:3px;font-weight:800}
+.si-source{margin:0;padding:10px clamp(29px,4.4vw,62px);background:#e4d2b7;color:#795f50;font-size:.64rem;line-height:1.55}
+.wine-feature-jump{display:inline-flex;gap:7px;align-items:center;color:#edbe85;border-bottom:1px solid #edbe85;font-size:.8rem;font-weight:800;margin-top:11px;padding-bottom:3px}
 .wine-feature-jump:hover{color:#fff2d7;border-color:#fff2d7}
-.san-isidro-feature :is(a):focus-visible,.wine-feature-jump:focus-visible{outline:3px solid #dba663;outline-offset:4px}
-@media(hover:hover) and (pointer:fine){.san-isidro-feature:hover .san-isidro-visual img{transform:scale(1.035)}}
-@media(max-width:980px){
-  .san-isidro-feature{grid-template-columns:minmax(0,1fr)}
-  .san-isidro-visual{min-height:280px;max-height:370px}
-  .san-isidro-content{padding:clamp(25px,4.5vw,40px)}
-}
-@media(max-width:600px){
-  .san-isidro-feature{margin:28px 0 42px;border-radius:9px}
-  .san-isidro-visual{min-height:270px}
-  .san-isidro-visual .san-isidro-year{width:88px;height:88px;top:17px;left:17px}
-  .san-isidro-year strong{font-size:1.72rem}
-  .san-isidro-visual figcaption{left:20px;bottom:20px;right:14px;font-size:.58rem}
-  .san-isidro-content{padding:25px 21px 29px}
-  .san-isidro-content h3{font-size:clamp(2rem,9vw,2.7rem)}
-  .san-isidro-actions{flex-direction:column}
-  .san-isidro-actions a{justify-content:center}
-}
-@media(prefers-reduced-motion:reduce){
-  .san-isidro-visual img,.san-isidro-actions a{transition:none!important}
-  .san-isidro-feature:hover .san-isidro-visual img,.san-isidro-actions a:hover{transform:none}
-}
+.san-isidro-feature a:focus-visible,.wine-feature-jump:focus-visible{outline:3px solid #dba663;outline-offset:4px}
+@media(hover:hover) and (pointer:fine){.san-isidro-feature:hover .si-vineyard>img{transform:scale(1.035)}}
+@media(max-width:1080px){.si-showcase{grid-template-columns:1fr 1fr}.si-story{padding:35px}.si-primary-actions{flex-direction:column;align-items:stretch}.si-craft{gap:25px}}
+@media(max-width:860px){.si-showcase{grid-template-columns:1fr}.si-story{padding:clamp(27px,5vw,45px)}.si-vineyard{min-height:360px;max-height:430px}.si-heritage{grid-template-columns:repeat(2,minmax(0,1fr))}.si-fact:nth-child(2){border-right:none}.si-fact:nth-child(-n+2){border-bottom:1px solid #73503a55}.si-craft{grid-template-columns:1fr}}
+@media(max-width:530px){.si-story-topline{font-size:.54rem;gap:6px}.si-story h3{font-size:clamp(2.65rem,10vw,3.5rem)}.si-story{padding:28px 22px 31px}.si-vineyard{min-height:330px;max-height:none}.si-vineyard-overlay{inset:14px}.si-vineyard-name{font-size:clamp(2rem,9vw,3.1rem)}.si-heritage{padding:13px}.si-fact{padding:12px 13px;min-height:90px}.si-fact strong{font-size:1.8rem}.si-fact span{font-size:.67rem}.si-craft{padding:27px 20px}.si-labels{padding:23px 18px}.si-footer{align-items:flex-start;flex-direction:column;gap:8px;padding:20px}.si-source{padding:13px 20px}.si-primary-actions{gap:10px}.si-btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.si-btn,.si-vineyard>img{transition:none}.san-isidro-feature:hover .si-vineyard>img,.si-btn:hover{transform:none}}

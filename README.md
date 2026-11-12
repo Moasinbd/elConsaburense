@@ -108,8 +108,10 @@ La publicación/validación de Google Search Console **requiere que el propietar
 
 ## Bodega de confianza: Cooperativa San Isidro Labrador (Consuegra)
 
-- En la sección de vinos se incluye un bloque editorial destacado con enlace permanente `#san-isidro-labrador`, antes del catálogo de otras bodegas.
-- La relación comercial conocida por el restaurante es la compra de vino a la cooperativa. La web expresa reconocimiento y gratitud, **sin afirmar patrocinio, exclusividad ni acuerdo de colaboración formal**.
-- Datos históricos verificados en la ficha oficial de Turismo de Consuegra: cooperativa fundada en 1958 y marcas Consaburum y Regates. URL: https://www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro
-- Se utiliza una foto **de los molinos de Consuegra**, ya disponible localmente, señalizada expresamente como paisaje del entorno y no de la bodega. Se podrá sustituir más adelante por fotografías y logotipo autorizados de la cooperativa.
-- Se añade enlace desde el encabezado de vinos, botón a su ficha oficial y consulta por WhatsApp para conocer las referencias concretas disponibles.
+- Actualización del diseño editorial en `public/index.html#san-isidro-labrador` con estética borgoña, fotografía ambiental de viñedos (licenciada ya en el repositorio), datos históricos, selección varietal, marcas, y enlaces oficiales.
+- La fuente principal de datos es Turismo de Consuegra: https://www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro
+- Según la ficha: fundación el 17 de septiembre de 1958 con 43 socios, 215 socios recogidos en la ficha, capacidad de elaboración de 18 millones kg de uva, última ampliación en 2016, variedades blancas Airén, Sauvignon Blanc, Verdejo y Macabeo; tintas Garnacha, Tempranillo y Syrah; barricas de roble francés y americano.
+- Las marcas de la cooperativa son Consaburum (Vinos de la Tierra de Castilla) y Regates (vino sin IGP/DOP). Mencionar estas marcas **no garantiza que ambas estén disponibles en el restaurante**.
+- Se afirma la compra de vinos a la cooperativa, según la información facilitada por el restaurante. No se afirma patrocinio, exclusividad ni colaboración comercial formal.
+- La fotografía se presenta explícitamente como viñedo ambiental ilustrativo, sin atribuirla a la cooperativa. Las fotografías de sus instalaciones y productos deben obtener autorización antes de replicarse. Se enlaza directamente su ficha oficial y su teléfono publicado.
+- Criterio comercial: transmitir valor de marca y promoción genuina para abrir una futura colaboración, sin convertir el sitio del restaurante en una oferta publicitaria propia.
