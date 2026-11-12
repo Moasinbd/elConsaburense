@@ -56,13 +56,20 @@ ensure(re.search(r'<video[^>]*id="hero-zamburinas"[^>]*autoplay', homepage) is n
        "Main video autoplay unexpectedly removed")
 ensure("rel=\"canonical\"" in homepage, "Canonical homepage URL missing")
 
-# Vídeo editorial: accesible, subtitulado por su propia cartelería y sin autoplay.
-ensure('id="si-promo-video"' in homepage, "Falta el reproductor de la cooperativa")
-ensure('media/san-isidro-presentacion.mp4' in homepage, "Falta vídeo de San Isidro")
+# Galería unificada: vídeo primero, fotos después, sin duplicidades.
+ensure(homepage.count('id="si-promo-video"') == 1, "Debe existir un solo vídeo San Isidro")
+ensure(homepage.count('media/san-isidro-presentacion.mp4') == 1, "El vídeo solo debe estar en la galería")
 ensure('media/san-isidro-presentacion.webp' in homepage, "Falta cartel del vídeo")
-ensure('controls playsinline preload="metadata"' in homepage, "Vídeo no accesible en móvil")
-ensure('Imágenes ambientales ilustrativas, no grabadas en las instalaciones' in homepage,
-       "Falta advertencia sobre origen ilustrativo")
+ensure('controls muted playsinline preload="metadata"' in homepage, "Vídeo no accesible en móvil")
+ensure('Imágenes ambientales ilustrativas, no de la cooperativa' in homepage,
+       "Debe identificarse la galería como ilustrativa")
+ensure('class="si-film"' not in homepage, "No debe duplicarse el reproductor")
+ensure(homepage.find('id="si-promo-video"') < homepage.find('src="media/vinos/castillo-consuegra.webp"'),
+       "El vídeo debe ser la primera diapositiva")
+gallery_code = (ROOT / "wine-gallery.js").read_text(encoding="utf-8")
+for marker in ("video.addEventListener('ended'", "IntersectionObserver", "document.hidden",
+               "saveData", "prefers-reduced-motion", "touchstart", "video.play()"):
+    ensure(marker in gallery_code, f"Galería: falta control {marker}")
 # Cooperativa San Isidro: contenido sin duplicar y galería controlable.
 ensure(homepage.count('id="san-isidro-labrador"') == 1, "Cooperativa: sección duplicada")
 ensure('Cooperativa<br><em>San Isidro Labrador</em>' in homepage,
@@ -74,7 +81,7 @@ ensure(homepage.count('si-btn si-btn-primary') == 1,
        "Cooperativa: debe haber un único botón principal")
 ensure(homepage.count('www.consuegra.es/es/experiencias/actividades/cooperativa-san-isidro') >= 1,
        "Debe incluirse el enlace a la fuente oficial")
-ensure(homepage.count('si-gallery-slide') == 4,
+ensure(homepage.count('class="si-gallery-slide') == 5,
        "La galería debe ofrecer cuatro imágenes propias")
 for control in ('si-gallery-prev','si-gallery-next','si-gallery-toggle','si-gallery-count'):
     ensure(f'id="{control}"' in homepage, f"Falta control de galería: {control}")
@@ -89,7 +96,7 @@ ensure('Ver vídeo con controles' not in homepage and
 gallery_script = ROOT / "wine-gallery.js"
 ensure(gallery_script.is_file() and "IntersectionObserver" in gallery_script.read_text(encoding="utf-8"),
        "Falta autoplay condicionado a la visibilidad")
-ensure('wine-gallery.js?v=20261112-editorial-v5' in homepage,
+ensure('wine-gallery.js?v=20261112-gallery-v6' in homepage,
        "El script de galería debe estar enlazado desde portada")
 ensure('Gran Selección Plata' in homepage and 'Gran Selección Oro' in homepage,
        "Deben indicarse los reconocimientos históricos de Consaburum")
