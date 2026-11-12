@@ -770,3 +770,17 @@
 .si-travel-note a{font-size:.78rem;line-height:1.5;color:#78432c;text-decoration:underline;text-underline-offset:4px;font-weight:800;max-width:255px;flex:none}
 .si-travel-note a:focus-visible{outline:3px solid #b47a49;outline-offset:4px}
 @media(max-width:690px){.si-travel-note{flex-direction:column;align-items:start;padding:22px}.si-travel-note a{max-width:none}.si-awards li{flex-direction:column;gap:5px}.si-awards li small{text-align:left;max-width:none}}
+
+/* Vídeo editorial de San Isidro: reproductor integrado, accesible y responsive. */
+.si-film{display:grid;grid-template-columns:minmax(0,1.52fr) minmax(265px,.83fr);background:#28191b;color:#f7eee5;overflow:hidden}
+.si-film-media{min-width:0;display:flex;align-items:center;background:#160e12}
+.si-film-video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;max-height:480px;background:#100c10}
+.si-film-copy{padding:clamp(27px,4vw,56px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:13px}
+.si-film-copy .si-craft-eyebrow{color:#e2bc88;font-size:.68rem}
+.si-film-copy h4{color:#fff4e9;font:700 clamp(2rem,3vw,3.25rem)/1.09 var(--serif);margin:0;letter-spacing:-.025em}
+.si-film-copy h4 em{font-weight:400;color:#e3be88}
+.si-film-copy p{color:#e3cfc1;font-size:.88rem;line-height:1.75;margin:0;max-width:420px}
+.si-film-copy small{font-size:.7rem;line-height:1.6;color:#c7ada3;margin-top:4px}
+.si-film-video:focus-visible{outline:3px solid #e3be88;outline-offset:-3px}
+@media(max-width:860px){.si-film{grid-template-columns:minmax(0,1fr)}.si-film-video{max-height:none}.si-film-copy{padding:28px 27px 34px;gap:10px}}
+@media(prefers-reduced-motion:reduce){.si-film *{scroll-behavior:auto}}
