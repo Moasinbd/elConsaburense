@@ -784,3 +784,26 @@
 .si-film-video:focus-visible{outline:3px solid #e3be88;outline-offset:-3px}
 @media(max-width:860px){.si-film{grid-template-columns:minmax(0,1fr)}.si-film-video{max-height:none}.si-film-copy{padding:28px 27px 34px;gap:10px}}
 @media(prefers-reduced-motion:reduce){.si-film *{scroll-behavior:auto}}
+
+/* Galería vídeo + fotografías, revisión fluidez noviembre 2026. */
+.si-showcase{grid-template-columns:minmax(0, .93fr) minmax(0,1.07fr)}
+.si-vineyard.si-gallery{min-height:510px;display:flex;flex-direction:column;background:#1b1218}
+.si-gallery-photos{position:relative;inset:auto;width:100%;height:auto;flex:1 1 auto;min-height:0;aspect-ratio:16/10;overflow:hidden;isolation:isolate;background:#140d13}
+.si-gallery-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;visibility:hidden;z-index:0;transition:opacity .75s ease,visibility 0s linear .75s;filter:saturate(.94) brightness(.9);transform:translateZ(0);backface-visibility:hidden}
+.si-gallery-slide.is-active{opacity:1;visibility:visible;z-index:1;transition:opacity .75s ease,visibility 0s linear 0s}
+.si-gallery-video{display:block;aspect-ratio:16/9;object-fit:contain;object-position:center;filter:none;background:#110d12;max-width:100%}
+.si-gallery-video.is-active{z-index:2}
+.si-vineyard.si-gallery:after{display:none}
+.si-gallery-overlay{inset:15px 18px auto;z-index:3;display:flex;justify-content:flex-start;align-items:flex-start;border:0;pointer-events:none;padding:0;gap:0}
+.si-gallery-overlay span{display:inline-block;font-size:.58rem;letter-spacing:.13em;padding:8px 11px;border:1px solid #f9d6a065;background:#190d14a6;border-radius:3px}
+.si-gallery.is-video-active .si-gallery-overlay{display:none}
+.si-gallery-toolbar{position:relative;inset:auto;bottom:auto;left:auto;right:auto;z-index:4;display:flex;align-items:center;gap:12px;min-height:88px;padding:13px 16px;background:linear-gradient(120deg,#25151c,#38232b);color:#fff5e7}
+.si-gallery-toolbar figcaption{flex:1 1 auto;min-width:0}
+.si-gallery-toolbar figcaption strong{font-size:clamp(.93rem,1.5vw,1.08rem)}
+.si-gallery-toolbar figcaption small{font-size:.66rem;max-width:340px;line-height:1.5;color:#ead7c8}
+.si-gallery-controls{flex:0 0 auto}
+.si-gallery-controls button{cursor:pointer;touch-action:manipulation;width:40px;height:40px}
+.si-gallery-controls #si-gallery-count{min-width:49px}
+@media(max-width:950px){.si-showcase{grid-template-columns:1fr}.si-vineyard.si-gallery{min-height:0}.si-gallery-photos{aspect-ratio:16/9}.si-gallery-video{object-fit:contain}}
+@media(max-width:530px){.si-gallery-photos{aspect-ratio:16/10}.si-gallery-video{object-fit:contain}.si-gallery-toolbar{padding:12px 11px;gap:7px;min-height:95px}.si-gallery-toolbar figcaption strong{font-size:.84rem}.si-gallery-toolbar figcaption small{font-size:.6rem;max-width:190px}.si-gallery-controls button{height:35px;width:35px}.si-gallery-controls #si-gallery-count{min-width:39px;font-size:.62rem}.si-gallery-overlay{inset:10px 10px auto}.si-gallery-overlay span{font-size:.48rem}}
+@media(prefers-reduced-motion:reduce){.si-gallery-slide,.si-gallery-slide.is-active{transition:none;transform:none}}
